@@ -5,6 +5,68 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".login.presentation.activity.LoginActivity">
+        android:padding="@dimen/login_padding"
+        tools:context=".login.presentation.view.activity.LoginActivity">
+    <TextView
+            android:id="@+id/signInTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+    />
+
+    <EditText android:id="@+id/credentialNameEditText"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/rect_edittext_drawable"
+              app:layout_constraintTop_toBottomOf="@id/signInTextView"
+              android:hint="@string/email_mobile_hint"
+              android:layout_marginTop="@dimen/login_padding"
+              android:textSize="@dimen/edittext_text_size"
+    />
+
+    <EditText android:id="@+id/credentialPasswordEditText"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/rect_edittext_drawable"
+              app:layout_constraintTop_toBottomOf="@id/credentialNameEditText"
+              android:hint="@string/password_hint"
+              android:textSize="@dimen/edittext_text_size"
+              android:inputType="textPassword"
+              android:layout_marginTop="@dimen/login_margin"/>
+
+    <Button android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_hint"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/login_padding"
+            app:layout_constraintTop_toBottomOf="@+id/credentialPasswordEditText"/>
+
+    <TextView android:id="@+id/forgotPassTextView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/loginButton"
+              android:layout_marginTop="@dimen/login_padding"
+              android:textColor="@color/colorAccent"
+              android:text="@string/forgot_pass_link"
+    />
+
+    <TextView android:id="@+id/newAccountTextView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/forgotPassTextView"
+              android:layout_marginTop="@dimen/login_margin"
+              android:textColor="@color/colorAccent"
+              android:text="@string/no_account_link"
+    />
 
 </android.support.constraint.ConstraintLayout>
