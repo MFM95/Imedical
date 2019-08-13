@@ -2,6 +2,7 @@ package com.example.imedical.core.di.component
 
 import com.example.imedical.AndroidApplication
 import com.example.imedical.core.di.module.ApplicationModule
+import com.example.imedical.login.presentation.view.activity.LoginActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,5 +14,6 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(application: AndroidApplication)
+    fun inject(loginActivity: LoginActivity)
 
 }

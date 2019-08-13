@@ -5,13 +5,13 @@ import com.example.imedical.login.data.entity.Credentials
 import com.example.imedical.login.data.entity.TokenWrapper
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
+import retrofit2.http.POST
 
 /**
  * Created by Ahmed Hassan on 8/13/2019.
  */
 interface IMedicalApi {
-    @GET("auth/login")
+    @POST("auth/login")
     suspend fun login(@Body credentials: Credentials)
             : Response<ApiResponse<TokenWrapper>>
 
