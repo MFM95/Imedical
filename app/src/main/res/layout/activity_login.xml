@@ -19,11 +19,29 @@
             android:textColor="@color/colorBlack"
     />
 
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/loginErrorLayout"
+                    app:layout_constraintTop_toBottomOf="@id/signInTextView"
+                    android:background="@drawable/error_layout_bg"
+                    android:layout_marginTop="@dimen/login_margin"
+                    android:layout_marginBottom="@dimen/login_margin"
+                    android:visibility="gone"
+                    android:padding="@dimen/login_margin">
+        <TextView
+                android:id="@+id/loginErrorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/colorError"
+        />
+    </RelativeLayout>
+
     <EditText android:id="@+id/credentialNameEditText"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@drawable/rect_edittext_drawable"
-              app:layout_constraintTop_toBottomOf="@id/signInTextView"
+              app:layout_constraintTop_toBottomOf="@id/loginErrorLayout"
               android:hint="@string/email_mobile_hint"
               android:layout_marginTop="@dimen/login_padding"
               android:textSize="@dimen/edittext_text_size"

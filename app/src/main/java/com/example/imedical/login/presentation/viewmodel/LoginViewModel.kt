@@ -13,9 +13,11 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) : ViewModel(){
     private var tokenLiveData: MutableLiveData<DataWrapper<String>> = MutableLiveData()
 
-    fun login(user: String, password: String): LiveData<DataWrapper<String>>{
-        loginUseCase.execute(LoginUseCase.LoginParams(user, password), this::onResult)
+    fun getToken(): LiveData<DataWrapper<String>>{
         return tokenLiveData
+    }
+    fun login(user: String, password: String){
+        loginUseCase.execute(LoginUseCase.LoginParams(user, password), this::onResult)
     }
 
     private fun onResult(result: DataWrapper<String>){

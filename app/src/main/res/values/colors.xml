@@ -6,4 +6,5 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorEditTextBorder">#dadada</color>
+    <color name="colorError">#ff0000</color>
 </resources>

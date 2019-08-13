@@ -12,7 +12,11 @@ import javax.inject.Inject
 class LoginRepository @Inject constructor(private val apiCalls: ApiCalls) : ILoginRepository{
 
     override suspend fun login(user: String, password: String) : DataWrapper<String>{
-        //TODO Check for response status and handle caching
+        val error = Validator.validateLogin(user, password)
+
+        if(error.isNotEmpty())
+            return DataWrapper(false, null, error)
+
         return DataMapper.mapLoginData(apiCalls.login(Credentials(user, password)).body()!!)
     }
 }

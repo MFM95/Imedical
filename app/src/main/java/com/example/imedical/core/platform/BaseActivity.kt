@@ -13,7 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
         (application as AndroidApplication).appComponent
     }
 
-    protected fun showMessage(message: String){
+    protected fun showMessage(message: String?){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
