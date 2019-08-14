@@ -8,11 +8,17 @@ import com.example.imedical.login.domain.model.DataWrapper
  * Created by Ahmed Hassan on 8/13/2019.
  */
 object DataMapper {
+    private const val INVALID_CREDENTIALS = "invalid_credentials"
+
     fun mapLoginData(apiResponse: ApiResponse<TokenWrapper>) : DataWrapper<String> {
-        if(apiResponse.status)
+        if(apiResponse.status && apiResponse.data != null)
             return DataWrapper(apiResponse.status, apiResponse.data.token, apiResponse.error)
 
-        return DataWrapper(apiResponse.status, null, apiResponse.error)
+        var error = apiResponse.error
+        when(apiResponse.error){
+            INVALID_CREDENTIALS -> error = "Invalid credentials."
+        }
+        return DataWrapper(apiResponse.status, null, error)
     }
 
 }

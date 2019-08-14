@@ -1,7 +1,9 @@
 package com.example.imedical.login.data.repository
 
+import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.login.data.api.ApiCalls
 import com.example.imedical.login.data.entity.Credentials
+import com.example.imedical.login.data.entity.TokenWrapper
 import com.example.imedical.login.domain.model.DataWrapper
 import com.example.imedical.login.domain.repository.ILoginRepository
 import javax.inject.Inject
@@ -17,6 +19,8 @@ class LoginRepository @Inject constructor(private val apiCalls: ApiCalls) : ILog
         if(error.isNotEmpty())
             return DataWrapper(false, null, error)
 
-        return DataMapper.mapLoginData(apiCalls.login(Credentials(user, password)).body()!!)
+        val response = apiCalls.login(Credentials(user, password))
+
+        return DataMapper.mapLoginData(response)
     }
 }
