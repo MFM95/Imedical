@@ -3,7 +3,7 @@ package com.example.imedical.login.presentation.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.imedical.login.domain.model.DataWrapper
+import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.login.domain.usecase.LoginUseCase
 import javax.inject.Inject
 

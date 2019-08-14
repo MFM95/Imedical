@@ -4,13 +4,10 @@ import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.api.ErrorResponse
 import com.example.imedical.login.data.entity.Credentials
 import com.example.imedical.login.data.entity.TokenWrapper
-import com.example.imedical.login.domain.model.DataWrapper
 import okhttp3.ResponseBody
 import retrofit2.Converter
-import retrofit2.Response
 import retrofit2.Retrofit
 import java.lang.Exception
-import java.text.Annotation
 import javax.inject.Inject
 
 /**

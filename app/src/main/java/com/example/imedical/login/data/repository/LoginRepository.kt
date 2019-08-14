@@ -1,10 +1,8 @@
 package com.example.imedical.login.data.repository
 
-import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.login.data.api.ApiCalls
 import com.example.imedical.login.data.entity.Credentials
-import com.example.imedical.login.data.entity.TokenWrapper
-import com.example.imedical.login.domain.model.DataWrapper
+import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.login.domain.repository.ILoginRepository
 import javax.inject.Inject
 
@@ -13,7 +11,7 @@ import javax.inject.Inject
  */
 class LoginRepository @Inject constructor(private val apiCalls: ApiCalls) : ILoginRepository{
 
-    override suspend fun login(user: String, password: String) : DataWrapper<String>{
+    override suspend fun login(user: String, password: String) : DataWrapper<String> {
         val error = Validator.validateLogin(user, password)
 
         if(error.isNotEmpty())

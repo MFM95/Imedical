@@ -1,4 +1,4 @@
-package com.example.imedical.login.domain.model
+package com.example.imedical.core.model
 
 /**
  * Created by Ahmed Hassan on 8/13/2019.

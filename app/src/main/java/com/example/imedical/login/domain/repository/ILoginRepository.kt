@@ -1,6 +1,6 @@
 package com.example.imedical.login.domain.repository
 
-import com.example.imedical.login.domain.model.DataWrapper
+import com.example.imedical.core.model.DataWrapper
 
 /**
  * Created by Ahmed Hassan on 8/13/2019.
