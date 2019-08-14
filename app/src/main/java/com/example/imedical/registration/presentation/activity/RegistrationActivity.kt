@@ -1,11 +1,11 @@
 package com.example.imedical.registration.presentation.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.imedical.R
+import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
 
-class RegistrationActivity : AppCompatActivity() {
+class RegistrationActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

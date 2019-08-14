@@ -33,9 +33,6 @@ class ApplicationModule(private val application: AndroidApplication) {
             .build()
     }
 
-    @Provides @Singleton fun provideLoginRepository(loginRepository: LoginRepository) : ILoginRepository =
-        loginRepository
-
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {

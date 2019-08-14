@@ -11,7 +11,6 @@ import javax.inject.Inject
 class LoginUseCase @Inject constructor(private val iLoginRepository: ILoginRepository) :
     BaseUseCase<DataWrapper<String>, LoginUseCase.LoginParams>() {
 
-    //TODO Validate credentials
     override suspend fun run(params: LoginParams): DataWrapper<String> =
         iLoginRepository.login(params.user, params.password)
 

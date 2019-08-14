@@ -10,7 +10,7 @@ import retrofit2.http.POST
 /**
  * Created by Ahmed Hassan on 8/13/2019.
  */
-interface IMedicalApi {
+interface LoginApi {
     @POST("auth/login")
     suspend fun login(@Body credentials: Credentials)
             : Response<ApiResponse<TokenWrapper>>

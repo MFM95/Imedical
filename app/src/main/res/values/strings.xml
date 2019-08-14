@@ -12,7 +12,7 @@
     <string name="mobile_hint">Mobile Number</string>
     <string name="pass_confirm_hint">Password Confirmation</string>
     <string name="have_account">Have an account? Login.</string>
-    <string name="registration_agreement">By Registering you agree to our privacy policy and conditions of use.</string>
+    <string name="registration_agreement">By registering you agree to our privacy policy and conditions of use.</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="terms_conditions">Terms and Conditions</string>
 </resources>
