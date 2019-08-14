@@ -4,7 +4,10 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
@@ -28,12 +31,26 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun setupActions(){
+        //Login button
         loginButton.setOnClickListener {
             onLoginClick()
         }
+
+        //Registration link
         newAccountTextView.setOnClickListener {
             val registerIntent: Intent = Intent(this, RegistrationActivity::class.java)
             startActivity(registerIntent)
+        }
+
+        //Password done action
+        credentialPasswordEditText.setOnEditorActionListener {
+                v: TextView, i: Int, e:KeyEvent? ->
+            var handled = false
+            if (i == EditorInfo.IME_ACTION_DONE) {
+                onLoginClick()
+                handled = true
+            }
+            handled
         }
     }
 
