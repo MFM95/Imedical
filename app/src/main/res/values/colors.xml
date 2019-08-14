@@ -7,4 +7,5 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorEditTextBorder">#dadada</color>
     <color name="colorError">#ff0000</color>
+    <color name="linkColor">#0000EE</color>
 </resources>
