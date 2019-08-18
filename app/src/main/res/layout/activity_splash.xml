@@ -15,7 +15,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:scaleType="centerCrop"
-            android:layout_margin="-5dp"
+            android:scaleType="fitCenter"
+
+            android:layout_margin="40dp"
     />
 </android.support.constraint.ConstraintLayout>

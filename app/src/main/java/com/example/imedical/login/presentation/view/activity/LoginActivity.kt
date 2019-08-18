@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -24,6 +25,7 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         appComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
         subscribeViewModel()
@@ -71,5 +73,10 @@ class LoginActivity : BaseActivity() {
     private fun onLoginClick(){
         loginErrorLayout.visibility = View.GONE
         viewModel.login(credentialNameEditText.text.toString(), credentialPasswordEditText.text.toString())
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
