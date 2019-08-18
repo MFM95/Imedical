@@ -62,7 +62,8 @@
                   app:layout_constraintStart_toStartOf="parent"
                   android:layout_margin="@dimen/product_margin">
 
-        <ImageButton android:layout_width="wrap_content"
+        <ImageButton android:id="@+id/productWishButton"
+                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:src="@drawable/ic_wish_border_sm"
                      android:tint="@color/colorBlack"
@@ -71,7 +72,8 @@
                      android:layout_marginStart="5dp"
                      android:layout_marginEnd="5dp"/>
 
-        <Button android:layout_width="wrap_content"
+        <Button android:id="@+id/productCartButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_add_shopping_cart"
                 android:drawableLeft="@drawable/ic_add_shopping_cart"
@@ -84,7 +86,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"/>
 
-        <ImageButton android:layout_width="wrap_content"
+        <ImageButton android:id="@+id/productCompareButton"
+                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:src="@drawable/ic_compare_sm"
                      android:background="@drawable/action_btn_bg_white"
