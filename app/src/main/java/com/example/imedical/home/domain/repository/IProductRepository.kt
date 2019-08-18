@@ -7,6 +7,6 @@ import com.example.imedical.home.domain.model.ProductModel
  * Created by Ahmed Hassan on 8/18/2019.
  */
 interface IProductRepository {
-    fun getBestSellers() : DataWrapper<ArrayList<ProductModel>>
-    fun getOffers(): DataWrapper<ArrayList<ProductModel>>
+    suspend fun getBestSellers() : DataWrapper<ArrayList<ProductModel>>
+    suspend fun getOffers(): DataWrapper<ArrayList<ProductModel>>
 }

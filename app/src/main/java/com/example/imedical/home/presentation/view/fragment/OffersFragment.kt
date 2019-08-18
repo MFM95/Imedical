@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.offers_fragment.*
 import javax.inject.Inject
 
 class OffersFragment : Fragment() {
-    
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory<BestSellersViewModel>
     private lateinit var viewModel: OffersViewModel
