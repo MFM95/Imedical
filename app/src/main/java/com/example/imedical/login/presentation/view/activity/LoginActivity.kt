@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.login.presentation.viewmodel.LoginViewModel
 import com.example.imedical.registration.presentation.activity.RegistrationActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -60,9 +61,13 @@ class LoginActivity : BaseActivity() {
         viewModel.getToken()
             .observe(
                 this, Observer { dataWrapper ->
-                    //TODO remove showing token
-                    if(dataWrapper?.status == true)
-                        showMessage(dataWrapper.data)
+                    if(dataWrapper?.status == true) {
+                        //Save access token and navigate to home without history
+                        userPreferences.saveAccessToken(dataWrapper.data!!)
+                        val homeIntent = Intent(this, HomeActivity::class.java)
+                        homeIntent.flags = homeIntent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
+                        startActivity(homeIntent)
+                    }
                     else{
                         loginErrorLayout.visibility = View.VISIBLE
                         loginErrorTextView.text = dataWrapper?.error

@@ -1,6 +1,7 @@
 package com.example.imedical.core.di.module
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.example.imedical.AndroidApplication
 import com.example.imedical.BuildConfig
 import com.example.imedical.login.data.repository.LoginRepository
@@ -23,7 +24,13 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides
     @Singleton
-    fun provideApplicationContext(): Context = application
+    fun provideApplicationContext(): AndroidApplication = application
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(application: AndroidApplication): SharedPreferences{
+        return application.getSharedPreferences(BuildConfig.PREF_USER, Context.MODE_PRIVATE)
+    }
 
     @Provides @Singleton fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()

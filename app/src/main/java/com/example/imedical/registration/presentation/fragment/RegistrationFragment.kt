@@ -2,6 +2,7 @@ package com.example.imedical.registration.presentation.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.registration.presentation.viewmodel.RegistrationViewModel
 import kotlinx.android.synthetic.main.registration_fragment.*
 import javax.inject.Inject
@@ -51,9 +53,13 @@ class RegistrationFragment : BaseFragment() {
         viewModel.getToken()
             .observe(
                 this, Observer { dataWrapper ->
-                    //TODO remove showing token
-                    if(dataWrapper?.status == true)
-                        showMessage(dataWrapper.data)
+                    if(dataWrapper?.status == true){
+                        //Save access token and navigate to home without history
+                        userPreferences.saveAccessToken(dataWrapper.data!!)
+                        val homeIntent = Intent(activity, HomeActivity::class.java)
+                        homeIntent.flags = homeIntent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
+                        startActivity(homeIntent)
+                    }
                     else{
                         registerErrorLayout.visibility = View.VISIBLE
                         registerErrorTextView.text = dataWrapper?.error
