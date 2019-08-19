@@ -1,6 +1,8 @@
 package com.example.imedical.home.presentation.view.fragment
 
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -14,13 +16,28 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import com.example.imedical.R
+import com.example.imedical.core.platform.BaseFragment
+import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
+import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
+import javax.inject.Inject
 
-class NavigationFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
+class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navView: NavigationView
     private lateinit var navTitle: TextView
 
+    private lateinit var viewModel: NavigationViewModel
+    @Inject lateinit var viewModelFactory: ViewModelFactory<NavigationViewModel>
+
+    private var userModel: UserModel? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appComponent.inject(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(NavigationViewModel::class.java)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,10 +50,29 @@ class NavigationFragment : Fragment(), NavigationView.OnNavigationItemSelectedLi
         return v
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
+        //subscribeViewModel()
+    }
+
+    private fun subscribeViewModel(){
+        val token = userPreferences.getAccessToken()
+        if(token != null)
+            viewModel.getUser(token).observe(this, Observer { dataWrapper ->
+                if(dataWrapper!!.status) {
+                    navTitle.text = dataWrapper.data?.name
+                    this.userModel = dataWrapper.data
+                }
+            })
+    }
+
     private fun setTitleAction(){
         navTitle = navView.getHeaderView(0).findViewById(R.id.navDrawerTitle)
         navTitle.setOnClickListener {
-            activity!!.startActivity(Intent(activity, LoginActivity::class.java))
+            if(userModel == null)
+                activity!!.startActivity(Intent(activity, LoginActivity::class.java))
+            //TODO else open profile of the user
         }
     }
 

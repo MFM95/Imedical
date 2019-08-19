@@ -54,11 +54,7 @@ class RegistrationFragment : BaseFragment() {
             .observe(
                 this, Observer { dataWrapper ->
                     if(dataWrapper?.status == true){
-                        //Save access token and navigate to home without history
-                        userPreferences.saveAccessToken(dataWrapper.data!!)
-                        val homeIntent = Intent(activity, HomeActivity::class.java)
-                        homeIntent.flags = homeIntent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
-                        startActivity(homeIntent)
+                        onRegistrationSuccess(dataWrapper.data)
                     }
                     else{
                         registerErrorLayout.visibility = View.VISIBLE
@@ -66,6 +62,12 @@ class RegistrationFragment : BaseFragment() {
                     }
                 }
             )
+    }
+
+    private fun onRegistrationSuccess(token: String?){
+        //Save access token and navigate to home without history
+        userPreferences.saveAccessToken(token!!)
+        //TODO open mobile verification with clear stack flags
     }
 
     private fun setupActions(){

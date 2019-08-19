@@ -6,6 +6,7 @@ import com.example.imedical.core.di.module.LoginModule
 import com.example.imedical.core.di.module.ProductModule
 import com.example.imedical.core.di.module.RegistrationModule
 import com.example.imedical.home.presentation.view.fragment.BestSellersFragment
+import com.example.imedical.home.presentation.view.fragment.NavigationFragment
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
 import dagger.Component
@@ -22,5 +23,6 @@ interface ApplicationComponent {
     fun inject(loginActivity: LoginActivity)
     fun inject(registrationFragment: RegistrationFragment)
     fun inject(bestSellersFragment: BestSellersFragment)
+    fun inject(navigationFragment: NavigationFragment)
 
 }

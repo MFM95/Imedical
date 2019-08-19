@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Created by Ahmed Hassan on 8/18/2019.
  */
-class ApiCalls @Inject constructor(private val retrofit: Retrofit) {
+class ApiCalls @Inject constructor(retrofit: Retrofit) {
     private val homeApi = retrofit.create(HomeApi::class.java)
 
     suspend fun getOffers() : Response<ApiResponse<List<ProductEntity>>>{
@@ -19,4 +19,6 @@ class ApiCalls @Inject constructor(private val retrofit: Retrofit) {
     suspend fun getBestSellers() : Response<ApiResponse<List<ProductEntity>>>{
         return homeApi.getBestSellers()
     }
+
+    suspend fun getAuthUser(token: String) = homeApi.getAuthUser(token)
 }

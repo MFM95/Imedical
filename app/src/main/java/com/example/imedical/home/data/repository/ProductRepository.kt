@@ -4,6 +4,7 @@ import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.home.data.api.ApiCalls
 import com.example.imedical.home.domain.model.ProductModel
 import com.example.imedical.home.domain.repository.IProductRepository
+import com.example.imedical.login.domain.model.UserModel
 import javax.inject.Inject
 
 /**
@@ -17,6 +18,10 @@ class ProductRepository @Inject constructor(private val apiCalls: ApiCalls) : IP
 
     override suspend fun getBestSellers(): DataWrapper<ArrayList<ProductModel>> {
         return DataMapper.mapProduct(apiCalls.getBestSellers().body())
+    }
+
+    override suspend fun getAuthUser(token: String): DataWrapper<UserModel> {
+        return DataMapper.mapUser(apiCalls.getAuthUser(token).body())
     }
 
 }

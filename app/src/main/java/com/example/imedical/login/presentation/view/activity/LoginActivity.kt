@@ -62,19 +62,31 @@ class LoginActivity : BaseActivity() {
             .observe(
                 this, Observer { dataWrapper ->
                     if(dataWrapper?.status == true) {
-                        //Save access token and navigate to home without history
-                        userPreferences.saveAccessToken(dataWrapper.data!!)
-                        val homeIntent = Intent(this, HomeActivity::class.java)
-                        homeIntent.flags = homeIntent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
-                        startActivity(homeIntent)
+                        onLoginSuccess(dataWrapper.data)
                     }
                     else{
-                        loginErrorLayout.visibility = View.VISIBLE
-                        loginErrorTextView.text = dataWrapper?.error
+                        onLoginFail(dataWrapper?.error)
                     }
                 }
             )
     }
+
+    private fun onLoginSuccess(token: String?){
+        //Save access token and navigate to home without history
+        userPreferences.saveAccessToken(token!!)
+        val homeIntent = Intent(this, HomeActivity::class.java)
+        homeIntent.flags = homeIntent.flags or
+                Intent.FLAG_ACTIVITY_NEW_TASK or
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(homeIntent)
+    }
+
+    private fun onLoginFail(error: String?){
+        loginErrorLayout.visibility = View.VISIBLE
+        loginErrorTextView.text = error
+    }
+
     private fun onLoginClick(){
         loginErrorLayout.visibility = View.GONE
         viewModel.login(credentialNameEditText.text.toString(), credentialPasswordEditText.text.toString())
