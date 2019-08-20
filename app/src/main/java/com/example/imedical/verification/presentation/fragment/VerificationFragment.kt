@@ -85,7 +85,7 @@ class VerificationFragment : BaseFragment() {
             onVerifyClickListener()
         }
         tvResendCode.setOnClickListener {
-            onResendClickcListener()
+            onResendClickListener()
         }
     }
 
@@ -98,7 +98,7 @@ class VerificationFragment : BaseFragment() {
         }
     }
 
-    private fun onResendClickcListener() {
+    private fun onResendClickListener() {
         viewModel.resend(mobile)
     }
 
