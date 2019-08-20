@@ -30,6 +30,7 @@ class RegistrationFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelFactory<RegistrationViewModel>
 
 
+    private var mobile = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
@@ -56,8 +57,7 @@ class RegistrationFragment : BaseFragment() {
                     //TODO remove showing token
                     if(dataWrapper?.status == true) {
                         //    showMessage(dataWrapper.data)
-                        val verificationActivity: Intent = Intent(activity, VerificationActivity::class.java)
-                        startActivity(verificationActivity)
+                        startActivity(VerificationActivity.newInstance(activity!!, mobile))
                     }
                     else{
                         registerErrorLayout.visibility = View.VISIBLE
@@ -86,6 +86,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun onRegisterClick(){
+       mobile = mobileEditText.text.toString()
         viewModel.register(
             nameEditText.text.toString(),
             emailEditText.text.toString(),

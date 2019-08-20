@@ -2,22 +2,16 @@ package com.example.imedical.verification.presentation.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
-import com.example.imedical.registration.presentation.viewmodel.RegistrationViewModel
 import com.example.imedical.verification.presentation.viewmodel.VerificationViewModel
 import kotlinx.android.synthetic.main.fragment_verification.*
-import kotlinx.android.synthetic.main.registration_fragment.*
 import javax.inject.Inject
 
 class VerificationFragment : BaseFragment() {
@@ -27,6 +21,7 @@ class VerificationFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory<VerificationViewModel>
 
+    private var mobile = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,21 +38,43 @@ class VerificationFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(VerificationViewModel::class.java)
-        subscribeViewModel()
+        getData()
+        subscribeVerification()
+        subscribeResending()
         setupActions()
     }
 
+    private fun getData() {
+        arguments?.let {
+            mobile = it.getString(KEY_MOBILE)!!
+        }
+    }
 
-    private fun subscribeViewModel(){
-        viewModel.getResponseLiveData()
+    private fun subscribeVerification(){
+        viewModel.getVerifyResponseLiveData()
             .observe(
                 this, Observer { dataWrapper ->
                     //TODO remove showing token
                     if(dataWrapper?.status == true)
                         showMessage(dataWrapper.data)
                     else{
-                        registerErrorLayout.visibility = View.VISIBLE
-                        registerErrorTextView.text = dataWrapper?.error
+                        lyVerificationError.visibility = View.VISIBLE
+                        tvVerificationError.text = dataWrapper?.error
+                    }
+                }
+            )
+    }
+
+    private fun subscribeResending(){
+        viewModel.getResendResponseLiveData()
+            .observe(
+                this, Observer { dataWrapper ->
+                    //TODO remove showing token
+                    if(dataWrapper?.status == true)
+                        showMessage(dataWrapper.data)
+                    else{
+                        lyVerificationError.visibility = View.VISIBLE
+                        tvVerificationError.text = dataWrapper?.error
                     }
                 }
             )
@@ -68,7 +85,7 @@ class VerificationFragment : BaseFragment() {
             onVerifyClickListener()
         }
         tvResendCode.setOnClickListener {
-            // todo
+            onResendClickcListener()
         }
     }
 
@@ -81,9 +98,21 @@ class VerificationFragment : BaseFragment() {
         }
     }
 
+    private fun onResendClickcListener() {
+        viewModel.resend(mobile)
+    }
+
     companion object {
 
+        private const val KEY_MOBILE = "key_mobile"
         @JvmStatic
         fun newInstance() = VerificationFragment()
+
+        @JvmStatic
+        fun newInstance(mobile: String) =  VerificationFragment().apply {
+            arguments = Bundle().apply {
+                putString(KEY_MOBILE, mobile)
+            }
+        }
     }
 }

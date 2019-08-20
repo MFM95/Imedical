@@ -2,6 +2,7 @@ package com.example.imedical.verification.data.api
 
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.api.ErrorResponse
+import com.example.imedical.verification.data.entity.ResendingBody
 import com.example.imedical.verification.data.entity.VerificationBody
 import com.example.imedical.verification.data.entity.VerificationResponse
 import okhttp3.ResponseBody
@@ -30,7 +31,30 @@ class ApiCalls @Inject constructor(private val retrofit: Retrofit){
 
 
         } catch (ex: Exception){
-            return ApiResponse(false, null, "Check internet connection!")
+            return ApiResponse(false, null, ex.message.toString())
         }
     }
+
+    suspend fun resend(resendingBody: ResendingBody): ApiResponse<VerificationResponse> {
+        try {
+            val response = verificationApi.resend(resendingBody)
+
+            //If successful return body
+            if (response.isSuccessful)
+                return response.body()!!
+
+            //convert error body if not successful
+            val errorConverter: Converter<ResponseBody, ErrorResponse> =
+                retrofit.responseBodyConverter(ErrorResponse::class.java, arrayOf())
+            val errorBody = errorConverter.convert(response.errorBody()!!)
+
+            return ApiResponse(false, null, errorBody!!.error.joinToString(" \n"))
+
+
+        } catch (ex: Exception){
+            return ApiResponse(false, null, ex.message.toString())
+        }
+    }
+
+
 }
