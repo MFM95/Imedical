@@ -72,7 +72,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         navTitle.setOnClickListener {
             if(userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
-            //TODO else open profile of the user
+            //TODO put else to open profile of the user
         }
     }
 

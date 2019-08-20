@@ -65,7 +65,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun onRegistrationSuccess(token: String?){
-        //Save access token and navigate to home without history
+        //Save access token and navigate to verify phone without history
         userPreferences.saveAccessToken(token!!)
         //TODO open mobile verification with clear stack flags
     }
