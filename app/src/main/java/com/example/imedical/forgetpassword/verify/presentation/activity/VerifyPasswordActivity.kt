@@ -13,6 +13,7 @@ import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.forgetpassword.forget.presentation.viewmodel.ForgetPasswordViewModel
+import com.example.imedical.forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity
 import com.example.imedical.verification.presentation.activity.VerificationActivity
 import com.example.imedical.verification.presentation.viewmodel.VerificationViewModel
 import kotlinx.android.synthetic.main.activity_forget_password.*
@@ -31,6 +32,7 @@ class VerifyPasswordActivity : BaseActivity() {
     lateinit var forgetPasswordViewModelFactory: ViewModelFactory<ForgetPasswordViewModel>
 
     private var mobile = ""
+    private var code = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,10 +61,12 @@ class VerifyPasswordActivity : BaseActivity() {
         verificationViewModel.getVerifyResponseLiveData()
             .observe(
                 this, Observer { dataWrapper ->
+                    showLoading(false)
                     if(dataWrapper?.status == true) {
                         showMessage(dataWrapper.data)
                         lyVerifyPasswordErrorLayout.visibility = View.GONE
-                        // todo navigate to reset password
+                        startActivity(ResetPasswordActivity.newInstance(this, mobile, code))
+
                     } else{
                         lyVerifyPasswordErrorLayout.visibility = View.VISIBLE
                         tvVerifyPasswordText.text = dataWrapper?.error
@@ -74,6 +78,7 @@ class VerifyPasswordActivity : BaseActivity() {
 
     private fun subscribeResending() {
         forgetPasswordViewModel.getForgetResponseLiveData().observe(this, Observer { dataWrapper ->
+            showLoading(false)
             if(dataWrapper?.status == true) {
                 waitForResending()
                 lyVerifyPasswordErrorLayout.visibility = View.GONE
@@ -116,10 +121,11 @@ class VerifyPasswordActivity : BaseActivity() {
 
     private fun observeVerifyClickListener() {
         btnVerifyPasswordSend.setOnClickListener {
-            var code = edtVerifyPasswordCode.text.toString()
+            code = edtVerifyPasswordCode.text.toString()
             if (code.isEmpty()) {
                 showMessage(getString(R.string.empty_verification_code))
             } else {
+                showLoading(true)
                 verificationViewModel.verify(code)
             }
         }
@@ -127,7 +133,19 @@ class VerifyPasswordActivity : BaseActivity() {
 
     private fun observeResendClickListener() {
         tvVerifyPasswordResend.setOnClickListener {
+            showLoading(true)
             forgetPasswordViewModel.forget(mobile)
+        }
+    }
+
+    private fun showLoading(show: Boolean) {
+        if(show) {
+            progressVerifyPasswordLoading.visibility = View.VISIBLE
+            btnVerifyPasswordSend.isClickable = false
+            lyVerifyPasswordErrorLayout.visibility = View.GONE
+        } else {
+            progressVerifyPasswordLoading.visibility = View.INVISIBLE
+            btnVerifyPasswordSend.isClickable = true
         }
     }
 

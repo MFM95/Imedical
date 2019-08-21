@@ -36,13 +36,14 @@ class ForgetPasswordActivity : BaseActivity() {
     private fun observeSendClickListener() {
         btnForgetSend.setOnClickListener {
             mobile = edtForgetMobile.text.toString()
+            showLoading(true)
             viewModel.forget(mobile)
         }
     }
 
     private fun subscribeForgetViewModel() {
         viewModel.getForgetResponseLiveData().observe(this, Observer { dataWrapper ->
-            //TODO remove showing token
+            showLoading(false)
             if(dataWrapper?.status == true) {
                 lyForgetErrorLayout.visibility = View.GONE
                 startActivity(VerifyPasswordActivity.newInstance(this, mobile))
@@ -54,6 +55,16 @@ class ForgetPasswordActivity : BaseActivity() {
         })
     }
 
+    private fun showLoading(show: Boolean) {
+        if(show) {
+            progressForgetPasswordLoading.visibility = View.VISIBLE
+            btnForgetSend.isClickable = false
+            lyForgetErrorLayout.visibility = View.GONE
+        } else {
+            progressForgetPasswordLoading.visibility = View.INVISIBLE
+            btnForgetSend.isClickable = true
+        }
+    }
 
     companion object {
         @JvmStatic
