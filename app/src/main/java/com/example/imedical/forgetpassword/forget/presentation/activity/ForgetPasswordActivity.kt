@@ -45,7 +45,7 @@ class ForgetPasswordActivity : BaseActivity() {
             //TODO remove showing token
             if(dataWrapper?.status == true) {
                 lyForgetErrorLayout.visibility = View.GONE
-                startActivity(VerifyPasswordActivity.newInstance(this))
+                startActivity(VerifyPasswordActivity.newInstance(this, mobile))
             }
             else{
                 lyForgetErrorLayout.visibility = View.VISIBLE

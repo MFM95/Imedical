@@ -3,6 +3,7 @@ package com.example.imedical.core.di.component
 import com.example.imedical.AndroidApplication
 import com.example.imedical.core.di.module.*
 import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
+import com.example.imedical.forgetpassword.verify.presentation.activity.VerifyPasswordActivity
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
 import com.example.imedical.verification.presentation.fragment.VerificationFragment
@@ -26,5 +27,6 @@ interface ApplicationComponent {
     fun inject(registrationFragment: RegistrationFragment)
     fun inject(verificationFragment: VerificationFragment)
     fun inject(forgetPasswordActivity: ForgetPasswordActivity)
+    fun inject(verifyPasswordActivity: VerifyPasswordActivity)
 
 }

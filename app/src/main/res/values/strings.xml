@@ -28,6 +28,8 @@
     <string name="verify_password_title">Verify your account</string>
     <string name="verify_password_msg">Please enter the code sent to you </string>
     <string name="btn_verify">Verify</string>
+    <string name="btn_resend"><u>Resend code</u></string>
+    <string name="verification_code_sent">Code has been sent successfully</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
