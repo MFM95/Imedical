@@ -12,6 +12,7 @@ import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.login.presentation.viewmodel.LoginViewModel
 import com.example.imedical.registration.presentation.activity.RegistrationActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -25,6 +26,7 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         appComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
         subscribeViewModel()
@@ -63,18 +65,39 @@ class LoginActivity : BaseActivity() {
         viewModel.getToken()
             .observe(
                 this, Observer { dataWrapper ->
-                    //TODO remove showing token
-                    if(dataWrapper?.status == true)
-                        showMessage(dataWrapper.data)
+                    if(dataWrapper?.status == true) {
+                        onLoginSuccess(dataWrapper.data)
+                    }
                     else{
-                        loginErrorLayout.visibility = View.VISIBLE
-                        loginErrorTextView.text = dataWrapper?.error
+                        onLoginFail(dataWrapper?.error)
                     }
                 }
             )
     }
+
+    private fun onLoginSuccess(token: String?){
+        //Save access token and navigate to home without history
+        userPreferences.saveAccessToken(token!!)
+        val homeIntent = Intent(this, HomeActivity::class.java)
+        homeIntent.flags = homeIntent.flags or
+                Intent.FLAG_ACTIVITY_NEW_TASK or
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(homeIntent)
+    }
+
+    private fun onLoginFail(error: String?){
+        loginErrorLayout.visibility = View.VISIBLE
+        loginErrorTextView.text = error
+    }
+
     private fun onLoginClick(){
         loginErrorLayout.visibility = View.GONE
         viewModel.login(credentialNameEditText.text.toString(), credentialPasswordEditText.text.toString())
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
