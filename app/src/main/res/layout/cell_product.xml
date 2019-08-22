@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="250dp" android:layout_height="300dp"
+        android:layout_marginEnd="@dimen/product_margin"
+        android:layout_marginStart="@dimen/product_margin">
+
+    <ImageView android:id="@+id/productImageView"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               app:layout_constraintTop_toTopOf="parent"
+               android:src="@drawable/logo_large"
+               android:scaleType="fitXY"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"/>
+
+    <LinearLayout android:id="@+id/priceLayout"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center_horizontal"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintBottom_toTopOf="@id/productNameTextView">
+
+        <TextView android:id="@+id/productPriceTextView"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="50.00"
+                  android:textSize="16sp"
+                  android:layout_marginEnd="3dp" android:layout_marginStart="3dp"/>
+
+        <TextView android:id="@+id/productOldPriceTextView"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="80.00"
+                  android:textColor="@color/colorAccent"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/productNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/actionsLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"
+            android:text="Lascod iQ Alginate"
+    />
+
+    <LinearLayout android:id="@+id/actionsLayout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center_horizontal"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  android:layout_margin="@dimen/product_margin">
+
+        <ImageButton android:id="@+id/productWishButton"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/ic_wish_border_sm"
+                     android:tint="@color/colorBlack"
+                     android:background="@drawable/action_btn_bg_white"
+                     android:padding="@dimen/product_margin"
+                     android:layout_marginStart="5dp"
+                     android:layout_marginEnd="5dp"/>
+
+        <Button android:id="@+id/productCartButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_add_shopping_cart"
+                android:drawableLeft="@drawable/ic_add_shopping_cart"
+                android:background="@color/colorPrimaryDark"
+                android:text="Add to Cart"
+                android:textAllCaps="false"
+                android:paddingStart="@dimen/product_margin"
+                android:paddingEnd="@dimen/product_margin"
+                android:textColor="@color/colorWhite"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"/>
+
+        <ImageButton android:id="@+id/productCompareButton"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/ic_compare_sm"
+                     android:background="@drawable/action_btn_bg_white"
+                     android:tint="@color/colorBlack"
+                     android:padding="@dimen/product_margin"
+                     android:layout_marginStart="5dp"
+                     android:layout_marginEnd="5dp"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
