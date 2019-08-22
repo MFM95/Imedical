@@ -5,13 +5,13 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.login.presentation.viewmodel.LoginViewModel
 import com.example.imedical.registration.presentation.activity.RegistrationActivity
@@ -54,6 +54,10 @@ class LoginActivity : BaseActivity() {
                 handled = true
             }
             handled
+        }
+
+        forgotPassTextView.setOnClickListener {
+            startActivity(ForgetPasswordActivity.newInstance(this))
         }
     }
 

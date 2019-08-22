@@ -18,6 +18,17 @@
                 android:label="@string/title_activity_home"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity android:name=".forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity">
+        </activity>
+        <activity android:name=".forgetpassword.verify.presentation.activity.VerifyPasswordActivity">
+        </activity>
+        <activity android:name=".forgetpassword.forget.presentation.activity.ForgetPasswordActivity">
+        </activity>
+        <activity android:name=".verification.presentation.activity.VerificationActivity">
+        </activity>
+        <activity android:name=".registration.presentation.activity.RegistrationActivity"/>
+
         <activity
                 android:name=".splash.SplashActivity"
                 android:noHistory="true">
@@ -26,8 +37,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".registration.presentation.activity.RegistrationActivity">
         </activity>
         <activity android:name=".login.presentation.view.activity.LoginActivity">
         </activity>

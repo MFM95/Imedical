@@ -15,6 +15,7 @@ import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.registration.presentation.viewmodel.RegistrationViewModel
+import com.example.imedical.verification.presentation.activity.VerificationActivity
 import kotlinx.android.synthetic.main.registration_fragment.*
 import javax.inject.Inject
 
@@ -30,6 +31,7 @@ class RegistrationFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelFactory<RegistrationViewModel>
 
 
+    private var mobile = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
@@ -67,7 +69,7 @@ class RegistrationFragment : BaseFragment() {
     private fun onRegistrationSuccess(token: String?){
         //Save access token and navigate to verify phone without history
         userPreferences.saveAccessToken(token!!)
-        //TODO open mobile verification with clear stack flags
+        startActivity(VerificationActivity.newInstance(activity!!, mobile))
     }
 
     private fun setupActions(){
@@ -89,6 +91,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun onRegisterClick(){
+       mobile = mobileEditText.text.toString()
         viewModel.register(
             nameEditText.text.toString(),
             emailEditText.text.toString(),
