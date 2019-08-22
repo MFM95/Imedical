@@ -2,6 +2,7 @@ package com.example.imedical.registration.presentation.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.registration.presentation.viewmodel.RegistrationViewModel
+import com.example.imedical.verification.presentation.activity.VerificationActivity
 import kotlinx.android.synthetic.main.registration_fragment.*
 import javax.inject.Inject
 
@@ -28,6 +30,7 @@ class RegistrationFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelFactory<RegistrationViewModel>
 
 
+    private var mobile = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
@@ -52,8 +55,10 @@ class RegistrationFragment : BaseFragment() {
             .observe(
                 this, Observer { dataWrapper ->
                     //TODO remove showing token
-                    if(dataWrapper?.status == true)
-                        showMessage(dataWrapper.data)
+                    if(dataWrapper?.status == true) {
+                        //    showMessage(dataWrapper.data)
+                        startActivity(VerificationActivity.newInstance(activity!!, mobile))
+                    }
                     else{
                         registerErrorLayout.visibility = View.VISIBLE
                         registerErrorTextView.text = dataWrapper?.error
@@ -81,6 +86,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun onRegisterClick(){
+       mobile = mobileEditText.text.toString()
         viewModel.register(
             nameEditText.text.toString(),
             emailEditText.text.toString(),

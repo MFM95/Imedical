@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.login.presentation.viewmodel.LoginViewModel
 import com.example.imedical.registration.presentation.activity.RegistrationActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -51,6 +52,10 @@ class LoginActivity : BaseActivity() {
                 handled = true
             }
             handled
+        }
+
+        forgotPassTextView.setOnClickListener {
+            startActivity(ForgetPasswordActivity.newInstance(this))
         }
     }
 

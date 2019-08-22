@@ -13,6 +13,14 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity">
+        </activity>
+        <activity android:name=".forgetpassword.verify.presentation.activity.VerifyPasswordActivity">
+        </activity>
+        <activity android:name=".forgetpassword.forget.presentation.activity.ForgetPasswordActivity">
+        </activity>
+        <activity android:name=".verification.presentation.activity.VerificationActivity">
+        </activity>
         <activity android:name=".registration.presentation.activity.RegistrationActivity">
         </activity>
         <activity android:name=".login.presentation.view.activity.LoginActivity">
