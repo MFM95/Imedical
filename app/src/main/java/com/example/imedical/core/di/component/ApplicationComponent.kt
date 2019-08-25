@@ -1,6 +1,12 @@
 package com.example.imedical.core.di.component
 
 import com.example.imedical.AndroidApplication
+import com.example.imedical.core.di.module.ApplicationModule
+import com.example.imedical.core.di.module.LoginModule
+import com.example.imedical.core.di.module.ProductModule
+import com.example.imedical.core.di.module.RegistrationModule
+import com.example.imedical.home.presentation.view.fragment.BestSellersFragment
+import com.example.imedical.home.presentation.view.fragment.NavigationFragment
 import com.example.imedical.core.di.module.*
 import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity
@@ -18,18 +24,18 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class,
     LoginModule::class,
     RegistrationModule::class,
+    ProductModule::class,
     VerificationModule::class,
     ForgetPasswordModule::class,
-    ResetPasswordModule::class])
-
-interface ApplicationComponent {
+    ResetPasswordModule::class]) interface ApplicationComponent {
 
     fun inject(application: AndroidApplication)
     fun inject(loginActivity: LoginActivity)
     fun inject(registrationFragment: RegistrationFragment)
+    fun inject(bestSellersFragment: BestSellersFragment)
+    fun inject(navigationFragment: NavigationFragment)
     fun inject(verificationFragment: VerificationFragment)
     fun inject(forgetPasswordActivity: ForgetPasswordActivity)
     fun inject(verifyPasswordActivity: VerifyPasswordActivity)
     fun inject(resetPasswordActivity: ResetPasswordActivity)
-
 }

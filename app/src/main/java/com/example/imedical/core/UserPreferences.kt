@@ -14,7 +14,7 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
         editor.apply()
     }
 
-    fun getAccessToken(): String {
+    fun getAccessToken(): String? {
         return sharedPreferences.getString(ACCESS_TOKEN, "")
     }
 
@@ -25,7 +25,7 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
         Log.i(USER_ID, userId)
     }
 
-    fun getUserId(): String {
+    fun getUserId(): String? {
         return sharedPreferences.getString(USER_ID, "")
     }
 
