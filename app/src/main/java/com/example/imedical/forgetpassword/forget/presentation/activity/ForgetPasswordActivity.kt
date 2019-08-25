@@ -27,6 +27,7 @@ class ForgetPasswordActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         setContentView(R.layout.activity_forget_password)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ForgetPasswordViewModel::class.java)
         observeSendClickListener()
         subscribeForgetViewModel()

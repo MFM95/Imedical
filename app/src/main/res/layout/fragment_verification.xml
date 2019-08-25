@@ -17,7 +17,7 @@
             android:text="@string/verification_title"
             android:textSize="@dimen/title_size"
             android:textColor="@color/colorBlack"
-    />
+            />
 
     <RelativeLayout
             android:id="@+id/lyVerificationError"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textColor="@color/colorError"
-        />
+                />
     </RelativeLayout>
 
     <TextView
@@ -48,17 +48,17 @@
             app:layout_constraintTop_toBottomOf="@+id/lyVerificationError"
             android:text="@string/verification_description"
             android:textColor="@color/colorPrimaryDark"
-    />
+            />
     <EditText android:id="@+id/edtVerificationCode"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/rect_edittext_drawable"
-              app:layout_constraintTop_toBottomOf="@id/tvVerificationDesc"
-              android:hint="@string/verification_hint"
-              android:layout_marginTop="@dimen/dimen_60"
-              android:textSize="@dimen/edittext_text_size"
-              android:inputType="number"
-    />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_edittext_drawable"
+            app:layout_constraintTop_toBottomOf="@id/tvVerificationDesc"
+            android:hint="@string/verification_hint"
+            android:layout_marginTop="@dimen/dimen_60"
+            android:textSize="@dimen/edittext_text_size"
+            android:inputType="number"
+            />
 
     <TextView
             android:id="@+id/tvResendCode"
@@ -68,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/registration_padding"
             android:text="@string/resend_code"
-    />
+            />
 
     <Button android:id="@+id/btnVerify"
             android:layout_width="match_parent"
@@ -79,5 +79,18 @@
             android:textAllCaps="false"
             android:layout_marginTop="@dimen/dimen_60"
             app:layout_constraintTop_toBottomOf="@+id/tvResendCode"/>
+
+    <ProgressBar
+            android:id="@+id/progressVerificationLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="?android:attr/progressBarStyle"
+            android:visibility="gone"
+            android:elevation="5dp"
+            />
 
 </android.support.constraint.ConstraintLayout>

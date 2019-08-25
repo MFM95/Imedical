@@ -38,6 +38,7 @@ class VerifyPasswordActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         setContentView(R.layout.activity_verify_password)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         verificationViewModel = ViewModelProviders.of(this, verificationViewModelFactory).get(VerificationViewModel::class.java)
         forgetPasswordViewModel = ViewModelProviders.of(this, forgetPasswordViewModelFactory).get(ForgetPasswordViewModel::class.java)
         init()

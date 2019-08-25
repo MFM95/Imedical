@@ -33,6 +33,7 @@ class ResetPasswordActivity : BaseActivity() {
         appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         resetViewModel = ViewModelProviders.of(this, resetViewModelFactory).get(ResetViewModel::class.java)
         init()
     }

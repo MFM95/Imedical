@@ -11,6 +11,7 @@ import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.verification.presentation.viewmodel.VerificationViewModel
+import kotlinx.android.synthetic.main.activity_verify_password.*
 import kotlinx.android.synthetic.main.fragment_verification.*
 import javax.inject.Inject
 
@@ -100,6 +101,17 @@ class VerificationFragment : BaseFragment() {
 
     private fun onResendClickListener() {
         viewModel.resend(mobile)
+    }
+
+    private fun showLoading(show: Boolean) {
+        if(show) {
+            progressVerifyLoading.visibility = View.VISIBLE
+            btnVerifyPasswordSend.isClickable = false
+            lyVerifyPasswordErrorLayout.visibility = View.GONE
+        } else {
+            progressVerifyPasswordLoading.visibility = View.INVISIBLE
+            btnVerifyPasswordSend.isClickable = true
+        }
     }
 
     companion object {

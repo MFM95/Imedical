@@ -54,10 +54,8 @@ class RegistrationFragment : BaseFragment() {
         viewModel.getToken()
             .observe(
                 this, Observer { dataWrapper ->
-                    //TODO remove showing token
-                    if(dataWrapper?.status == true) {
-                        //    showMessage(dataWrapper.data)
-                        startActivity(VerificationActivity.newInstance(activity!!, mobile))
+                    if(dataWrapper?.status == true){
+                        onRegistrationSuccess(dataWrapper.data)
                     }
                     else{
                         registerErrorLayout.visibility = View.VISIBLE
@@ -65,6 +63,12 @@ class RegistrationFragment : BaseFragment() {
                     }
                 }
             )
+    }
+
+    private fun onRegistrationSuccess(token: String?){
+        //Save access token and navigate to verify phone without history
+        userPreferences.saveAccessToken(token!!)
+        startActivity(VerificationActivity.newInstance(activity!!, mobile))
     }
 
     private fun setupActions(){
@@ -86,7 +90,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun onRegisterClick(){
-       mobile = mobileEditText.text.toString()
+        mobile = mobileEditText.text.toString()
         viewModel.register(
             nameEditText.text.toString(),
             emailEditText.text.toString(),
