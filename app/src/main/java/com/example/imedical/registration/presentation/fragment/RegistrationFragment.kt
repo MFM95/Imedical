@@ -55,6 +55,7 @@ class RegistrationFragment : BaseFragment() {
         viewModel.getToken()
             .observe(
                 this, Observer { dataWrapper ->
+                    showLoading(false)
                     if(dataWrapper?.status == true){
                         onRegistrationSuccess(dataWrapper.data)
                     }
@@ -92,6 +93,7 @@ class RegistrationFragment : BaseFragment() {
 
     private fun onRegisterClick(){
         mobile = mobileEditText.text.toString()
+        showLoading(true)
         viewModel.register(
             nameEditText.text.toString(),
             emailEditText.text.toString(),
@@ -99,4 +101,22 @@ class RegistrationFragment : BaseFragment() {
             passwordEditText.text.toString(),
             confirmPasswordEditText.text.toString())
     }
+
+    private fun showLoading(show: Boolean) {
+        if(show) {
+            progressRegisterLoading.visibility = View.VISIBLE
+            submitButton.isClickable = false
+            haveAccountTextView.isClickable = false
+            privacyPolicyTextView.isClickable = false
+            termsConditionsTextView.isClickable = false
+            registerErrorLayout.visibility = View.GONE
+        } else {
+            progressRegisterLoading.visibility = View.INVISIBLE
+            submitButton.isClickable = true
+            haveAccountTextView.isClickable = true
+            privacyPolicyTextView.isClickable = true
+            termsConditionsTextView.isClickable = true
+        }
+    }
+
 }
