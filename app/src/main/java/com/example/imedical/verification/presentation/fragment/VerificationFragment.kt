@@ -124,7 +124,7 @@ class VerificationFragment : BaseFragment() {
             tvResendCode.isClickable = false
             lyVerificationError.visibility = View.GONE
         } else {
-            progressVerifyPasswordLoading.visibility = View.INVISIBLE
+            progressVerificationLoading.visibility = View.INVISIBLE
             btnVerify.isClickable = true
             tvResendCode.isClickable = true
         }
