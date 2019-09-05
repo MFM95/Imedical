@@ -10,9 +10,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import com.example.imedical.R
+import com.example.imedical.core.platform.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
