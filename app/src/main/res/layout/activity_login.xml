@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/submit_hint"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/blue_btn_bg"
             android:textColor="@color/colorWhite"
             android:textAllCaps="false"
             android:layout_marginTop="@dimen/login_padding"
