@@ -57,6 +57,7 @@ class BestSellersFragment : BaseFragment() {
         if(!viewModel.getBestSellers().hasObservers()){
             viewModel.getBestSellers().observe(this, Observer { models ->
                 adapter.products.addAll(models!!)
+                bestSellersProgressBar.visibility = View.GONE
                 adapter.notifyDataSetChanged()
             })
             viewModel.updateBestSellers()
