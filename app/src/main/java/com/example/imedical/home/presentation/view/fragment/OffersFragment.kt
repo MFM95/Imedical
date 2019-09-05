@@ -58,6 +58,7 @@ class OffersFragment : BaseFragment() {
         if(!viewModel.getOffers().hasObservers()){
             viewModel.getOffers().observe(this, Observer { models ->
                 adapter.products.addAll(models!!)
+                offersProgressBar.visibility = View.GONE
                 adapter.notifyDataSetChanged()
             })
             viewModel.updateOffers()
