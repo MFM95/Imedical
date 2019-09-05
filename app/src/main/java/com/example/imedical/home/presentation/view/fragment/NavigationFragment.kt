@@ -46,6 +46,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         val v: View  = inflater.inflate(R.layout.fragment_navigation, container, false)
         navView = v.findViewById(R.id.navView)
         navView.setNavigationItemSelectedListener(this)
+        navView.setCheckedItem(R.id.nav_home)
         setTitleAction()
         return v
     }
