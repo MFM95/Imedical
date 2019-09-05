@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.imedical.R
+import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.domain.model.ProductModel
 import com.example.imedical.home.presentation.view.adapter.IProductCallback
@@ -19,16 +20,17 @@ import com.example.imedical.home.presentation.viewmodel.OffersViewModel
 import kotlinx.android.synthetic.main.offers_fragment.*
 import javax.inject.Inject
 
-class OffersFragment : Fragment() {
+class OffersFragment : BaseFragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory<BestSellersViewModel>
+    lateinit var viewModelFactory: ViewModelFactory<OffersViewModel>
     private lateinit var viewModel: OffersViewModel
 
     private lateinit var adapter: ProductsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(OffersViewModel::class.java)
         subscribeViewModel()
     }
@@ -56,7 +58,10 @@ class OffersFragment : Fragment() {
         if(!viewModel.getOffers().hasObservers()){
             viewModel.getOffers().observe(this, Observer { models ->
                 adapter.products.addAll(models!!)
+                adapter.notifyDataSetChanged()
             })
+            viewModel.updateOffers()
+
         } else viewModel.updateOffers()
     }
 
