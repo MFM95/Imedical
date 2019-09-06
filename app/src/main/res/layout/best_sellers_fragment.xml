@@ -5,10 +5,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".home.presentation.view.fragment.BestSellersFragment">
+    <TextView
+            android:id="@+id/bestSellersLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/best_sellers"
+            android:textSize="@dimen/home_titles_size"
+            android:layout_margin="10dp"
+            android:textColor="@color/gray"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    <ProgressBar
+            android:id="@+id/bestSellersProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/bestSellersLabel"
+            android:layout_marginTop="@dimen/dimen_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     <android.support.v7.widget.RecyclerView
             android:id="@+id/bestSellersRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginBottom="@dimen/dimen_10"
+            app:layout_constraintTop_toBottomOf="@id/bestSellersLabel"/>
 
 </android.support.constraint.ConstraintLayout>

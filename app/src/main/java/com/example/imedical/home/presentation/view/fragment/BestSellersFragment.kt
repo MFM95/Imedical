@@ -28,6 +28,7 @@ class BestSellersFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(BestSellersViewModel::class.java)
         subscribeViewModel()
     }
 
@@ -40,7 +41,6 @@ class BestSellersFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(BestSellersViewModel::class.java)
         setupRecyclerView()
     }
 
@@ -57,7 +57,11 @@ class BestSellersFragment : BaseFragment() {
         if(!viewModel.getBestSellers().hasObservers()){
             viewModel.getBestSellers().observe(this, Observer { models ->
                 adapter.products.addAll(models!!)
+                bestSellersProgressBar.visibility = View.GONE
+                adapter.notifyDataSetChanged()
             })
+            viewModel.updateBestSellers()
+
         } else viewModel.updateBestSellers()
     }
 

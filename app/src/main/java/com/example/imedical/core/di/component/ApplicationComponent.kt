@@ -11,6 +11,7 @@ import com.example.imedical.core.di.module.*
 import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity
 import com.example.imedical.forgetpassword.verify.presentation.activity.VerifyPasswordActivity
+import com.example.imedical.home.presentation.view.fragment.OffersFragment
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
 import com.example.imedical.verification.presentation.fragment.VerificationFragment
@@ -38,4 +39,5 @@ import javax.inject.Singleton
     fun inject(forgetPasswordActivity: ForgetPasswordActivity)
     fun inject(verifyPasswordActivity: VerifyPasswordActivity)
     fun inject(resetPasswordActivity: ResetPasswordActivity)
+    fun inject(offersFragment: OffersFragment)
 }
