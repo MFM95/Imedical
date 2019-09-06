@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import com.example.imedical.R
+import com.example.imedical.compare.presentation.view.fragment.CompareListFragment
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
@@ -23,27 +24,34 @@ import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import javax.inject.Inject
 
+import kotlinx.android.synthetic.main.app_bar_home.*
+
+
 class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navView: NavigationView
     private lateinit var navTitle: TextView
 
     private lateinit var viewModel: NavigationViewModel
-    @Inject lateinit var viewModelFactory: ViewModelFactory<NavigationViewModel>
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory<NavigationViewModel>
 
     private var userModel: UserModel? = null
+    private var selectedFragment: SelectedFragment = SelectedFragment.HOME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(NavigationViewModel::class.java)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(NavigationViewModel::class.java)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v: View  = inflater.inflate(R.layout.fragment_navigation, container, false)
+        val v: View = inflater.inflate(R.layout.fragment_navigation, container, false)
         navView = v.findViewById(R.id.navView)
         navView.setNavigationItemSelectedListener(this)
         navView.setCheckedItem(R.id.nav_home)
@@ -55,23 +63,24 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         super.onActivityCreated(savedInstanceState)
         //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
         //subscribeViewModel()
+        replaceFragment(HomeFragment())
     }
 
-    private fun subscribeViewModel(){
+    private fun subscribeViewModel() {
         val token = userPreferences.getAccessToken()
-        if(token != null)
+        if (token != null)
             viewModel.getUser(token).observe(this, Observer { dataWrapper ->
-                if(dataWrapper!!.status) {
+                if (dataWrapper!!.status) {
                     navTitle.text = dataWrapper.data?.name
                     this.userModel = dataWrapper.data
                 }
             })
     }
 
-    private fun setTitleAction(){
+    private fun setTitleAction() {
         navTitle = navView.getHeaderView(0).findViewById(R.id.navDrawerTitle)
         navTitle.setOnClickListener {
-            if(userModel == null)
+            if (userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
             //TODO put else to open profile of the user
         }
@@ -82,6 +91,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         when (item.itemId) {
             R.id.nav_home -> {
                 // Handle the camera action
+                if(selectedFragment != SelectedFragment.HOME) {
+                    replaceFragment(HomeFragment())
+                    selectedFragment = SelectedFragment.HOME
+                }
             }
             R.id.nav_categories -> {
 
@@ -93,7 +106,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_compare_list -> {
-
+                if(selectedFragment != SelectedFragment.COMPARELIST) {
+                    replaceFragment(CompareListFragment.newInstance())
+                    selectedFragment = SelectedFragment.COMPARELIST
+                }
             }
             R.id.nav_settings -> {
 
@@ -107,5 +123,18 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         return true
     }
 
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = activity!!.supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.lyHomeFragmentContainer, fragment)
+        transaction.commit()
+    }
 
+    enum class SelectedFragment {
+        HOME,
+        CATEGORIES,
+        SHOP,
+        WISHLIST,
+        COMPARELIST,
+        SETTINGS
+    }
 }

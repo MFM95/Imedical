@@ -1,9 +1,11 @@
 package com.example.imedical.core.di.module
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.imedical.AndroidApplication
 import com.example.imedical.BuildConfig
+import com.example.imedical.core.db.ImedicalDatabase
 import com.example.imedical.login.data.repository.LoginRepository
 import com.example.imedical.login.domain.repository.ILoginRepository
 import dagger.Module
@@ -58,4 +60,12 @@ class ApplicationModule(private val application: AndroidApplication) {
         }
         return okHttpClientBuilder.build()
     }
+
+    @Provides
+    @Singleton
+    fun provideImedicalDatabase(dbName: String, context: Context): ImedicalDatabase {
+        return Room.databaseBuilder(context, ImedicalDatabase::class.java, dbName).fallbackToDestructiveMigration()
+            .build()
+    }
+
 }

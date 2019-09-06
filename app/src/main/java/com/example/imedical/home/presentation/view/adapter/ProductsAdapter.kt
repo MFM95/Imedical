@@ -76,7 +76,7 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
                 .into(productImage)
 
             wishButton.setOnClickListener{ productCallback.onWishClick(productModel.id) }
-            compareButton.setOnClickListener{ productCallback.onCompareClick(productModel.id) }
+            compareButton.setOnClickListener{ productCallback.onCompareClick(productModel) }
             addCartButton.setOnClickListener{ productCallback.addToCart(productModel.id) }
 
         }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.imedical.R
+import com.example.imedical.compare.presentation.viewmodel.CompareListViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.domain.model.ProductModel
@@ -23,6 +24,11 @@ class BestSellersFragment : BaseFragment() {
     private lateinit var viewModel: BestSellersViewModel
 
     private lateinit var adapter: ProductsAdapter
+
+    lateinit var compareViewModel: CompareListViewModel
+
+    @Inject
+    lateinit var compareViewModelFactory: ViewModelFactory<CompareListViewModel>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +47,7 @@ class BestSellersFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        compareViewModel = ViewModelProviders.of(this, compareViewModelFactory).get(CompareListViewModel::class.java)
         setupRecyclerView()
     }
 
@@ -69,7 +76,9 @@ class BestSellersFragment : BaseFragment() {
         override fun onWishClick(id: Int) {
         }
 
-        override fun onCompareClick(id: Int) {
+        override fun onCompareClick(productModel: ProductModel) {
+            // todo Add to compare list
+            //compareViewModel
         }
 
         override fun addToCart(id: Int) {

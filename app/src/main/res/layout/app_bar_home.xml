@@ -21,14 +21,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <fragment
-            android:id="@+id/homeFragment"
-            android:name="com.example.imedical.home.presentation.view.fragment.HomeFragment"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    <FrameLayout
+        android:id="@+id/lyHomeFragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true" />
-
+            android:fitsSystemWindows="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"

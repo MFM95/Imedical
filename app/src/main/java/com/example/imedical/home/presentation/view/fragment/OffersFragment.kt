@@ -70,7 +70,8 @@ class OffersFragment : BaseFragment() {
         override fun onWishClick(id: Int) {
         }
 
-        override fun onCompareClick(id: Int) {
+        override fun onCompareClick(productModel: ProductModel) {
+            // todo add to compare list DB
         }
 
         override fun addToCart(id: Int) {
