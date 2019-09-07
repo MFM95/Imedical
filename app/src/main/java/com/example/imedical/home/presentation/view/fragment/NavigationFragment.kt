@@ -47,7 +47,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         val v: View  = inflater.inflate(R.layout.fragment_navigation, container, false)
         navView = v.findViewById(R.id.navView)
         navView.setNavigationItemSelectedListener(this)
-        navView.setCheckedItem(R.id.nav_home)
+        setHomeChecked()
         setTitleAction()
         return v
     }
@@ -56,6 +56,14 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         super.onActivityCreated(savedInstanceState)
         //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
         //subscribeViewModel()
+    }
+
+    private fun setHomeChecked(){
+        navView.setCheckedItem(R.id.nav_home)
+        if(fragmentManager != null)
+            activity?.supportFragmentManager?.beginTransaction()!!
+                .replace(R.id.homeFragment, HomeFragment())
+                .commitNow()
     }
 
     private fun subscribeViewModel(){
