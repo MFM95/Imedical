@@ -28,7 +28,7 @@ class CompareListRepository @Inject constructor(private val database: ImedicalDa
             model.salePrice,
             model.inWishList,
             model.inCompareList,
-            BrandEntity(model.name),
+            model.brand,
             model.quantity
         )
     }

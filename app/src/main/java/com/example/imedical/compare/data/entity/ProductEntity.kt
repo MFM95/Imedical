@@ -14,6 +14,6 @@ data class ProductEntity(
     @ColumnInfo(name = "sale_price") val salePrice: Double?,
     @ColumnInfo(name = "in_wish_list") val inWishList: Boolean,
     @ColumnInfo(name = "in_compare_list") val inCompareList: Boolean,
-    @ColumnInfo(name = "brand") val brand: BrandEntity?,
+    @ColumnInfo(name = "brand") val brand: String?,
     @ColumnInfo(name = "quantity") val quantity: Int
 )

@@ -3,13 +3,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".compare.presentation.view.fragment.CompareListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <GridView
+        android:id="@+id/gridCompareList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="CompareListFragment"
-            android:gravity="center"/>
-
+            android:layout_height="wrap_content"
+            android:numColumns="2"
+        />
+    <ProgressBar
+            android:id="@+id/progressCompareListLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+        />
 </FrameLayout>

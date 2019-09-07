@@ -31,7 +31,7 @@ object DataMapper {
             entity.salePrice,
             entity.inWishList,
             entity.inCompareList,
-            entity.brand?.name,
+            entity.brand,
             entity.quantity
         )
     }

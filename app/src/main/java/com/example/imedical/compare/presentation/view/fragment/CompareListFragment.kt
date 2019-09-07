@@ -9,6 +9,8 @@ import android.view.ViewGroup
 
 import com.example.imedical.R
 import com.example.imedical.compare.domain.model.ProductModel
+import com.example.imedical.compare.presentation.view.adapter.CompareListAdapter
+import com.example.imedical.compare.presentation.view.adapter.ICompareListCallback
 import com.example.imedical.compare.presentation.viewmodel.CompareListViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
@@ -23,6 +25,7 @@ class CompareListFragment : BaseFragment() {
     @Inject
     lateinit var compareViewModelFactory: ViewModelFactory<CompareListViewModel>
 
+    private lateinit var compareListAdapter: CompareListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +38,6 @@ class CompareListFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_compare_list, container, false)
     }
 
@@ -49,15 +51,28 @@ class CompareListFragment : BaseFragment() {
         compareViewModel.getCompareList()
         compareViewModel.getCompareListLiveData().observe(this,
             Observer {
-                // todo display compare list
+                it?.let {
+                    setUpGridView(it)
+                }
             })
     }
 
-    private fun addToCompareList(product: ProductModel) {
-        compareViewModel.addToCompareList(product)
-        // todo observe on adding, display success messsage
+    private fun setUpGridView(compareList: ArrayList<ProductModel>) {
+        compareListAdapter = CompareListAdapter(compareList, CompareListCallback(), activity!!)
     }
 
+
+    class CompareListCallback: ICompareListCallback {
+        override fun onProductClick(productModel: ProductModel) {
+        }
+
+        override fun onWishClick(id: Int) {
+        }
+
+        override fun addToCart(id: Int) {
+        }
+
+    }
     companion object {
         @JvmStatic
         fun newInstance() =

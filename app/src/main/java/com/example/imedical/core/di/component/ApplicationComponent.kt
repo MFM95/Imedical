@@ -29,7 +29,8 @@ import javax.inject.Singleton
     ProductModule::class,
     VerificationModule::class,
     ForgetPasswordModule::class,
-    ResetPasswordModule::class]) interface ApplicationComponent {
+    ResetPasswordModule::class,
+    CompareListModule::class]) interface ApplicationComponent {
 
     fun inject(application: AndroidApplication)
     fun inject(loginActivity: LoginActivity)

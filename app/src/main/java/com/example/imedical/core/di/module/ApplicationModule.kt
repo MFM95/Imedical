@@ -1,5 +1,6 @@
 package com.example.imedical.core.di.module
 
+import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.SharedPreferences
@@ -63,8 +64,8 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides
     @Singleton
-    fun provideImedicalDatabase(dbName: String, context: Context): ImedicalDatabase {
-        return Room.databaseBuilder(context, ImedicalDatabase::class.java, dbName).fallbackToDestructiveMigration()
+    fun provideImedicalDatabase(context: AndroidApplication): ImedicalDatabase {
+        return Room.databaseBuilder(context, ImedicalDatabase::class.java, "ImedicalDatabase").fallbackToDestructiveMigration()
             .build()
     }
 
