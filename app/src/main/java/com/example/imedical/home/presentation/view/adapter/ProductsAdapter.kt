@@ -1,5 +1,7 @@
 package com.example.imedical.home.presentation.view.adapter
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
@@ -20,6 +22,11 @@ import com.squareup.picasso.Picasso
 class ProductsAdapter(val products: ArrayList<ProductModel>,
                       private val productCallback: IProductCallback,
                       private val context: Context): RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
+
+    val onCompareClick by lazy { MutableLiveData<ProductModel>() }
+    val onWishClick by lazy { MutableLiveData<Int>() }
+    val onAddToCartClick by lazy { MutableLiveData<Int>() }
+    val onProductItemClick by lazy { MutableLiveData<ProductModel>() }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): ProductHolder {
         return ProductHolder(
@@ -75,9 +82,9 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
                 .load(productModel.imageUrl)
                 .into(productImage)
 
-            wishButton.setOnClickListener{ productCallback.onWishClick(productModel.id) }
-            compareButton.setOnClickListener{ productCallback.onCompareClick(productModel) }
-            addCartButton.setOnClickListener{ productCallback.addToCart(productModel.id) }
+            wishButton.setOnClickListener{ onWishClick.value = productModel.id }
+            compareButton.setOnClickListener{ onCompareClick.value = productModel }
+            addCartButton.setOnClickListener{ onAddToCartClick.value = productModel.id }
 
         }
     }

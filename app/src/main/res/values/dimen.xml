@@ -11,6 +11,9 @@
     <dimen name="product_margin">10dp</dimen>
     <dimen name="product_btn_padding">12dp</dimen>
 
+    <dimen name="dimen_4">4dp</dimen>
+    <dimen name="dimen_6">6dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
     <dimen name="dimen_10">10dp</dimen>
     <dimen name="dimen_20">20dp</dimen>
     <dimen name="dimen_30">30dp</dimen>

@@ -35,6 +35,7 @@ class BestSellersFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BestSellersViewModel::class.java)
+        compareViewModel = ViewModelProviders.of(this, compareViewModelFactory).get(CompareListViewModel::class.java)
         subscribeViewModel()
     }
 
@@ -47,8 +48,11 @@ class BestSellersFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        compareViewModel = ViewModelProviders.of(this, compareViewModelFactory).get(CompareListViewModel::class.java)
         setupRecyclerView()
+        observeOnCompareClick()
+        observeOnAddToCartClick()
+        observeOnProductClick()
+        observeOnWishClick()
     }
 
     private fun setupRecyclerView(){
@@ -77,8 +81,6 @@ class BestSellersFragment : BaseFragment() {
         }
 
         override fun onCompareClick(productModel: ProductModel) {
-            // todo Add to compare list
-            //compareViewModel
         }
 
         override fun addToCart(id: Int) {
@@ -88,4 +90,55 @@ class BestSellersFragment : BaseFragment() {
         }
 
     }
+
+
+    private fun observeOnCompareClick() {
+        adapter?.let {
+            it.onCompareClick.observe(this, Observer { model ->
+                model?.let { productModel ->
+                    compareViewModel.addToCompareList(mapProductModel(productModel))
+                }
+            })
+        }
+    }
+
+    private fun observeOnWishClick() {
+        adapter?.let {
+            it.onWishClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun observeOnAddToCartClick() {
+        adapter?.let {
+            it.onAddToCartClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun observeOnProductClick() {
+        adapter?.let {
+            it.onAddToCartClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun mapProductModel(model: ProductModel): com.example.imedical.compare.domain.model.ProductModel {
+        return com.example.imedical.compare.domain.model.ProductModel(
+            model.id,
+            model.name,
+            model.imageUrl,
+            model.price,
+            model.salePrice,
+            model.inWishList,
+            model.inCompareList,
+            model.brand,
+            model.quantity
+        )
+    }
+
+
 }

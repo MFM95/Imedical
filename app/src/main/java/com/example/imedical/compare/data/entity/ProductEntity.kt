@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "products")
 data class ProductEntity(
 
-    @PrimaryKey val id: Int,
+    @PrimaryKey @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "cover") val cover: String,
     @ColumnInfo(name = "price") val price: Double,

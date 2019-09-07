@@ -1,32 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/product_margin"
         android:layout_marginEnd="@dimen/product_margin"
-        android:background="@drawable/white_bordered_gray_bg"
         android:minWidth="250dp"
-        android:orientation="vertical">
+        android:foregroundGravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dimen_20"
+        android:paddingEnd="@dimen/dimen_20">
 
     <ImageView
             android:id="@+id/imgCompareProductsImage"
-            android:layout_width="wrap_content"
-            android:layout_height="180dp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginBottom="@dimen/dimen_10"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/tvCompareProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:text="Lascod iQ Alginate"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/imgCompareProductsImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat" />
+
+    <TextView
+            android:id="@+id/tvCompareProductBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:text="R&amp;S"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/imgCompareProductsImage"
+            app:layout_constraintTop_toBottomOf="@id/tvCompareProductName"
+            tools:ignore="RtlCompat" />
 
     <LinearLayout
             android:id="@+id/lyComparePriceLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/tvCompareProductName">
+            app:layout_constraintStart_toEndOf="@id/imgCompareProductsImage"
+            app:layout_constraintTop_toBottomOf="@id/tvCompareProductBrand"
+            tools:ignore="RtlCompat">
 
         <TextView
                 android:id="@+id/tvCompareProductPrice"
@@ -46,10 +82,10 @@
                     android:layout_width="40dp"
                     android:layout_height="1dp"
                     android:background="@color/colorAccent"
-                    app:layout_constraintStart_toStartOf="@id/tvCompareOldPrice"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCompareOldPrice"
                     app:layout_constraintEnd_toEndOf="@id/tvCompareOldPrice"
-                    app:layout_constraintTop_toTopOf="@id/tvCompareOldPrice"
-                    app:layout_constraintBottom_toBottomOf="@id/tvCompareOldPrice" />
+                    app:layout_constraintStart_toStartOf="@id/tvCompareOldPrice"
+                    app:layout_constraintTop_toTopOf="@id/tvCompareOldPrice" />
 
             <TextView
                     android:id="@+id/tvCompareOldPrice"
@@ -63,53 +99,19 @@
 
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/tvCompareProductName"
+    <ImageButton
+            android:id="@+id/btnCompareRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:text="Lascod iQ Alginate"
-            android:textColor="@color/colorBlack"
-            android:textSize="16sp" />
+            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:background="@drawable/white_bordered_gray_bg"
+            android:padding="@dimen/product_btn_padding"
+            android:src="@drawable/ic_close_button"
+            android:tint="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="RtlCompat" />
 
-    <LinearLayout
-            android:id="@+id/lyCompareActionsLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/product_margin"
-            android:layout_marginBottom="@dimen/product_margin"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
 
-        <ImageButton
-                android:id="@+id/btnCompareProductWish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/white_bordered_gray_bg"
-                android:padding="@dimen/product_btn_padding"
-                android:src="@drawable/ic_wish_border_sm"
-                android:tint="@color/colorBlack" />
-
-        <Button
-                android:id="@+id/btnCompareProductCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/blue_btn_bg"
-                android:drawableStart="@drawable/ic_add_shopping_cart"
-                android:drawableLeft="@drawable/ic_add_shopping_cart"
-                android:paddingStart="@dimen/product_margin"
-                android:paddingEnd="@dimen/product_margin"
-                android:text="@string/add_to_cart"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

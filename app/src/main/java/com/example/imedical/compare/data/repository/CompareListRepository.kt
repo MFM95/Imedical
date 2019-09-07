@@ -10,6 +10,7 @@ import kotlin.collections.ArrayList
 
 class CompareListRepository @Inject constructor(private val database: ImedicalDatabase)
     : ICompareListRepository {
+
     override suspend fun getAllProducts(): ArrayList<ProductModel> {
         return DataMapper.mapCompareListProducts(database.compareListDao().getAll())
 
@@ -17,6 +18,10 @@ class CompareListRepository @Inject constructor(private val database: ImedicalDa
 
     override suspend fun addProduct(productModel: ProductModel) {
         database.compareListDao().insert(mapCompareListModel(productModel))
+    }
+
+    override suspend fun removeProduct(productModel: ProductModel) {
+        database.compareListDao().delete(mapCompareListModel(productModel))
     }
 
     private fun mapCompareListModel(model: ProductModel): ProductEntity {

@@ -5,6 +5,7 @@
     <color name="colorAccent">#fe4c50</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorRed">#FF0000</color>
     <color name="colorEditTextBorder">#dadada</color>
     <color name="gray">#aaaaaa</color>
     <color name="colorError">#ff0000</color>

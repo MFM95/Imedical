@@ -1,8 +1,6 @@
 package com.example.imedical.compare.data.local
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.example.imedical.compare.data.entity.ProductEntity
 
 @Dao
@@ -10,7 +8,9 @@ interface CompareListDao {
     @Query("SELECT * FROM products")
     fun getAll(): List<ProductEntity>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(productEntity: ProductEntity)
 
+    @Delete
+    fun delete(productEntity: ProductEntity)
 }

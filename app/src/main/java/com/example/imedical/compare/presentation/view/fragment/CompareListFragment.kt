@@ -3,6 +3,7 @@ package com.example.imedical.compare.presentation.view.fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.example.imedical.compare.presentation.view.adapter.ICompareListCallba
 import com.example.imedical.compare.presentation.viewmodel.CompareListViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
+import kotlinx.android.synthetic.main.fragment_compare_list.*
 import javax.inject.Inject
 
 
@@ -58,21 +60,24 @@ class CompareListFragment : BaseFragment() {
     }
 
     private fun setUpGridView(compareList: ArrayList<ProductModel>) {
-        compareListAdapter = CompareListAdapter(compareList, CompareListCallback(), activity!!)
+        compareListAdapter = CompareListAdapter(compareList, activity!!)
+        rvCompareList.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        rvCompareList.adapter = compareListAdapter
+        observeOnRemoveClick()
     }
 
-
-    class CompareListCallback: ICompareListCallback {
-        override fun onProductClick(productModel: ProductModel) {
+    private fun observeOnRemoveClick() {
+        compareListAdapter?.let {
+            it.onRemoveClick.observe(this, Observer { model ->
+                model?.let { productModel ->
+                    compareViewModel.removeFromCompareList(productModel)
+                    getCompareList()
+                }
+            })
         }
-
-        override fun onWishClick(id: Int) {
-        }
-
-        override fun addToCart(id: Int) {
-        }
-
     }
+
     companion object {
         @JvmStatic
         fun newInstance() =

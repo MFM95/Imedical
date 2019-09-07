@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.imedical.R
+import com.example.imedical.compare.presentation.viewmodel.CompareListViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.domain.model.ProductModel
@@ -28,10 +29,16 @@ class OffersFragment : BaseFragment() {
 
     private lateinit var adapter: ProductsAdapter
 
+    lateinit var compareViewModel: CompareListViewModel
+
+    @Inject
+    lateinit var compareViewModelFactory: ViewModelFactory<CompareListViewModel>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(OffersViewModel::class.java)
+        compareViewModel = ViewModelProviders.of(this, compareViewModelFactory).get(CompareListViewModel::class.java)
         subscribeViewModel()
     }
     override fun onCreateView(
@@ -44,6 +51,10 @@ class OffersFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupRecyclerView()
+        observeOnCompareClick()
+        observeOnAddToCartClick()
+        observeOnProductClick()
+        observeOnWishClick()
     }
 
     private fun setupRecyclerView(){
@@ -71,7 +82,6 @@ class OffersFragment : BaseFragment() {
         }
 
         override fun onCompareClick(productModel: ProductModel) {
-            // todo add to compare list DB
         }
 
         override fun addToCart(id: Int) {
@@ -81,4 +91,53 @@ class OffersFragment : BaseFragment() {
         }
 
     }
+
+    private fun observeOnCompareClick() {
+        adapter?.let {
+            it.onCompareClick.observe(this, Observer { model ->
+                model?.let { productModel ->
+                    compareViewModel.addToCompareList(mapProductModel(productModel))
+                }
+            })
+        }
+    }
+
+    private fun observeOnWishClick() {
+        adapter?.let {
+            it.onWishClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun observeOnAddToCartClick() {
+        adapter?.let {
+            it.onAddToCartClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun observeOnProductClick() {
+        adapter?.let {
+            it.onAddToCartClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun mapProductModel(model: ProductModel): com.example.imedical.compare.domain.model.ProductModel {
+        return com.example.imedical.compare.domain.model.ProductModel(
+            model.id,
+            model.name,
+            model.imageUrl,
+            model.price,
+            model.salePrice,
+            model.inWishList,
+            model.inCompareList,
+            model.brand,
+            model.quantity
+        )
+    }
+
 }
