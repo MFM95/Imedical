@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import com.example.imedical.home.presentation.view.adapter.IProductCallback
 import com.example.imedical.home.presentation.view.adapter.ProductsAdapter
 import com.example.imedical.home.presentation.viewmodel.BestSellersViewModel

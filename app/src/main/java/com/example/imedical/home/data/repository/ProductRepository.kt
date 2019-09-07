@@ -2,7 +2,7 @@ package com.example.imedical.home.data.repository
 
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.home.data.api.ApiCalls
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import com.example.imedical.home.domain.repository.IProductRepository
 import com.example.imedical.login.domain.model.UserModel
 import javax.inject.Inject

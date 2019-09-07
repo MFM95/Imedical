@@ -1,13 +1,13 @@
-package com.example.imedical.home.presentation.view.adapter
+package com.example.imedical.wishlist.presentation.view.adapter.callback
 
 import com.example.imedical.core.model.ProductModel
 
 /**
  * Created by Ahmed Hassan on 8/18/2019.
  */
-interface IProductCallback {
+interface IWishCallback {
     fun onProductClick(productModel: ProductModel)
-    fun onWishClick(id: Int)
+    fun onRemoveClick(id: Int, index: Int)
     fun onCompareClick(id: Int)
     fun addToCart(id: Int)
 }

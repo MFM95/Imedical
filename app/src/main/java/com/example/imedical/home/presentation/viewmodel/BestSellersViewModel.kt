@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.example.imedical.core.model.DataWrapper
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import com.example.imedical.home.domain.usecase.BestSellersUseCase
 import javax.inject.Inject
 

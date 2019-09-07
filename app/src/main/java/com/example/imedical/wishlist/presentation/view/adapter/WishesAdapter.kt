@@ -1,4 +1,4 @@
-package com.example.imedical.home.presentation.view.adapter
+package com.example.imedical.wishlist.presentation.view.adapter
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
@@ -12,30 +12,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.presentation.view.adapter.IProductCallback
+import com.example.imedical.wishlist.presentation.view.adapter.callback.IWishCallback
 import com.squareup.picasso.Picasso
 
 /**
  * Created by Ahmed Hassan on 8/18/2019.
  */
-class ProductsAdapter(val products: ArrayList<ProductModel>,
-                      private val productCallback: IProductCallback,
-                      private val context: Context): RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
+class WishesAdapter(val wishes: ArrayList<ProductModel>,
+                    private val wishCallback: IWishCallback,
+                    private val context: Context): RecyclerView.Adapter<WishesAdapter.ProductHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): ProductHolder {
         return ProductHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.cell_product,
-            viewGroup, false), productCallback, context)
+                R.layout.cell_wished_product,
+            viewGroup, false), wishCallback, context)
 
     }
 
-    override fun getItemCount() = products.size
+    override fun getItemCount() = wishes.size
 
     override fun onBindViewHolder(productHolder: ProductHolder, position: Int) {
-        productHolder.bind(products[position], position)
+        productHolder.bind(wishes[position], position)
     }
 
-    inner class ProductHolder(val view: View, private val productCallback: IProductCallback, val context: Context)
+    inner class ProductHolder(val view: View, private val wishCallback: IWishCallback, val context: Context)
         : RecyclerView.ViewHolder(view){
 
         lateinit var productImage: ImageView
@@ -43,9 +45,9 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
         lateinit var productPrice: TextView
         lateinit var productOldPrice: TextView
 
-        lateinit var wishButton: ImageButton
+        lateinit var removeButton: ImageButton
         lateinit var compareButton: ImageView
-        lateinit var addCartButton: Button
+        lateinit var addCartButton: ImageButton
 
         lateinit var oldPriceLayout: ConstraintLayout
 
@@ -55,7 +57,7 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
             productPrice = view.findViewById(R.id.productPriceTextView)
             productOldPrice = view.findViewById(R.id.productOldPriceTextView)
 
-            wishButton = view.findViewById(R.id.productWishButton)
+            removeButton = view.findViewById(R.id.productDeleteButton)
             compareButton = view.findViewById(R.id.productCompareButton)
             addCartButton = view.findViewById(R.id.productCartButton)
 
@@ -75,9 +77,9 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
                 .load(productModel.imageUrl)
                 .into(productImage)
 
-            wishButton.setOnClickListener{ productCallback.onWishClick(productModel.id) }
-            compareButton.setOnClickListener{ productCallback.onCompareClick(productModel.id) }
-            addCartButton.setOnClickListener{ productCallback.addToCart(productModel.id) }
+            removeButton.setOnClickListener{ wishCallback.onRemoveClick(productModel.id, index) }
+            compareButton.setOnClickListener{ wishCallback.onCompareClick(productModel.id) }
+            addCartButton.setOnClickListener{ wishCallback.addToCart(productModel.id) }
 
         }
     }

@@ -21,6 +21,7 @@ import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
 import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
+import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
 import javax.inject.Inject
 
 class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelectedListener {
@@ -81,7 +82,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                // Handle the camera action
+                if(fragmentManager != null)
+                    activity?.supportFragmentManager?.beginTransaction()!!
+                        .replace(R.id.homeFragment, HomeFragment())
+                        .commitNow()
             }
             R.id.nav_categories -> {
 
@@ -90,6 +94,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_wish_list -> {
+                if(fragmentManager != null)
+                activity?.supportFragmentManager?.beginTransaction()!!
+                    .replace(R.id.homeFragment, WishListFragment())
+                    .commitNow()
 
             }
             R.id.nav_compare_list -> {

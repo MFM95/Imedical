@@ -15,6 +15,7 @@ import com.example.imedical.home.presentation.view.fragment.OffersFragment
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
 import com.example.imedical.verification.presentation.fragment.VerificationFragment
+import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -28,7 +29,8 @@ import javax.inject.Singleton
     ProductModule::class,
     VerificationModule::class,
     ForgetPasswordModule::class,
-    ResetPasswordModule::class]) interface ApplicationComponent {
+    ResetPasswordModule::class,
+    WishListModule::class]) interface ApplicationComponent {
 
     fun inject(application: AndroidApplication)
     fun inject(loginActivity: LoginActivity)
@@ -40,4 +42,5 @@ import javax.inject.Singleton
     fun inject(verifyPasswordActivity: VerifyPasswordActivity)
     fun inject(resetPasswordActivity: ResetPasswordActivity)
     fun inject(offersFragment: OffersFragment)
+    fun inject(wishListFragment: WishListFragment)
 }

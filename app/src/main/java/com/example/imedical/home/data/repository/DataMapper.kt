@@ -3,9 +3,9 @@ package com.example.imedical.home.data.repository
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.home.data.entity.DealsEntity
-import com.example.imedical.home.data.entity.ProductEntity
+import com.example.imedical.core.api.ProductEntity
 import com.example.imedical.home.data.entity.UserEntity
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import com.example.imedical.login.domain.model.UserModel
 
 /**

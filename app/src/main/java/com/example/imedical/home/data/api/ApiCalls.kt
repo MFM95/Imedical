@@ -2,7 +2,7 @@ package com.example.imedical.home.data.api
 
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.home.data.entity.DealsEntity
-import com.example.imedical.home.data.entity.ProductEntity
+import com.example.imedical.core.api.ProductEntity
 import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject

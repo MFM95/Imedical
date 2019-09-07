@@ -1,7 +1,7 @@
 package com.example.imedical.home.domain.repository
 
 import com.example.imedical.core.model.DataWrapper
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import com.example.imedical.login.domain.model.UserModel
 
 /**
