@@ -66,4 +66,8 @@
     <string name="add_to_cart">Add to Cart</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="compare_list_title">Compare List</string>
+    <string name="added_to_compare_message">Added to Compare list</string>
+    <string name="removed_from_compare_message">Removed from Compare list</string>
+
 </resources>

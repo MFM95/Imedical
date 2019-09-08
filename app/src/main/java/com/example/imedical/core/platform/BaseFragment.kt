@@ -2,6 +2,7 @@ package com.example.imedical.core.platform
 
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.view.View
 import android.widget.Toast
 import com.example.imedical.R
 import com.example.imedical.core.UserPreferences
@@ -27,4 +28,9 @@ abstract class BaseFragment : Fragment(){
     protected fun showConnectionError(){
         Snackbar.make(view!!, R.string.check_connection, Snackbar.LENGTH_LONG)
     }
+
+    protected fun showSnack(message: String?) {
+        Snackbar.make(view!!, message!!, Snackbar.LENGTH_LONG).show()
+    }
+
 }

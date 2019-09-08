@@ -14,9 +14,19 @@ class CompareListViewModel @Inject constructor(private val getCompareListUseCase
                                                private val removeFromCompareListUseCase: RemoveFromCompareListUseCase)
     : ViewModel(){
     private val compareListLiveData: MutableLiveData<ArrayList<ProductModel>> = MutableLiveData()
+    private val addLiveData: MutableLiveData<Unit> = MutableLiveData()
+    private val removeLiveData: MutableLiveData<Unit> = MutableLiveData()
 
     fun getCompareListLiveData(): LiveData<ArrayList<ProductModel>> {
         return compareListLiveData
+    }
+
+    fun getAddLiveData(): LiveData<Unit> {
+        return addLiveData
+    }
+
+    fun getRemoveLiveData(): LiveData<Unit> {
+        return removeLiveData
     }
 
     fun getCompareList() {
@@ -32,7 +42,7 @@ class CompareListViewModel @Inject constructor(private val getCompareListUseCase
     }
 
     private fun onAddToCompareListResult(result: Unit) {
-
+        addLiveData.value = result
     }
 
     fun removeFromCompareList(product: ProductModel) {
@@ -40,7 +50,7 @@ class CompareListViewModel @Inject constructor(private val getCompareListUseCase
     }
 
     private fun onRemoveFromCompareListResult(result: Unit) {
-
+        removeLiveData.value = result
     }
 
 }

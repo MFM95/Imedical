@@ -1,6 +1,8 @@
 package com.example.imedical.core.platform
 
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.Toast
 import com.example.imedical.AndroidApplication
 import com.example.imedical.core.UserPreferences
@@ -19,5 +21,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun showMessage(message: String?){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    protected fun showSnack(view: View, message: String?) {
+        Snackbar.make(view!!, message!!, Snackbar.LENGTH_LONG).show()
     }
 }

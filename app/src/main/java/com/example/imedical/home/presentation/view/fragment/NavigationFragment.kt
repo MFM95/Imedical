@@ -1,6 +1,7 @@
 package com.example.imedical.home.presentation.view.fragment
 
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -86,6 +87,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         }
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -94,6 +96,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 if(selectedFragment != SelectedFragment.HOME) {
                     replaceFragment(HomeFragment())
                     selectedFragment = SelectedFragment.HOME
+//                    fab.visibility = View.VISIBLE
+//                    toolbar.title = getString(R.string.title_activity_home)
                 }
             }
             R.id.nav_categories -> {
@@ -109,6 +113,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 if(selectedFragment != SelectedFragment.COMPARELIST) {
                     replaceFragment(CompareListFragment.newInstance())
                     selectedFragment = SelectedFragment.COMPARELIST
+//                    fab.visibility = View.GONE
+//                    toolbar.title = getString(R.string.compare_list_title)
                 }
             }
             R.id.nav_settings -> {
