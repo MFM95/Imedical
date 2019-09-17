@@ -1,6 +1,7 @@
 package com.example.imedical.core.di.component
 
 import com.example.imedical.AndroidApplication
+import com.example.imedical.addresses.presentation.view.activity.AddressesActivity
 import com.example.imedical.compare.presentation.view.fragment.CompareListFragment
 import com.example.imedical.core.di.module.ApplicationModule
 import com.example.imedical.core.di.module.LoginModule
@@ -30,7 +31,8 @@ import javax.inject.Singleton
     VerificationModule::class,
     ForgetPasswordModule::class,
     ResetPasswordModule::class,
-    CompareListModule::class]) interface ApplicationComponent {
+    CompareListModule::class,
+    AddressesModule::class]) interface ApplicationComponent {
 
     fun inject(application: AndroidApplication)
     fun inject(loginActivity: LoginActivity)
@@ -43,4 +45,5 @@ import javax.inject.Singleton
     fun inject(resetPasswordActivity: ResetPasswordActivity)
     fun inject(offersFragment: OffersFragment)
     fun inject(compareListFragment: CompareListFragment)
+    fun inject(addressesActivity: AddressesActivity)
 }
