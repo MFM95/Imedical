@@ -11,6 +11,6 @@ class GetAddressesRespositoyImpl @Inject constructor(private val apiCalls: APICa
     : IGetAddressesRepository {
     override suspend fun getAddresses(): DataWrapper<List<AddressModel>> {
        return DataMapper.mapAddressesResponse(
-           apiCalls.getAddresses(GetAddressesBody()))
+           apiCalls.getAddresses())
     }
 }

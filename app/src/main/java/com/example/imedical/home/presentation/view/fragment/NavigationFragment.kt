@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import com.example.imedical.R
+import com.example.imedical.addresses.presentation.view.activity.AddressesActivity
 import com.example.imedical.compare.presentation.view.fragment.CompareListFragment
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
@@ -84,6 +85,11 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
             if (userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
             //TODO put else to open profile of the user
+            // temporarily open addresses screen
+            else {
+                val intent = Intent(activity, AddressesActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

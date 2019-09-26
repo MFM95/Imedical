@@ -14,9 +14,9 @@ class APICalls @Inject constructor(private val retrofit: Retrofit) {
 
     private val api = retrofit.create(GetAddressesAPI::class.java)
 
-    suspend fun getAddresses(body: GetAddressesBody): ApiResponse<GetAddressesResponse> {
+    suspend fun getAddresses(): ApiResponse<GetAddressesResponse> {
         try {
-            val response = api.getAddresses(body)
+            val response = api.getAddresses()
 
             //If successful return body
             if (response.isSuccessful)

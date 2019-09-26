@@ -9,6 +9,6 @@ import retrofit2.http.GET
 
 interface GetAddressesAPI {
     @GET("addresses")
-    suspend fun getAddresses(@Body body: GetAddressesBody)
+    suspend fun getAddresses()
             : Response<ApiResponse<GetAddressesResponse>>
 }
