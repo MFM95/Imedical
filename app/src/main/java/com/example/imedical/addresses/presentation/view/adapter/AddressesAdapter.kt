@@ -35,8 +35,8 @@ class AddressesAdapter(
             view.tvAddressItemAlias.text = addressModel.alias
             view.tvAddressItemAddress1.text = addressModel.address_1
             view.tvAddressItemAddress2.text = addressModel.address_2
-            view.tvAddressItemCountry.text = addressModel.country?.name
-            view.tvAddressItemCity.text = addressModel.province
+            view.tvAddressItemCountry.text = addressModel.country?.name?: ""
+            view.tvAddressItemCity.text = addressModel.province?.name?: ""
             view.tvAddressItemPhone.text = addressModel.phone
 
 

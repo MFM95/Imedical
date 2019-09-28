@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class AddressResponse (
 
+    @SerializedName("id")
+    val id: String?,
     @SerializedName("alias")
     val alias: String?,
 
@@ -20,10 +22,18 @@ data class AddressResponse (
     val country: Country?,
 
     @SerializedName("province")
-    val province: String?
+    val province: Province?
     )
 
 data class Country(
+    @SerializedName("id")
+    val id: Int?,
+
+    @SerializedName("name")
+    val name: String?
+)
+
+data class Province(
     @SerializedName("id")
     val id: Int?,
 
