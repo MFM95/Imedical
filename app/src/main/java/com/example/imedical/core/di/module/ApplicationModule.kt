@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.imedical.AndroidApplication
 import com.example.imedical.BuildConfig
+import com.example.imedical.core.UserPreferences
 import com.example.imedical.core.db.ImedicalDatabase
 import com.example.imedical.login.data.repository.LoginRepository
 import com.example.imedical.login.domain.repository.ILoginRepository
@@ -35,24 +36,29 @@ class ApplicationModule(private val application: AndroidApplication) {
         return application.getSharedPreferences(BuildConfig.PREF_USER, Context.MODE_PRIVATE)
     }
 
-    @Provides @Singleton fun provideRetrofit(): Retrofit {
+    @Provides @Singleton fun provideRetrofit(userPreferences: UserPreferences): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.SERVER_URL)
-            .client(createClient())
+            .client(createClient(userPreferences))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    private fun createClient(): OkHttpClient {
+    private fun createClient(userPreferences: UserPreferences): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
             val interceptor = Interceptor { chain ->
-                val request = chain.request().newBuilder()
+                val builder = chain.request().newBuilder()
                     .addHeader("Accept", "application/json")
                     .addHeader("Content-Type", "application/json")
-                    .build()
+                //Adds authorization header to request
+                val token = userPreferences.getAccessToken()
+                if(!token.isNullOrEmpty())
+                    builder.addHeader("Authorization", "Bearer " + userPreferences.getAccessToken())
+
+                val request = builder.build()
                 chain.proceed(request)
             }
 

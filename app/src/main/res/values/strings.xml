@@ -70,4 +70,7 @@
     <string name="added_to_compare_message">Added to Compare list</string>
     <string name="removed_from_compare_message">Removed from Compare list</string>
 
+    <string name="addresses_empty">You have no addresses yet, you can add one</string>
+    <string name="addresses_error">Something went wrong</string>
+
 </resources>
