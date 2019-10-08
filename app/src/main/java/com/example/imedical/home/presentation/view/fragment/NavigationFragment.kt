@@ -87,8 +87,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
             //TODO put else to open profile of the user
             // temporarily open addresses screen
             else {
-                val intent = Intent(activity, AddressesActivity::class.java)
-                startActivity(intent)
+
             }
         }
     }
@@ -124,7 +123,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 }
             }
             R.id.nav_settings -> {
-
+                val intent = Intent(activity, AddressesActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_logout -> {
 
