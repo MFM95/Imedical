@@ -1,12 +1,10 @@
 package com.example.imedical.compare.data.repository
 
-import com.example.imedical.compare.data.entity.BrandEntity
 import com.example.imedical.compare.data.entity.ProductEntity
 import com.example.imedical.compare.domain.model.ProductModel
 import com.example.imedical.compare.domain.repository.ICompareListRepository
 import com.example.imedical.core.db.ImedicalDatabase
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class CompareListRepository @Inject constructor(private val database: ImedicalDatabase)
     : ICompareListRepository {

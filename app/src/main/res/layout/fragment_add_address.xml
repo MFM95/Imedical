@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -30,15 +36,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAddAddressTitle"
             tools:ignore="RtlCompat"
-            app:errorEnabled="true">
+            app:errorEnabled="true"
+            >
 
         <android.support.design.widget.TextInputEditText
                 android:id="@+id/edtAddAddressAlias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:hint="@string/add_addresses_alias" />
-
+                android:paddingStart="@dimen/dimen_10"
+                android:paddingEnd="@dimen/dimen_10"
+                android:hint="@string/add_addresses_alias"
+                android:maxLines="1"
+                android:textSize="@dimen/small_details_size"
+                android:imeOptions="actionDone"
+                />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -46,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_20"
-            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
             android:layout_marginEnd="@dimen/dimen_20"
             app:boxBackgroundMode="outline"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +69,14 @@
                 android:id="@+id/edtAddAddressAddress1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:hint="@string/add_addresses_address1" />
+                android:paddingStart="@dimen/dimen_10"
+                android:paddingEnd="@dimen/dimen_10"
+                android:hint="@string/add_addresses_address1"
+                android:maxLines="1"
+                android:textSize="@dimen/small_details_size"
+                android:imeOptions="actionDone"
+
+                />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -68,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_20"
-            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
             android:layout_marginEnd="@dimen/dimen_20"
             app:boxBackgroundMode="outline"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,8 +97,14 @@
                 android:id="@+id/edtAddAddressAddress2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:hint="@string/add_addresses_address2" />
+                android:paddingStart="@dimen/dimen_10"
+                android:paddingEnd="@dimen/dimen_10"
+                android:hint="@string/add_addresses_address2"
+                android:maxLines="1"
+                android:textSize="@dimen/small_details_size"
+                android:imeOptions="actionDone"
+
+                />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -90,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_20"
-            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
             android:layout_marginEnd="@dimen/dimen_20"
             app:boxBackgroundMode="outline"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,8 +125,14 @@
                 android:id="@+id/edtAddAddressCountry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:hint="@string/add_addresses_country" />
+                android:paddingStart="@dimen/dimen_10"
+                android:paddingEnd="@dimen/dimen_10"
+                android:hint="@string/add_addresses_country"
+                android:maxLines="1"
+                android:textSize="@dimen/small_details_size"
+                android:imeOptions="actionDone"
+
+                />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -112,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_20"
-            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
             android:layout_marginEnd="@dimen/dimen_20"
             app:boxBackgroundMode="outline"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +153,14 @@
                 android:id="@+id/edtAddAddressZip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:hint="@string/add_addresses_zip" />
+                android:paddingStart="@dimen/dimen_10"
+                android:paddingEnd="@dimen/dimen_10"
+                android:hint="@string/add_addresses_zip"
+                android:maxLines="1"
+                android:textSize="@dimen/small_details_size"
+                android:imeOptions="actionDone"
+
+                />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -134,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_20"
-            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_10"
             android:layout_marginEnd="@dimen/dimen_20"
             app:boxBackgroundMode="outline"
             app:layout_constraintStart_toStartOf="parent"
@@ -146,8 +181,14 @@
                 android:id="@+id/edtAddAddressPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10"
-                android:hint="@string/add_addresses_phone" />
+                android:paddingStart="@dimen/dimen_10"
+                android:paddingEnd="@dimen/dimen_10"
+                android:hint="@string/add_addresses_phone"
+                android:maxLines="1"
+                android:textSize="@dimen/small_details_size"
+                android:imeOptions="actionDone"
+
+                />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -155,7 +196,7 @@
             android:id="@+id/btnAddAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_30"
+            android:layout_marginTop="@dimen/dimen_20"
             android:text="@string/add_addresses_create"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,3 +209,4 @@
             />
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

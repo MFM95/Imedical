@@ -3,16 +3,13 @@ package com.example.imedical.compare.presentation.view.fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.example.imedical.R
 import com.example.imedical.compare.domain.model.ProductModel
 import com.example.imedical.compare.presentation.view.adapter.CompareListAdapter
-import com.example.imedical.compare.presentation.view.adapter.ICompareListCallback
 import com.example.imedical.compare.presentation.viewmodel.CompareListViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory

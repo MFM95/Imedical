@@ -1,8 +1,8 @@
 package com.example.imedical.login.data.repository
 
 import com.example.imedical.core.api.ApiResponse
-import com.example.imedical.login.data.entity.TokenWrapper
 import com.example.imedical.core.model.DataWrapper
+import com.example.imedical.login.data.entity.TokenWrapper
 
 /**
  * Created by Ahmed Hassan on 8/13/2019.

@@ -38,4 +38,9 @@
             android:src="@drawable/ic_add"
             tools:targetApi="lollipop" />
 
+    <FrameLayout
+        android:id="@+id/lyAddFragmenContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        />
 </android.support.constraint.ConstraintLayout>

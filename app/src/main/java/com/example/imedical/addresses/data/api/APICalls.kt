@@ -9,7 +9,6 @@ import com.example.imedical.core.api.ErrorResponse
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
-import java.lang.Exception
 import javax.inject.Inject
 
 class APICalls @Inject constructor(private val retrofit: Retrofit) {

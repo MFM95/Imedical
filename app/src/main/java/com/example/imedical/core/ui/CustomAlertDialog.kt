@@ -1,7 +1,6 @@
 package com.example.imedical.core.ui
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.view.View
 import com.example.imedical.R

@@ -4,21 +4,16 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
-import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.forgetpassword.forget.presentation.viewmodel.ForgetPasswordViewModel
 import com.example.imedical.forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity
-import com.example.imedical.verification.presentation.activity.VerificationActivity
 import com.example.imedical.verification.presentation.viewmodel.VerificationViewModel
-import kotlinx.android.synthetic.main.activity_forget_password.*
 import kotlinx.android.synthetic.main.activity_verify_password.*
-import kotlinx.android.synthetic.main.fragment_verification.*
 import javax.inject.Inject
 
 class VerifyPasswordActivity : BaseActivity() {

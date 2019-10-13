@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.verification.presentation.viewmodel.VerificationViewModel
-import kotlinx.android.synthetic.main.activity_verify_password.*
 import kotlinx.android.synthetic.main.fragment_verification.*
 import javax.inject.Inject
 

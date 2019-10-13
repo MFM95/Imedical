@@ -15,7 +15,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import com.example.imedical.R
 import com.example.imedical.addresses.presentation.view.activity.AddressesActivity
 import com.example.imedical.compare.presentation.view.fragment.CompareListFragment
@@ -25,8 +24,6 @@ import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
 import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import javax.inject.Inject
-
-import kotlinx.android.synthetic.main.app_bar_home.*
 
 
 class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelectedListener {

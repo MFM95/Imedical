@@ -1,13 +1,11 @@
 package com.example.imedical.compare.presentation.view.adapter
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.example.imedical.R
 import com.example.imedical.compare.domain.model.ProductModel
 import com.squareup.picasso.Picasso

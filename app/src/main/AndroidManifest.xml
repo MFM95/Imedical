@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.example.imedical">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,16 +13,17 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".addresses.presentation.view.activity.AddressesActivity"></activity>
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".addresses.presentation.view.activity.AddressesActivity" />
         <activity
                 android:name=".home.presentation.view.activity.HomeActivity"
                 android:label="@string/title_activity_home"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity"></activity>
-        <activity android:name=".forgetpassword.verify.presentation.activity.VerifyPasswordActivity"></activity>
-        <activity android:name=".forgetpassword.forget.presentation.activity.ForgetPasswordActivity"></activity>
-        <activity android:name=".verification.presentation.activity.VerificationActivity"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity" />
+        <activity android:name=".forgetpassword.verify.presentation.activity.VerifyPasswordActivity" />
+        <activity android:name=".forgetpassword.forget.presentation.activity.ForgetPasswordActivity" />
+        <activity android:name=".verification.presentation.activity.VerificationActivity" />
         <activity android:name=".registration.presentation.activity.RegistrationActivity" />
         <activity
                 android:name=".splash.SplashActivity"
@@ -32,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.presentation.view.activity.LoginActivity"></activity>
+        <activity android:name=".login.presentation.view.activity.LoginActivity" />
     </application>
 
 </manifest>

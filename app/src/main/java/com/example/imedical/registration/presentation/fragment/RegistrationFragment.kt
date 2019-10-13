@@ -2,7 +2,6 @@ package com.example.imedical.registration.presentation.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
-import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.registration.presentation.viewmodel.RegistrationViewModel
 import com.example.imedical.verification.presentation.activity.VerificationActivity
 import kotlinx.android.synthetic.main.registration_fragment.*

@@ -1,6 +1,5 @@
 package com.example.imedical.core
 
-import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.util.Log
 import javax.inject.Inject

@@ -4,12 +4,9 @@ import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.home.data.entity.ProductEntity
 import com.example.imedical.home.data.entity.UserEntity
-import com.example.imedical.login.domain.model.UserModel
 import retrofit2.Response
-import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.GET
-import retrofit2.http.POST
 
 /**
  * Created by Ahmed Hassan on 8/18/2019.

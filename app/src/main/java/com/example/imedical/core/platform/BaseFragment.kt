@@ -2,7 +2,6 @@ package com.example.imedical.core.platform
 
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.view.View
 import android.widget.Toast
 import com.example.imedical.R
 import com.example.imedical.core.UserPreferences

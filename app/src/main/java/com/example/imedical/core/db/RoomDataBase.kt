@@ -2,7 +2,6 @@ package com.example.imedical.core.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.TypeConverters
 import com.example.imedical.compare.data.entity.ProductEntity
 import com.example.imedical.compare.data.local.CompareListDao
 

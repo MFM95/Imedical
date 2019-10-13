@@ -1,6 +1,5 @@
 package com.example.imedical.addresses.domain.repository
 
-import com.example.imedical.addresses.data.entity.CountryProvincesResponse
 import com.example.imedical.addresses.domain.model.AddressModel
 import com.example.imedical.addresses.domain.model.CountryProvincesModel
 import com.example.imedical.core.model.DataWrapper

@@ -1,6 +1,5 @@
 package com.example.imedical.core.di.module
 
-import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.SharedPreferences
@@ -8,8 +7,6 @@ import com.example.imedical.AndroidApplication
 import com.example.imedical.BuildConfig
 import com.example.imedical.core.UserPreferences
 import com.example.imedical.core.db.ImedicalDatabase
-import com.example.imedical.login.data.repository.LoginRepository
-import com.example.imedical.login.domain.repository.ILoginRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor

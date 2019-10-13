@@ -1,7 +1,6 @@
 package com.example.imedical.registration.presentation.activity
 
 import android.os.Bundle
-import android.view.MenuItem
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
