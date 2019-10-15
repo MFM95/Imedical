@@ -2,9 +2,7 @@ package com.example.imedical.addresses.presentation.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.imedical.addresses.domain.interactor.CreateAddressUseCase
-import com.example.imedical.addresses.domain.interactor.GetAddressesUseCase
-import com.example.imedical.addresses.domain.interactor.GetCountryProvincesUseCase
+import com.example.imedical.addresses.domain.interactor.*
 import com.example.imedical.addresses.domain.model.AddressModel
 import com.example.imedical.addresses.domain.model.CountryProvincesModel
 import com.example.imedical.core.model.DataWrapper
@@ -12,12 +10,16 @@ import javax.inject.Inject
 
 class AddressesViewModel @Inject constructor(private val getAddressesUseCase: GetAddressesUseCase,
                                              private val createAddressUseCase: CreateAddressUseCase,
-                                             private val getCountryProvincesUseCase: GetCountryProvincesUseCase)
+                                             private val getCountryProvincesUseCase: GetCountryProvincesUseCase,
+                                             private val updateAddressUseCase: UpdateAddressUseCase,
+                                             private val deleteAddressUseCase: DeleteAddressUseCase)
     : ViewModel(){
 
     private val addressesLiveData: MutableLiveData<List<AddressModel>> = MutableLiveData()
     private val createAddressLiveData: MutableLiveData<AddressModel> = MutableLiveData()
     private val countryProvincesLiveData: MutableLiveData<CountryProvincesModel> = MutableLiveData()
+    private val updateAddressLiveData: MutableLiveData<String> = MutableLiveData()
+    private val deleteAddressLiveData: MutableLiveData<String> = MutableLiveData()
 
     fun getAddressesLiveData(): MutableLiveData<List<AddressModel>> {
         return addressesLiveData
@@ -60,4 +62,34 @@ class AddressesViewModel @Inject constructor(private val getAddressesUseCase: Ge
     private fun onGetCountryProvincesResult(dataWrapper: DataWrapper<CountryProvincesModel>) {
         countryProvincesLiveData.value = dataWrapper.data
     }
+
+    fun getUpdateAddressLiveData(): MutableLiveData<String> {
+        return updateAddressLiveData
+    }
+
+    fun updateAddress(id: String, alias: String?, address1: String, address2: String,
+                      countryId: String, provinceId: String, phone: String) {
+        updateAddressUseCase.execute(UpdateAddressUseCase.UpdateAddressParams(
+            id, alias, address1, address2, countryId, provinceId, phone)
+            , onResult = this::onUpdateAddressResult)
+    }
+
+    private fun onUpdateAddressResult(dataWrapper: DataWrapper<String>) {
+        updateAddressLiveData.value = dataWrapper.data
+    }
+
+    fun getDeleteAddressLiveData(): MutableLiveData<String> {
+        return deleteAddressLiveData
+    }
+
+    fun deleteAddress(id: String) {
+        deleteAddressUseCase.execute(
+            DeleteAddressUseCase.DeleteAddressParams(id)
+            , onResult = this::onDeleteAddressResult)
+    }
+
+    private fun onDeleteAddressResult(dataWrapper: DataWrapper<String>) {
+        deleteAddressLiveData.value = dataWrapper.data
+    }
+
 }

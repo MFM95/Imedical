@@ -1,9 +1,6 @@
 package com.example.imedical.addresses.data.repository
 
-import com.example.imedical.addresses.data.entity.AddressResponse
-import com.example.imedical.addresses.data.entity.CountryProvincesResponse
-import com.example.imedical.addresses.data.entity.CreateAddressResponse
-import com.example.imedical.addresses.data.entity.GetAddressesResponse
+import com.example.imedical.addresses.data.entity.*
 import com.example.imedical.addresses.domain.model.AddressModel
 import com.example.imedical.addresses.domain.model.Country
 import com.example.imedical.addresses.domain.model.CountryProvincesModel
@@ -69,5 +66,26 @@ object DataMapper {
         return DataWrapper(apiResponse.status, result, apiResponse.error)
     }
 
+    fun mapUpdateAddressResponse(apiResponse: ApiResponse<UpdateAddressResponse>)
+            : DataWrapper<String> {
+
+        if (!apiResponse.status || apiResponse.data == null)
+            return DataWrapper(apiResponse.status, null, apiResponse.error)
+
+        val result = apiResponse.data.message
+
+        return DataWrapper(apiResponse.status, result, apiResponse.error)
+    }
+
+    fun mapDeleteAddressResponse(apiResponse: ApiResponse<DeleteAddressResponse>)
+            : DataWrapper<String> {
+
+        if (!apiResponse.status || apiResponse.data == null)
+            return DataWrapper(apiResponse.status, null, apiResponse.error)
+
+        val result = apiResponse.data.message
+
+        return DataWrapper(apiResponse.status, result, apiResponse.error)
+    }
 
 }

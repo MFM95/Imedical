@@ -70,13 +70,6 @@ class AddressesActivity : BaseActivity() {
     }
 
 
-    private fun observeOnCreateAddress() {
-        addressesViewModel.getCreatedAddressLiveData().observe(this, Observer {
-            it?.let {
-                showMessage(getString(R.string.add_addresses_success_msg))
-            }
-        })
-    }
 
 
 }

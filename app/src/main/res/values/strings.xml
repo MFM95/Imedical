@@ -86,4 +86,13 @@
     <string name="add_addresses_success_msg">Your address crated successfully</string>
     <string name="add_addresses_failure_msg">Something went wrong, We couldn\'t create your address</string>
 
+    <string-array name="countries_list">
+        <item>Egypt</item>
+    </string-array>
+
+    <string name="update_addresses_title">Update your Address</string>
+    <string name="update_addresses_button">Update</string>
+    <string name="update_addresses_success_msg">Your address updated successfully</string>
+    <string name="update_addresses_failure_msg">Something went wrong, We couldn\'t update your address</string>
+
 </resources>

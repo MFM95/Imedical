@@ -1,9 +1,6 @@
 package com.example.imedical.addresses.data.api
 
-import com.example.imedical.addresses.data.entity.CountryProvincesResponse
-import com.example.imedical.addresses.data.entity.CreateAddressBody
-import com.example.imedical.addresses.data.entity.CreateAddressResponse
-import com.example.imedical.addresses.data.entity.GetAddressesResponse
+import com.example.imedical.addresses.data.entity.*
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.api.ErrorResponse
 import okhttp3.ResponseBody
@@ -62,6 +59,50 @@ class APICalls @Inject constructor(private val retrofit: Retrofit) {
     suspend fun getCountryProvinces(countryId: String?): ApiResponse<CountryProvincesResponse> {
         try {
             val response = api.getCountryProvinces(countryId)
+
+            //If successful return body
+            if (response.isSuccessful)
+                return response.body()!!
+
+            //convert error body if not successful
+            val errorConverter: Converter<ResponseBody, ErrorResponse> =
+                retrofit.responseBodyConverter(ErrorResponse::class.java, arrayOf())
+            val errorBody = errorConverter.convert(response.errorBody()!!)
+
+            return ApiResponse(false, null, errorBody!!.error.joinToString(". \n"))
+
+        } catch (ex: Exception){
+            return ApiResponse(false, null, ex.message.toString())
+        }
+
+
+    }
+
+    suspend fun updateAddress(id: String, createAddressBody: CreateAddressBody): ApiResponse<UpdateAddressResponse> {
+        try {
+            val response = api.updateAddress(id, createAddressBody)
+
+            //If successful return body
+            if (response.isSuccessful)
+                return response.body()!!
+
+            //convert error body if not successful
+            val errorConverter: Converter<ResponseBody, ErrorResponse> =
+                retrofit.responseBodyConverter(ErrorResponse::class.java, arrayOf())
+            val errorBody = errorConverter.convert(response.errorBody()!!)
+
+            return ApiResponse(false, null, errorBody!!.error.joinToString(". \n"))
+
+        } catch (ex: Exception){
+            return ApiResponse(false, null, ex.message.toString())
+        }
+
+
+    }
+
+    suspend fun deleteAddress(id: String): ApiResponse<DeleteAddressResponse> {
+        try {
+            val response = api.deleteAddress(id)
 
             //If successful return body
             if (response.isSuccessful)

@@ -10,4 +10,13 @@ interface IAddressesRepository {
                               countryId: String?, provinceId: String?, phone: String?)
             : DataWrapper<AddressModel>
     suspend fun getCountryProvinces(countryId: String?): DataWrapper<CountryProvincesModel>
+
+    suspend fun updateAddress(
+        id: String, alias: String?, address1: String?, address2: String?,
+                 countryId: String?, provinceId: String?, phone: String?)
+            : DataWrapper<String>
+
+    suspend fun deleteAddress(id: String)
+            : DataWrapper<String>
+
 }
