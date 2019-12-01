@@ -15,6 +15,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".categories.presentation.view.activity.CategoriesActivity"></activity>
         <activity android:name=".addresses.presentation.view.activity.AddressesActivity" />
         <activity
                 android:name=".home.presentation.view.activity.HomeActivity"

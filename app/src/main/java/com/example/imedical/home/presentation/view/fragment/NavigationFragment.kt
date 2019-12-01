@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.addresses.presentation.view.activity.AddressesActivity
+import com.example.imedical.categories.presentation.view.activity.CategoriesActivity
 import com.example.imedical.compare.presentation.view.fragment.CompareListFragment
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
@@ -120,7 +121,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 }
             }
             R.id.nav_settings -> {
-                val intent = Intent(activity, AddressesActivity::class.java)
+                val intent = Intent(activity, CategoriesActivity::class.java)
                 startActivity(intent)
             }
             R.id.nav_logout -> {

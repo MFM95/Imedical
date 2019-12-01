@@ -118,7 +118,7 @@ class EditAddressFragment : BaseFragment() {
         fun newInstance(addressModel: AddressModel) =
             EditAddressFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(EXTRA_ADDRESS_MODEL, addressModel)
+                //    putParcelable(EXTRA_ADDRESS_MODEL, addressModel)
                 }
             }
     }
