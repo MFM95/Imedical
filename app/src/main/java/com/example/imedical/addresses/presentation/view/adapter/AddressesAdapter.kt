@@ -36,7 +36,11 @@ class AddressesAdapter(
             view.tvAddressStreet.text = addressModel.address_1
             view.tvAddressPhone.text = addressModel.phone
 
-
+            if(position == addressesList.size-1) {
+                view.viewAddressItemDivider.visibility = View.GONE
+            } else {
+                view.viewAddressItemDivider.visibility = View.VISIBLE
+            }
         }
     }
 }

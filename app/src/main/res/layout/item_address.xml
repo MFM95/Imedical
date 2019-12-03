@@ -4,8 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dimen_20"
-        tools:ignore="RtlCompat">
+        tools:ignore="RtlCompat"
+        android:layout_marginTop="@dimen/dimen_20">
 
     <LinearLayout
             android:id="@+id/lyAddressCity"
@@ -15,7 +15,9 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/dimen_25"
+            >
 
         <ImageView
                 android:layout_width="wrap_content"
@@ -41,6 +43,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lyAddressCity"
+            android:layout_marginStart="@dimen/dimen_25"
 
             />
 
@@ -54,11 +57,11 @@
             android:letterSpacing="0.03"
             android:lineSpacingExtra="43sp"
             android:text="Gmal Abd El naser El-Zahraa s.t"
-            android:textColor="#9f9f9f"
+            android:textColor="@color/warm_grey"
+            android:ellipsize="end"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@id/viewAddressLine"
             app:layout_constraintTop_toBottomOf="@id/lyAddressCity" />
-
     <TextView
             android:id="@+id/tvAddressPhone"
             android:layout_width="wrap_content"
@@ -69,7 +72,7 @@
             android:letterSpacing="0.03"
             android:lineSpacingExtra="66sp"
             android:text="01024578417"
-            android:textColor="#9f9f9f"
+            android:textColor="@color/warm_grey"
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@id/viewAddressLine"
             app:layout_constraintTop_toBottomOf="@id/tvAddressStreet" />
@@ -85,4 +88,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlCompat" />
+
+    <View
+        android:id="@+id/viewAddressItemDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+        android:background="@color/warm_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddressPhone"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginEnd="@dimen/dimen_25"
+            android:layout_marginStart="@dimen/dimen_20"
+            />
 </android.support.constraint.ConstraintLayout>

@@ -11,4 +11,5 @@
     <color name="gray">#aaaaaa</color>
     <color name="colorError">#ff0000</color>
     <color name="linkColor">#0000EE</color>
+    <color name="warm_grey">#9f9f9f</color>
 </resources>
