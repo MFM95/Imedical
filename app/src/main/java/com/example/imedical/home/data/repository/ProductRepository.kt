@@ -1,8 +1,8 @@
 package com.example.imedical.home.data.repository
 
 import com.example.imedical.core.model.DataWrapper
-import com.example.imedical.home.data.api.ApiCalls
 import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.data.api.ApiCalls
 import com.example.imedical.home.domain.repository.IProductRepository
 import com.example.imedical.login.domain.model.UserModel
 import javax.inject.Inject
@@ -22,6 +22,10 @@ class ProductRepository @Inject constructor(private val apiCalls: ApiCalls) : IP
 
     override suspend fun getAuthUser(token: String): DataWrapper<UserModel> {
         return DataMapper.mapUser(apiCalls.getAuthUser(token).body())
+    }
+
+    override suspend fun storeWish(id: Int, index: Int): DataWrapper<Int>{
+        return DataMapper.mapAddWish(apiCalls.storeWish(id), index)
     }
 
 }

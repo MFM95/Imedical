@@ -8,4 +8,7 @@ import com.example.imedical.core.model.ProductModel
  */
 interface IWishedRepository {
     suspend fun getWishList(): DataWrapper<List<ProductModel>>
+    suspend fun storeWish(id: Int): DataWrapper<Unit>
+    suspend fun removeWish(id: Int, index: Int): DataWrapper<Int>
+
 }

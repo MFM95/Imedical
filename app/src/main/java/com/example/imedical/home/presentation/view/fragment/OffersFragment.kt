@@ -62,10 +62,23 @@ class OffersFragment : BaseFragment() {
             viewModel.updateOffers()
 
         } else viewModel.updateOffers()
+
+        if(!this.viewModel.getWishLiveData().hasObservers())
+            this.viewModel.getWishLiveData().observe(this, Observer {
+                    dataWrapper ->
+                if(dataWrapper != null && dataWrapper.status && dataWrapper.data != null) {
+                    this.adapter.products[dataWrapper.data].inWishList =
+                        !this.adapter.products[dataWrapper.data].inWishList
+                    this.adapter.notifyItemChanged(dataWrapper.data)
+                } else showMessage(dataWrapper?.error)
+            })
     }
 
-    class ProductCallback : IProductCallback{
-        override fun onWishClick(id: Int) {
+    inner class ProductCallback : IProductCallback{
+        override fun onWishClick(id: Int, index: Int) {
+            if(!this@OffersFragment.adapter.products[index].inWishList)
+                this@OffersFragment.viewModel.addWish(id, index)
+            else this@OffersFragment.viewModel.removeWish(id, index)
         }
 
         override fun onCompareClick(id: Int) {

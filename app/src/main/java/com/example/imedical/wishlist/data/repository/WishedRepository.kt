@@ -12,6 +12,14 @@ import javax.inject.Inject
 class WishedRepository @Inject constructor(private val apiCalls: ApiCalls) : IWishedRepository {
 
     override suspend fun getWishList(): DataWrapper<List<ProductModel>> {
-        return DataMapper.mapWishList(apiCalls.getWishList().body())
+        return DataMapper.mapWishList(apiCalls.getWishList())
+    }
+
+    override suspend fun storeWish(id: Int): DataWrapper<Unit>{
+        return DataMapper.mapEmpty(apiCalls.storeWish(id))
+    }
+
+    override suspend fun removeWish(id: Int, index: Int): DataWrapper<Int>{
+        return DataMapper.mapRemoveWish(apiCalls.removeWish(id) ,index)
     }
 }

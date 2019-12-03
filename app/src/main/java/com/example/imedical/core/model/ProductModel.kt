@@ -9,7 +9,7 @@ data class ProductModel (
     val imageUrl: String,
     val price: Double,
     val salePrice: Double?,
-    val inWishList: Boolean,
+    var inWishList: Boolean,
     val inCompareList: Boolean,
     val brand: String?,
     val quantity: Int

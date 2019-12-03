@@ -47,14 +47,26 @@ class WishListFragment : BaseFragment() {
 
     private fun subscribeViewModel(){
         if(!viewModel.getWithListLiveData().hasObservers()){
-            viewModel.getWithListLiveData().observe(this, Observer { models ->
-                adapter.wishes.addAll(models!!)
+            viewModel.getWithListLiveData().observe(this, Observer { dataWrapper ->
                 wishListProgressBar.visibility = View.GONE
-                adapter.notifyDataSetChanged()
+                if(dataWrapper!= null && dataWrapper.status) {
+                    adapter.wishes.addAll(dataWrapper.data!!)
+                    adapter.notifyDataSetChanged()
+                } else showMessage(dataWrapper?.error)
             })
+
             viewModel.updateWishList()
 
         } else viewModel.updateWishList()
+
+        if(!this.viewModel.getRemoveWishLiveData().hasObservers())
+            this.viewModel.getRemoveWishLiveData().observe(this, Observer {
+                    dataWrapper ->
+                if(dataWrapper != null && dataWrapper.status && dataWrapper.data != null) {
+                    this.adapter.wishes.removeAt(dataWrapper.data)
+                    this.adapter.notifyItemRemoved(dataWrapper.data)
+                } else showMessage(dataWrapper?.error)
+            })
     }
 
     private fun setupRecyclerView(){
@@ -65,12 +77,12 @@ class WishListFragment : BaseFragment() {
         wishListRecyclerView.adapter = adapter
     }
 
-    class WishCallback : IWishCallback{
+    inner class WishCallback : IWishCallback{
         override fun onProductClick(productModel: ProductModel) {
-
         }
 
         override fun onRemoveClick(id: Int, index: Int) {
+            this@WishListFragment.viewModel.removeWish(id, index)
         }
 
         override fun onCompareClick(id: Int) {

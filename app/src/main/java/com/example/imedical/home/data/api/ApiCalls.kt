@@ -1,6 +1,7 @@
 package com.example.imedical.home.data.api
 
 import com.example.imedical.core.api.ApiResponse
+import com.example.imedical.core.api.EmptyResponse
 import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.core.api.ProductEntity
 import retrofit2.Response
@@ -10,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by Ahmed Hassan on 8/18/2019.
  */
-class ApiCalls @Inject constructor(retrofit: Retrofit) {
+class ApiCalls @Inject constructor(private val retrofit: Retrofit) {
     private val homeApi = retrofit.create(HomeApi::class.java)
 
     suspend fun getOffers() : Response<ApiResponse<DealsEntity>>{
@@ -22,4 +23,8 @@ class ApiCalls @Inject constructor(retrofit: Retrofit) {
     }
 
     suspend fun getAuthUser(token: String) = homeApi.getAuthUser(token)
+
+    suspend fun storeWish(id: Int): ApiResponse<EmptyResponse>?{
+        return  homeApi.storeWish(id).body()
+    }
 }
