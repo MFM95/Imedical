@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_verify_password.*
 import kotlinx.android.synthetic.main.fragment_verification.*
 import javax.inject.Inject
 
+
 class VerifyPasswordActivity : BaseActivity() {
 
     private lateinit var verificationViewModel: VerificationViewModel
