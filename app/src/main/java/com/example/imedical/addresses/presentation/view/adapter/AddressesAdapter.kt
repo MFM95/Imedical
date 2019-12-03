@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.imedical.R
 import com.example.imedical.addresses.domain.model.AddressModel
-import kotlinx.android.synthetic.main.cell_address.view.*
+import kotlinx.android.synthetic.main.item_address.view.*
 
 class AddressesAdapter(
     private val addressesList: ArrayList<AddressModel>,
@@ -15,7 +15,7 @@ class AddressesAdapter(
 ) : RecyclerView.Adapter<AddressesAdapter.AddressesListHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): AddressesListHolder {
         return AddressesListHolder(
-            LayoutInflater.from(context).inflate(R.layout.cell_address, viewGroup, false),
+            LayoutInflater.from(context).inflate(R.layout.item_address, viewGroup, false),
             context
         )
     }
@@ -32,12 +32,9 @@ class AddressesAdapter(
         RecyclerView.ViewHolder(view) {
 
         fun bind(addressModel: AddressModel, position: Int) {
-            view.tvAddressItemAlias.text = addressModel.alias
-            view.tvAddressItemAddress1.text = addressModel.address_1
-            view.tvAddressItemAddress2.text = addressModel.address_2
-            view.tvAddressItemCountry.text = addressModel.country?.name?: ""
-            view.tvAddressItemCity.text = addressModel.province?.name?: ""
-            view.tvAddressItemPhone.text = addressModel.phone
+            view.tvAddressCity.text = addressModel.province?.name
+            view.tvAddressStreet.text = addressModel.address_1
+            view.tvAddressPhone.text = addressModel.phone
 
 
         }

@@ -104,7 +104,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 }
             }
             R.id.nav_categories -> {
-
+                val intent = Intent(activity, CategoriesActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_shop -> {
 
@@ -121,7 +122,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 }
             }
             R.id.nav_settings -> {
-                val intent = Intent(activity, CategoriesActivity::class.java)
+                val intent = Intent(activity, AddressesActivity::class.java)
                 startActivity(intent)
             }
             R.id.nav_logout -> {

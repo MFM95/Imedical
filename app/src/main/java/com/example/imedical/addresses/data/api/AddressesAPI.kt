@@ -3,10 +3,7 @@ package com.example.imedical.addresses.data.api
 import com.example.imedical.addresses.data.entity.*
 import com.example.imedical.core.api.ApiResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Url
+import retrofit2.http.*
 
 interface AddressesAPI {
     @GET("addresses")
@@ -18,17 +15,17 @@ interface AddressesAPI {
             : Response<ApiResponse<CreateAddressResponse>>
 
 
-    @GET("countries-with-provinces")
-    suspend fun getCountryProvinces(@Body id: String?)
+    @GET("countries-with-provinces/{id}")
+    suspend fun getCountryProvinces(@Path("id") id: String?)
             : Response<ApiResponse<CountryProvincesResponse>>
 
 
-    @POST("addresses/delete/")
-    suspend fun deleteAddress(@Url id: String)
+    @POST("addresses/delete/{id}")
+    suspend fun deleteAddress(@Path("id") id: String)
             : Response<ApiResponse<DeleteAddressResponse>>
 
-    @POST("addresses/update/")
-    suspend fun updateAddress(@Url id: String,
+    @POST("addresses/update/{id}")
+    suspend fun updateAddress(@Path("id") id: String?,
                               @Body createAddressBody: CreateAddressBody)
             : Response<ApiResponse<UpdateAddressResponse>>
 
