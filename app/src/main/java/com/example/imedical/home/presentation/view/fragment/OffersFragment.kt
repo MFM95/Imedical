@@ -3,7 +3,6 @@ package com.example.imedical.home.presentation.view.fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,12 @@ import android.view.ViewGroup
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.home.presentation.view.adapter.IProductCallback
 import com.example.imedical.home.presentation.view.adapter.ProductsAdapter
-import com.example.imedical.home.presentation.viewmodel.BestSellersViewModel
 import com.example.imedical.home.presentation.viewmodel.OffersViewModel
+import com.example.imedical.home.presentation.viewmodel.ProductViewModel
 import kotlinx.android.synthetic.main.offers_fragment.*
 import javax.inject.Inject
 
@@ -25,6 +25,10 @@ class OffersFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory<OffersViewModel>
     private lateinit var viewModel: OffersViewModel
+
+    @Inject
+    lateinit var productViewModelFactory: ViewModelFactory<ProductViewModel>
+    private val productViewModel by lazy { ViewModelProviders.of(this, productViewModelFactory).get(ProductViewModel::class.java) }
 
     private lateinit var adapter: ProductsAdapter
 
@@ -50,7 +54,7 @@ class OffersFragment : BaseFragment() {
         offersRecyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        adapter = ProductsAdapter(ArrayList(), ProductCallback(), activity!!)
+        adapter = ProductsAdapter(ArrayList(), productCallback, activity!!)
         offersRecyclerView.adapter = adapter
     }
 
@@ -64,16 +68,44 @@ class OffersFragment : BaseFragment() {
             viewModel.updateOffers()
 
         } else viewModel.updateOffers()
+
+        if(!this.viewModel.getWishLiveData().hasObservers())
+            this.viewModel.getWishLiveData().observe(this, Observer {
+                    dataWrapper ->
+                if(dataWrapper != null && dataWrapper.status && dataWrapper.data != null) {
+                    this.adapter.products[dataWrapper.data].inWishList =
+                        !this.adapter.products[dataWrapper.data].inWishList
+                    this.adapter.notifyItemChanged(dataWrapper.data)
+                } else showMessage(dataWrapper?.error)
+            })
+
+        productViewModel.getAddToCartLiveData().observe(this, Observer {
+            hideProgress()
+            if(it != null ){
+                if(!it.status)
+                    showMessage(it.error)
+                else {
+                    if(activity is HomeActivity)
+                        (activity as HomeActivity).updateCartLabel()
+                    showMessage("Item added to cart")
+                }
+            }
+        })
     }
 
-    class ProductCallback : IProductCallback{
-        override fun onWishClick(id: Int) {
+    private val productCallback = object : IProductCallback{
+        override fun onWishClick(id: Int, index: Int) {
+            if(!this@OffersFragment.adapter.products[index].inWishList)
+                this@OffersFragment.viewModel.addWish(id, index)
+            else this@OffersFragment.viewModel.removeWish(id, index)
         }
 
         override fun onCompareClick(id: Int) {
         }
 
         override fun addToCart(id: Int) {
+            showProgress()
+            productViewModel.addToCart(id, 1)
         }
 
         override fun onProductClick(productModel: ProductModel) {

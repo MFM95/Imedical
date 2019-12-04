@@ -21,6 +21,7 @@ import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
 import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
+import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
 import javax.inject.Inject
 
 class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelectedListener {
@@ -46,26 +47,41 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         val v: View  = inflater.inflate(R.layout.fragment_navigation, container, false)
         navView = v.findViewById(R.id.navView)
         navView.setNavigationItemSelectedListener(this)
-        navView.setCheckedItem(R.id.nav_home)
+        setHomeChecked()
         setTitleAction()
         return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
-        //subscribeViewModel()
+        subscribeViewModel()
+    }
+
+    private fun setHomeChecked(){
+        navView.setCheckedItem(R.id.nav_home)
+        if(fragmentManager != null)
+            activity?.supportFragmentManager?.beginTransaction()!!
+                .replace(R.id.homeFragment, HomeFragment())
+                .commitNow()
     }
 
     private fun subscribeViewModel(){
         val token = userPreferences.getAccessToken()
-        if(token != null)
-            viewModel.getUser(token).observe(this, Observer { dataWrapper ->
-                if(dataWrapper!!.status) {
+        if(token != null && token.isNotEmpty())
+            viewModel.getUser("Bearer $token").observe(this, Observer { dataWrapper ->
+                if(dataWrapper!= null && dataWrapper.status) {
                     navTitle.text = dataWrapper.data?.name
                     this.userModel = dataWrapper.data
+                    showLogout()
+                } else {
+                    userPreferences.clearUser()
+                    userModel = null
+                    setTitleAction()
+                    navTitle.text = getString(R.string.nav_header_title)
+                    hideLogout()
                 }
             })
+        else hideLogout()
     }
 
     private fun setTitleAction(){
@@ -73,7 +89,9 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         navTitle.setOnClickListener {
             if(userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
-            //TODO put else to open profile of the user
+            else {
+
+            }
         }
     }
 
@@ -81,7 +99,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                // Handle the camera action
+                if(fragmentManager != null)
+                    activity?.supportFragmentManager?.beginTransaction()!!
+                        .replace(R.id.homeFragment, HomeFragment())
+                        .commitNow()
             }
             R.id.nav_categories -> {
 
@@ -90,6 +111,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_wish_list -> {
+                if(fragmentManager != null)
+                activity?.supportFragmentManager?.beginTransaction()!!
+                    .replace(R.id.homeFragment, WishListFragment())
+                    .commitNow()
 
             }
             R.id.nav_compare_list -> {
@@ -99,7 +124,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_logout -> {
-
+                userPreferences.clearUser()
+                val intent = activity?.intent
+                activity?.finish()
+                startActivity(intent)
             }
         }
         val drawerLayout: DrawerLayout = activity!!.findViewById(R.id.drawerLayout)
@@ -107,5 +135,11 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         return true
     }
 
+    private fun hideLogout(){
+        navView.menu.findItem(R.id.nav_logout).isVisible = false
+    }
 
+    private fun showLogout(){
+        navView.menu.findItem(R.id.nav_logout).isVisible = true
+    }
 }

@@ -14,8 +14,10 @@ import javax.inject.Inject
 class NavigationViewModel @Inject constructor(private val getUserUseCase: GetUserUseCase) : ViewModel(){
     private val userLiveData = MutableLiveData<DataWrapper<UserModel>>()
 
-    fun getUser(token: String): LiveData<DataWrapper<UserModel>>{
-        getUserUseCase.execute(token, this::onResult)
+    fun getUser(token: String?): LiveData<DataWrapper<UserModel>>{
+        token?.let {
+            getUserUseCase.execute(token, this::onResult)
+        }
         return userLiveData
     }
 

@@ -64,6 +64,9 @@
     <string name="deals_of_day">Deals of the day</string>
     <string name="best_sellers">Best Sellers</string>
     <string name="add_to_cart">Add to Cart</string>
+
+    <string name="wish_list">My Wishlist</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
