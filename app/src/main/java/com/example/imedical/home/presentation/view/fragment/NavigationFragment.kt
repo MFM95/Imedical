@@ -81,6 +81,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                     hideLogout()
                 }
             })
+        else hideLogout()
     }
 
     private fun setTitleAction(){
