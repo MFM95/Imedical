@@ -1,5 +1,6 @@
 package com.example.imedical.home.presentation.view.adapter
 
+import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.graphics.PorterDuff
 import android.support.constraint.ConstraintLayout
@@ -22,6 +23,11 @@ import com.squareup.picasso.Picasso
 class ProductsAdapter(val products: ArrayList<ProductModel>,
                       private val productCallback: IProductCallback,
                       private val context: Context): RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
+
+    val onCompareClick by lazy { MutableLiveData<ProductModel>() }
+    val onWishClick by lazy { MutableLiveData<Int>() }
+    val onAddToCartClick by lazy { MutableLiveData<Int>() }
+    val onProductItemClick by lazy { MutableLiveData<ProductModel>() }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): ProductHolder {
         return ProductHolder(

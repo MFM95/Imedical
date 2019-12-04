@@ -69,4 +69,33 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="compare_list_title">Compare List</string>
+    <string name="added_to_compare_message">Added to Compare list</string>
+    <string name="removed_from_compare_message">Removed from Compare list</string>
+
+    <string name="addresses_empty">You have no addresses yet, you can add one</string>
+    <string name="addresses_error">Something went wrong</string>
+    <string name="add_addresses_title">Create your Address</string>
+    <string name="add_addresses_alias">Alias</string>
+    <string name="add_addresses_address1">Address 1</string>
+    <string name="add_addresses_address2">Address 2</string>
+    <string name="add_addresses_country">Country</string>
+    <string name="add_addresses_zip">Zip Code</string>
+    <string name="add_addresses_phone">Your phone</string>
+    <string name="add_addresses_create">Create</string>
+    <string name="add_addresses_alias_empty">The alias field is required.</string>
+    <string name="add_addresses_address_empty">The address 1 field is required.</string>
+    <string name="add_addresses_phone_empty">The phone field is required.</string>
+    <string name="add_addresses_success_msg">Your address crated successfully</string>
+    <string name="add_addresses_failure_msg">Something went wrong, We couldn\'t create your address</string>
+
+    <string-array name="countries_list">
+        <item>Egypt</item>
+    </string-array>
+
+    <string name="update_addresses_title">Update your Address</string>
+    <string name="update_addresses_button">Update</string>
+    <string name="update_addresses_success_msg">Your address updated successfully</string>
+    <string name="update_addresses_failure_msg">Something went wrong, We couldn\'t update your address</string>
+
 </resources>

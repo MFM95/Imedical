@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.imedical.R
@@ -12,7 +11,6 @@ import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.forgetpassword.forget.presentation.viewmodel.ForgetPasswordViewModel
 import com.example.imedical.forgetpassword.verify.presentation.activity.VerifyPasswordActivity
-import com.example.imedical.login.presentation.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_forget_password.*
 import javax.inject.Inject
 
@@ -27,6 +25,7 @@ class ForgetPasswordActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         setContentView(R.layout.activity_forget_password)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ForgetPasswordViewModel::class.java)
         observeSendClickListener()
         subscribeForgetViewModel()

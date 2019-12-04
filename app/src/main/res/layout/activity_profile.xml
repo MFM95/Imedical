@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".addresses.presentation.view.activity.ProfileActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/lyProfileContainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_200"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/cool_blue"
+            >
+
+
+            <ImageView
+                android:id="@+id/imgProfilePic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/dimen_20"
+                android:src="@drawable/ic_user_profile"
+                    android:layout_marginLeft="@dimen/dimen_20" />
+
+        <LinearLayout
+            android:id="@+id/lyProfileInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgProfilePic"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:orientation="vertical"
+                >
+            <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/imgProfilePic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="23sp"
+                    android:text="Soha Ahmed"
+                    />
+
+            <TextView
+                    android:id="@+id/tvProfileEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/imgProfilePic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="28sp"
+                    android:text="sohaAhmed777@gmail.com"
+                    />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/tvProfileCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#ffffff"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="31sp"
+                        android:text="Asyut"
+                    />
+
+                <View
+                        android:id="@+id/viewProfileDivider"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginLeft="@dimen/dimen_8"
+                      android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        />
+
+                <TextView
+                    android:id="@+id/tvProfilePhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#ffffff"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="49sp"
+                        android:text="01025475874"
+                        android:layout_marginStart="@dimen/dimen_6"
+                        android:layout_marginLeft="@dimen/dimen_6" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/lyProfileAddressesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lyProfileContainer"
+        />
+
+</android.support.constraint.ConstraintLayout>
+
+</ScrollView>

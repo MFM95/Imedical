@@ -8,12 +8,11 @@ import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.view.MenuItem
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.View
 import android.widget.TextView
+import android.view.MenuItem
 import com.example.imedical.R
 import com.example.imedical.cart.presentation.view.activity.CartActivity
 import com.example.imedical.cart.presentation.view.fragment.CartFragment

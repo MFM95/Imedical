@@ -3,8 +3,10 @@ package com.example.imedical.core.platform
 import android.app.Dialog
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
+import android.view.View
 import android.widget.Toast
 import com.example.imedical.AndroidApplication
 import com.example.imedical.core.UserPreferences
@@ -60,5 +62,9 @@ abstract class BaseActivity : AppCompatActivity() {
             .asGif()
             .load(R.drawable.loading_gif)
             .into(imageView)
+    }
+
+    protected fun showSnack(view: View, message: String?) {
+        Snackbar.make(view!!, message!!, Snackbar.LENGTH_LONG).show()
     }
 }

@@ -2,14 +2,15 @@ package com.example.imedical.verification.presentation.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.verification.presentation.viewmodel.VerificationViewModel
 import kotlinx.android.synthetic.main.fragment_verification.*
 import javax.inject.Inject
@@ -55,9 +56,19 @@ class VerificationFragment : BaseFragment() {
             .observe(
                 this, Observer { dataWrapper ->
                     //TODO remove showing token
-                    if(dataWrapper?.status == true)
+                    showLoading(false)
+                    if(dataWrapper?.status == true) {
                         showMessage(dataWrapper.data)
-                    else{
+                        dataWrapper.data
+                        //     userPreferences.saveAccessToken(token!!)
+                        val homeIntent = Intent(activity!!, HomeActivity::class.java)
+                        homeIntent.flags = homeIntent.flags or
+                                Intent.FLAG_ACTIVITY_NEW_TASK or
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        activity!!.startActivity(homeIntent)
+
+                    } else{
                         lyVerificationError.visibility = View.VISIBLE
                         tvVerificationError.text = dataWrapper?.error
                     }
@@ -69,9 +80,9 @@ class VerificationFragment : BaseFragment() {
         viewModel.getResendResponseLiveData()
             .observe(
                 this, Observer { dataWrapper ->
-                    //TODO remove showing token
+                    showLoading(false)
                     if(dataWrapper?.status == true)
-                        showMessage(dataWrapper.data)
+                        showMessage(getString(R.string.verification_code_sent))
                     else{
                         lyVerificationError.visibility = View.VISIBLE
                         tvVerificationError.text = dataWrapper?.error
@@ -94,12 +105,27 @@ class VerificationFragment : BaseFragment() {
         if (code.isEmpty()) {
             showMessage(getString(R.string.empty_verification_code))
         } else {
+            showLoading(true)
             viewModel.verify(code)
         }
     }
 
     private fun onResendClickListener() {
         viewModel.resend(mobile)
+        showLoading(true)
+    }
+
+    private fun showLoading(show: Boolean) {
+        if(show) {
+            progressVerificationLoading.visibility = View.VISIBLE
+            btnVerify.isClickable = false
+            tvResendCode.isClickable = false
+            lyVerificationError.visibility = View.GONE
+        } else {
+            progressVerificationLoading.visibility = View.INVISIBLE
+            btnVerify.isClickable = true
+            tvResendCode.isClickable = true
+        }
     }
 
     companion object {

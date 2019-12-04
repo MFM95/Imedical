@@ -7,8 +7,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.example.imedical.R
+import com.example.imedical.compare.presentation.viewmodel.CompareListViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.core.model.ProductModel
@@ -32,10 +32,16 @@ class OffersFragment : BaseFragment() {
 
     private lateinit var adapter: ProductsAdapter
 
+    lateinit var compareViewModel: CompareListViewModel
+
+    @Inject
+    lateinit var compareViewModelFactory: ViewModelFactory<CompareListViewModel>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(OffersViewModel::class.java)
+        compareViewModel = ViewModelProviders.of(this, compareViewModelFactory).get(CompareListViewModel::class.java)
         subscribeViewModel()
     }
     override fun onCreateView(
@@ -48,6 +54,10 @@ class OffersFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupRecyclerView()
+        observeOnCompareClick()
+        observeOnAddToCartClick()
+        observeOnProductClick()
+        observeOnWishClick()
     }
 
     private fun setupRecyclerView(){
@@ -94,14 +104,15 @@ class OffersFragment : BaseFragment() {
     }
 
     private val productCallback = object : IProductCallback{
+        override fun onCompareClick(id: Int) {
+        }
+
         override fun onWishClick(id: Int, index: Int) {
             if(!this@OffersFragment.adapter.products[index].inWishList)
                 this@OffersFragment.viewModel.addWish(id, index)
             else this@OffersFragment.viewModel.removeWish(id, index)
         }
 
-        override fun onCompareClick(id: Int) {
-        }
 
         override fun addToCart(id: Int) {
             showProgress()
@@ -112,4 +123,57 @@ class OffersFragment : BaseFragment() {
         }
 
     }
+
+    private fun observeOnCompareClick() {
+        adapter?.let {
+            it.onCompareClick.observe(this, Observer { model ->
+                model?.let { productModel ->
+                    compareViewModel.addToCompareList(mapProductModel(productModel))
+                    compareViewModel.getAddLiveData().observe(this, Observer {
+                        showSnack(getString(R.string.added_to_compare_message))
+                    })
+
+                }
+            })
+        }
+    }
+
+    private fun observeOnWishClick() {
+        adapter?.let {
+            it.onWishClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun observeOnAddToCartClick() {
+        adapter?.let {
+            it.onAddToCartClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun observeOnProductClick() {
+        adapter?.let {
+            it.onAddToCartClick.observe(this, Observer {
+
+            })
+        }
+    }
+
+    private fun mapProductModel(model: ProductModel): com.example.imedical.compare.domain.model.ProductModel {
+        return com.example.imedical.compare.domain.model.ProductModel(
+            model.id,
+            model.name,
+            model.imageUrl,
+            model.price,
+            model.salePrice,
+            model.inWishList,
+            model.inCompareList,
+            model.brand,
+            model.quantity
+        )
+    }
+
 }

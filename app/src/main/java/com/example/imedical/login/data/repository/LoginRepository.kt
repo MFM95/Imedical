@@ -1,8 +1,8 @@
 package com.example.imedical.login.data.repository
 
+import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.login.data.api.ApiCalls
 import com.example.imedical.login.data.entity.Credentials
-import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.login.domain.repository.ILoginRepository
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
 package com.example.imedical.login.domain.usecase
 
-import com.example.imedical.core.usecase.BaseUseCase
 import com.example.imedical.core.model.DataWrapper
+import com.example.imedical.core.usecase.BaseUseCase
 import com.example.imedical.login.domain.repository.ILoginRepository
 import javax.inject.Inject
 
