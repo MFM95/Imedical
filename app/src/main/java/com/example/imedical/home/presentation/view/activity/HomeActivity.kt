@@ -1,5 +1,6 @@
 package com.example.imedical.home.presentation.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import com.example.imedical.R
+import com.example.imedical.cart.presentation.view.activity.CartActivity
 import com.example.imedical.cart.presentation.view.fragment.CartFragment
 import com.example.imedical.core.platform.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
@@ -50,9 +52,7 @@ class HomeActivity : BaseActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_cart ->
-                    this.supportFragmentManager?.beginTransaction()
-                        ?.replace(R.id.homeFragment, CartFragment())
-                        ?.commitNow()
+                startActivity(Intent(this, CartActivity::class.java))
         }
         return true
     }

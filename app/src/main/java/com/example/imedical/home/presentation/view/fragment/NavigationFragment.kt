@@ -69,14 +69,16 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         val token = userPreferences.getAccessToken()
         if(token != null && token.isNotEmpty())
             viewModel.getUser("Bearer $token").observe(this, Observer { dataWrapper ->
-                if(dataWrapper!!.status) {
+                if(dataWrapper!= null && dataWrapper.status) {
                     navTitle.text = dataWrapper.data?.name
                     this.userModel = dataWrapper.data
+                    showLogout()
                 } else {
                     userPreferences.clearUser()
                     userModel = null
                     setTitleAction()
                     navTitle.text = getString(R.string.nav_header_title)
+                    hideLogout()
                 }
             })
     }
@@ -121,7 +123,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_logout -> {
-
+                userPreferences.clearUser()
+                val intent = activity?.intent
+                activity?.finish()
+                startActivity(intent)
             }
         }
         val drawerLayout: DrawerLayout = activity!!.findViewById(R.id.drawerLayout)
@@ -129,5 +134,11 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         return true
     }
 
+    private fun hideLogout(){
+        navView.menu.findItem(R.id.nav_logout).isVisible = false
+    }
 
+    private fun showLogout(){
+        navView.menu.findItem(R.id.nav_logout).isVisible = true
+    }
 }
