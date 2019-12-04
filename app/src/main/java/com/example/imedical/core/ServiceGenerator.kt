@@ -32,7 +32,7 @@ class ServiceGenerator {
 
         if (BuildConfig.DEBUG) {
             val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
+            logging.level = HttpLoggingInterceptor.Level.HEADERS
 
             httpClient.addInterceptor(logging)
         }

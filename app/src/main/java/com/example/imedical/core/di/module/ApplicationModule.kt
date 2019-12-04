@@ -6,6 +6,9 @@ import android.content.SharedPreferences
 import com.example.imedical.AndroidApplication
 import com.example.imedical.BuildConfig
 import com.example.imedical.core.UserPreferences
+import com.example.imedical.login.data.repository.LoginRepository
+import com.example.imedical.login.domain.repository.ILoginRepository
+import com.example.imedical.core.UserPreferences
 import com.example.imedical.core.db.ImedicalDatabase
 import dagger.Module
 import dagger.Provides

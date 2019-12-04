@@ -7,13 +7,13 @@ import com.example.imedical.forgetpassword.forget.data.entity.ForgetPasswordResp
 
 object DataMapper {
     fun mapForgetPasswordResponse(apiResponse: ApiResponse<ForgetPasswordResponse>) : DataWrapper<String> {
-        if(apiResponse.status && apiResponse.data != null)
+        if(apiResponse.status != null && apiResponse.status && apiResponse.data != null)
             return DataWrapper(
                 apiResponse.status,
                 apiResponse.data.message,
                 apiResponse.error
             )
 
-        return DataWrapper(apiResponse.status, null, apiResponse.error)
+        return DataWrapper(apiResponse.status?:false, null, apiResponse.error)
     }
 }

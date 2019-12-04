@@ -11,10 +11,12 @@ import com.example.imedical.R
 import com.example.imedical.compare.presentation.viewmodel.CompareListViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.home.presentation.view.adapter.IProductCallback
 import com.example.imedical.home.presentation.view.adapter.ProductsAdapter
 import com.example.imedical.home.presentation.viewmodel.BestSellersViewModel
+import com.example.imedical.home.presentation.viewmodel.ProductViewModel
 import kotlinx.android.synthetic.main.best_sellers_fragment.*
 import javax.inject.Inject
 
@@ -25,6 +27,10 @@ class BestSellersFragment : BaseFragment() {
 
     private lateinit var adapter: ProductsAdapter
 
+    @Inject
+    lateinit var productViewModelFactory: ViewModelFactory<ProductViewModel>
+    private val productViewModel by lazy { ViewModelProviders.of(this, productViewModelFactory).get(
+        ProductViewModel::class.java) }
     lateinit var compareViewModel: CompareListViewModel
 
     @Inject
@@ -59,7 +65,7 @@ class BestSellersFragment : BaseFragment() {
         bestSellersRecyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        adapter = ProductsAdapter(ArrayList(), ProductCallback(), activity!!)
+        adapter = ProductsAdapter(ArrayList(), productCallback, activity!!)
         bestSellersRecyclerView.adapter = adapter
 
     }
@@ -74,16 +80,43 @@ class BestSellersFragment : BaseFragment() {
             viewModel.updateBestSellers()
 
         } else viewModel.updateBestSellers()
+
+        if(!this.viewModel.getWishLiveData().hasObservers())
+            this.viewModel.getWishLiveData().observe(this, Observer {
+                    dataWrapper ->
+                if(dataWrapper != null && dataWrapper.status && dataWrapper.data != null) {
+                    this.adapter.products[dataWrapper.data].inWishList =
+                        !this.adapter.products[dataWrapper.data].inWishList
+                    this.adapter.notifyItemChanged(dataWrapper.data)
+                } else showMessage(dataWrapper?.error)
+            })
+        productViewModel.getAddToCartLiveData().observe(this, Observer {
+            hideProgress()
+            if(it != null ){
+                if(!it.status)
+                    showMessage(it.error)
+                else {
+                    if(activity is HomeActivity)
+                        (activity as HomeActivity).updateCartLabel()
+                    showMessage("Item added to cart")
+                }
+            }
+        })
     }
 
-    class ProductCallback : IProductCallback {
-        override fun onWishClick(id: Int) {
+    private val productCallback = object : IProductCallback{
+        override fun onWishClick(id: Int, index: Int) {
+            if(!this@BestSellersFragment.adapter.products[index].inWishList)
+                this@BestSellersFragment.viewModel.addWish(id, index)
+            else this@BestSellersFragment.viewModel.removeWish(id, index)
         }
 
         override fun onCompareClick(productModel: ProductModel) {
         }
 
         override fun addToCart(id: Int) {
+            showProgress()
+            productViewModel.addToCart(id, 1)
         }
 
         override fun onProductClick(productModel: ProductModel) {

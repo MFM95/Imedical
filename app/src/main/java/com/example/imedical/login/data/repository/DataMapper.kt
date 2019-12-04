@@ -11,7 +11,7 @@ object DataMapper {
     private const val INVALID_CREDENTIALS = "invalid_credentials"
 
     fun mapLoginData(apiResponse: ApiResponse<TokenWrapper>) : DataWrapper<String> {
-        if(apiResponse.status && apiResponse.data != null)
+        if(apiResponse.status != null && apiResponse.status && apiResponse.data != null)
             return DataWrapper(
                 apiResponse.status,
                 apiResponse.data.token,
@@ -22,7 +22,7 @@ object DataMapper {
         when(apiResponse.error){
             INVALID_CREDENTIALS -> error = "Invalid credentials."
         }
-        return DataWrapper(apiResponse.status, null, error)
+        return DataWrapper(apiResponse.status?:false, null, error)
     }
 
 }

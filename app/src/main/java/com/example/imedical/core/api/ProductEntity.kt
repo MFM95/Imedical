@@ -1,5 +1,6 @@
-package com.example.imedical.home.data.entity
+package com.example.imedical.core.api
 
+import com.example.imedical.home.data.entity.BrandEntity
 import com.google.gson.annotations.SerializedName
 
 /**

@@ -2,7 +2,9 @@ package com.example.imedical.home.presentation.view.adapter
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import android.graphics.PorterDuff
 import android.support.constraint.ConstraintLayout
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +14,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.imedical.R
-import com.example.imedical.home.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import com.squareup.picasso.Picasso
 
 /**
@@ -81,9 +83,19 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
                 .load(productModel.imageUrl)
                 .into(productImage)
 
-            wishButton.setOnClickListener{ onWishClick.value = productModel.id }
-            compareButton.setOnClickListener{ onCompareClick.value = productModel }
-            addCartButton.setOnClickListener{ onAddToCartClick.value = productModel.id }
+            if(productModel.inWishList) {
+                wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_full))
+                wishButton.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent))
+            }
+            else {
+                wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_border_sm))
+                wishButton.setColorFilter(ContextCompat.getColor(context, R.color.colorBlack))
+
+            }
+
+            wishButton.setOnClickListener{ productCallback.onWishClick(productModel.id, index) }
+            compareButton.setOnClickListener{ productCallback.onCompareClick(productModel.id) }
+            addCartButton.setOnClickListener{ productCallback.addToCart(productModel.id) }
 
         }
     }

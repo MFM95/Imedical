@@ -16,6 +16,7 @@ import com.example.imedical.verification.presentation.viewmodel.VerificationView
 import kotlinx.android.synthetic.main.activity_verify_password.*
 import javax.inject.Inject
 
+
 class VerifyPasswordActivity : BaseActivity() {
 
     private lateinit var verificationViewModel: VerificationViewModel

@@ -24,6 +24,13 @@ abstract class BaseFragment : Fragment(){
         Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
     }
 
+    protected fun showProgress(){
+        (activity as BaseActivity).showProgress()
+    }
+
+    protected fun hideProgress(){
+        (activity as BaseActivity).hideProgress()
+    }
     protected fun showConnectionError(){
         Snackbar.make(view!!, R.string.check_connection, Snackbar.LENGTH_LONG)
     }

@@ -2,6 +2,7 @@ package com.example.imedical.login.data.api
 
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.api.ErrorResponse
+import com.example.imedical.home.data.api.ResponseError
 import com.example.imedical.login.data.entity.Credentials
 import com.example.imedical.login.data.entity.TokenWrapper
 import okhttp3.ResponseBody
@@ -25,11 +26,7 @@ class ApiCalls @Inject constructor(private val retrofit: Retrofit){
                 return response.body()!!
 
             //convert error body if not successful
-            val errorConverter: Converter<ResponseBody, ErrorResponse> =
-                retrofit.responseBodyConverter(ErrorResponse::class.java, arrayOf())
-            val errorBody = errorConverter.convert(response.errorBody()!!)
-
-            return ApiResponse(false, null, errorBody!!.error.joinToString(". \n"))
+            return ResponseError.handle(response, retrofit)
 
         } catch (ex: Exception){
             return ApiResponse(false, null, "Check internet connection!")
