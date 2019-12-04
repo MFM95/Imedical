@@ -50,7 +50,7 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
     fun decreaseCartSize(){
         var size = sharedPreferences.getInt(CART_SIZE, 0)
         if(size > 0)
-            size++
+            size--
         sharedPreferences.edit().putInt(CART_SIZE, size).apply()
     }
 

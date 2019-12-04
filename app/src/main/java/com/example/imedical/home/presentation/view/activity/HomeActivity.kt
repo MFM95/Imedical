@@ -25,8 +25,7 @@ import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
-    private var cartMenuItem: MenuItem? = null
-
+    private var cartActionView: View? = null
     @Inject
     lateinit var cartViewModelFactory: ViewModelFactory<CartViewModel>
     private val cartViewModel by lazy {
@@ -59,9 +58,10 @@ class HomeActivity : BaseActivity() {
                 if (it.status) {
                     if (it.data != null)
                         userPreferences.updateCartSize(it.data.cartItems.size)
-                } else showMessage(it.error)
+                }
             }
         })
+
     }
 
     override fun onResume() {
@@ -81,22 +81,20 @@ class HomeActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home, menu)
-        cartMenuItem = menu.findItem(R.id.action_cart)
+        cartActionView = menu.findItem(R.id.action_cart).actionView
+        cartActionView?.setOnClickListener { openCart() }
         updateCartLabel()
-        return true
+        return super.onCreateOptionsMenu(menu)
     }
 
     fun updateCartLabel() {
-        if (cartMenuItem == null)
+        if (cartActionView == null)
             return
         val size = userPreferences.getCartSize()
         if (size > 0) {
-            cartMenuItem?.actionView?.findViewById<TextView>(R.id.cartSizeTextView)?.text =
-                size.toString()
-            cartMenuItem?.actionView?.findViewById<TextView>(R.id.cartSizeTextView)?.visibility =
-                View.VISIBLE
-        } else cartMenuItem?.actionView?.findViewById<TextView>(R.id.cartSizeTextView)?.visibility =
-            View.INVISIBLE
+            cartActionView?.findViewById<TextView>(R.id.cartSizeTextView)?.text = size.toString()
+            cartActionView?.findViewById<TextView>(R.id.cartSizeTextView)?.visibility = View.VISIBLE
+        } else cartActionView?.findViewById<TextView>(R.id.cartSizeTextView)?.visibility = View.INVISIBLE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -105,11 +103,15 @@ class HomeActivity : BaseActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_cart -> {
-                if (userPreferences.isUserLogged())
-                    startActivity(Intent(this, CartActivity::class.java))
-                else showMessage("Login to be able to use this feature")
+                openCart()
             }
         }
         return true
+    }
+
+    private fun openCart(){
+        if (userPreferences.isUserLogged())
+            startActivity(Intent(this, CartActivity::class.java))
+        else showMessage("Login to be able to use this feature")
     }
 }
