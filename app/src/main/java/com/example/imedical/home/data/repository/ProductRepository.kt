@@ -13,15 +13,15 @@ import javax.inject.Inject
 class ProductRepository @Inject constructor(private val apiCalls: ApiCalls) : IProductRepository{
 
     override suspend fun getOffers(): DataWrapper<ArrayList<ProductModel>> {
-        return DataMapper.mapDeals(apiCalls.getOffers().body())
+        return DataMapper.mapDeals(apiCalls.getOffers())
     }
 
     override suspend fun getBestSellers(): DataWrapper<ArrayList<ProductModel>> {
-        return DataMapper.mapBestSellers(apiCalls.getBestSellers().body())
+        return DataMapper.mapBestSellers(apiCalls.getBestSellers())
     }
 
     override suspend fun getAuthUser(token: String): DataWrapper<UserModel> {
-        return DataMapper.mapUser(apiCalls.getAuthUser().body())
+        return DataMapper.mapUser(apiCalls.getAuthUser())
     }
 
     override suspend fun addToCart(productId: Int, quantity: Int): DataWrapper<Unit> {

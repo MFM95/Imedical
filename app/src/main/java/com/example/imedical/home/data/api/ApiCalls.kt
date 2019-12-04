@@ -4,8 +4,10 @@ import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.api.EmptyResponse
 import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.core.api.ProductEntity
+import com.example.imedical.home.data.entity.UserWrapperEntity
 import retrofit2.Response
 import retrofit2.Retrofit
+import java.lang.Exception
 import java.net.UnknownHostException
 import javax.inject.Inject
 
@@ -15,15 +17,35 @@ import javax.inject.Inject
 class ApiCalls @Inject constructor(private val retrofit: Retrofit) {
     private val homeApi = retrofit.create(HomeApi::class.java)
 
-    suspend fun getOffers(): Response<ApiResponse<DealsEntity>> {
-        return homeApi.getOffers()
+    suspend fun getOffers(): ApiResponse<DealsEntity> {
+        return try {
+            homeApi.getOffers().body()!!
+        } catch (ex: UnknownHostException){
+            ApiResponse(false, null, "Check Internet Connection")
+        } catch (ex: Exception){
+            ApiResponse(false, null, "Server Error")
+        }
     }
 
-    suspend fun getBestSellers(): Response<ApiResponse<List<List<ProductEntity>>>> {
-        return homeApi.getBestSellers()
+    suspend fun getBestSellers(): ApiResponse<List<List<ProductEntity>>> {
+        return try {
+            homeApi.getBestSellers().body()!!
+        } catch (ex: UnknownHostException){
+            ApiResponse(false, null, "Check Internet Connection")
+        } catch (ex: Exception){
+            ApiResponse(false, null, "Server Error")
+        }
     }
 
-    suspend fun getAuthUser() = homeApi.getAuthUser()
+    suspend fun getAuthUser(): ApiResponse<UserWrapperEntity> {
+        return try {
+            homeApi.getAuthUser().body()!!
+        } catch (ex: UnknownHostException) {
+            ApiResponse(false, null, "Check Internet Connection")
+        } catch (ex: Exception) {
+            ApiResponse(false, null, "Server Error")
+        }
+    }
 
     suspend fun addToCart(productId: Int, quantity: Int): ApiResponse<Unit>? {
         var data: ApiResponse<Unit>? = null
@@ -39,6 +61,12 @@ class ApiCalls @Inject constructor(private val retrofit: Retrofit) {
         return data
     }
     suspend fun storeWish(id: Int): ApiResponse<EmptyResponse>?{
-        return  homeApi.storeWish(id).body()
+        return try {
+            homeApi.storeWish(id).body()!!
+        } catch (ex: UnknownHostException) {
+            ApiResponse(false, null, "Check Internet Connection")
+        } catch (ex: Exception) {
+            ApiResponse(false, null, "Server Error")
+        }
     }
 }

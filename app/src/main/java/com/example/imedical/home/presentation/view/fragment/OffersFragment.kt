@@ -71,9 +71,11 @@ class OffersFragment : BaseFragment() {
     private fun subscribeViewModel(){
         if(!viewModel.getOffers().hasObservers()){
             viewModel.getOffers().observe(this, Observer { models ->
-                adapter.products.addAll(models!!)
-                offersProgressBar.visibility = View.GONE
-                adapter.notifyDataSetChanged()
+                if(models?.status == true) {
+                    adapter.products.addAll(models.data!!)
+                    offersProgressBar.visibility = View.GONE
+                    adapter.notifyDataSetChanged()
+                } else showMessage(models?.error)
             })
             viewModel.updateOffers()
 

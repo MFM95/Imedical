@@ -15,10 +15,10 @@ class OffersViewModel @Inject constructor
      private val storeWishUseCase: StoreWishUseCase,
      private val removeWishUseCase: RemoveWishUseCase) : ViewModel() {
 
-    private val offersLiveData: MutableLiveData<ArrayList<ProductModel>> = MutableLiveData()
+    private val offersLiveData: MutableLiveData<DataWrapper<ArrayList<ProductModel>>> = MutableLiveData()
     private val wishLiveData: MutableLiveData<DataWrapper<Int>> = MutableLiveData()
 
-    fun getOffers() : LiveData<ArrayList<ProductModel>>{
+    fun getOffers() : LiveData<DataWrapper<ArrayList<ProductModel>>>{
         return offersLiveData
     }
 
@@ -42,6 +42,6 @@ class OffersViewModel @Inject constructor
     }
 
     private fun onResult(dataWrapper: DataWrapper<ArrayList<ProductModel>>){
-        offersLiveData.value = dataWrapper.data
+        offersLiveData.value = dataWrapper
     }
 }
