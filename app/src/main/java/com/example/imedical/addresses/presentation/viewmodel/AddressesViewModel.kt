@@ -39,7 +39,7 @@ class AddressesViewModel @Inject constructor(private val getAddressesUseCase: Ge
     }
 
     fun createAddress(alias: String?, address1: String, address2: String,
-                      countryId: String, provinceId: String, phone: String) {
+                      countryId: Int, provinceId: Int, phone: String) {
         createAddressUseCase.execute(CreateAddressUseCase.CreateAddressParams(
             alias, address1, address2, countryId, provinceId, phone)
             , onResult = this::onCreateAddressResult)
@@ -54,7 +54,7 @@ class AddressesViewModel @Inject constructor(private val getAddressesUseCase: Ge
         return countryProvincesLiveData
     }
 
-    fun getCountryProvinces(countryId: String) {
+    fun getCountryProvinces(countryId: Int) {
         getCountryProvincesUseCase.execute(countryId,
             onResult = this::onGetCountryProvincesResult)
     }
@@ -67,8 +67,8 @@ class AddressesViewModel @Inject constructor(private val getAddressesUseCase: Ge
         return updateAddressLiveData
     }
 
-    fun updateAddress(id: String, alias: String?, address1: String, address2: String,
-                      countryId: String, provinceId: String, phone: String) {
+    fun updateAddress(id: Int, alias: String?, address1: String?, address2: String?,
+                      countryId: Int?, provinceId: Int?, phone: String?) {
         updateAddressUseCase.execute(UpdateAddressUseCase.UpdateAddressParams(
             id, alias, address1, address2, countryId, provinceId, phone)
             , onResult = this::onUpdateAddressResult)
@@ -82,7 +82,7 @@ class AddressesViewModel @Inject constructor(private val getAddressesUseCase: Ge
         return deleteAddressLiveData
     }
 
-    fun deleteAddress(id: String) {
+    fun deleteAddress(id: Int) {
         deleteAddressUseCase.execute(
             DeleteAddressUseCase.DeleteAddressParams(id)
             , onResult = this::onDeleteAddressResult)

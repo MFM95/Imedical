@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".addresses.presentation.view.fragment.AddressesFragment">
+        android:id="@+id/scrollAddresses">
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvAddresses"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_20"
+            tools:context=".addresses.presentation.view.fragment.AddressesFragment">
 
-</FrameLayout>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvAddresses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <TextView
+                android:id="@+id/tvAddAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:letterSpacing="0.02"
+                android:lineSpacingExtra="46sp"
+                android:text="+ add new Address"
+                android:textColor="#6799cf"
+                android:textSize="14sp" />
+
+
+        <LinearLayout
+                android:id="@+id/lyAddAddressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_20"
+                android:orientation="vertical"
+                android:visibility="gone"
+
+                >
+
+            <Spinner
+                    android:id="@+id/spinnerAddressCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:background="@drawable/bg_spinner_rounded"
+                    android:paddingStart="@dimen/dimen_20"
+                    android:paddingEnd="@dimen/dimen_20"
+                    />
+
+            <EditText
+                    android:id="@+id/edtAddressStreet"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:background="@drawable/bg_edit_text_rounded"
+                    android:hint="Address"
+                    android:paddingStart="@dimen/dimen_20"
+                    android:paddingEnd="@dimen/dimen_20"
+                    android:textColorHint="@color/faded_blue"
+                    tools:ignore="RtlCompat"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:textColor="@color/faded_blue"/>
+
+            <EditText
+                    android:id="@+id/edtAddressPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:background="@drawable/bg_edit_text_rounded"
+                    android:hint="Phone"
+                    android:paddingStart="@dimen/dimen_20"
+                    android:paddingEnd="@dimen/dimen_20"
+                    android:textColorHint="@color/faded_blue"
+                    tools:ignore="RtlCompat"
+                    android:maxLines="1"
+                    android:textColor="@color/faded_blue"
+                    android:textSize="14sp"/>
+
+            <Button
+                    android:id="@+id/btnAddressAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:background="@drawable/bg_button_rounded"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="41sp"
+                    android:text="Add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+
+                    />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

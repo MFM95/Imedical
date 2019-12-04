@@ -7,16 +7,16 @@ import com.example.imedical.core.model.DataWrapper
 interface IAddressesRepository {
     suspend fun getAddresses(): DataWrapper<List<AddressModel>>
     suspend fun createAddress(alias: String?, address1: String?, address2: String?,
-                              countryId: String?, provinceId: String?, phone: String?)
+                              countryId: Int?, provinceId: Int?, phone: String?)
             : DataWrapper<AddressModel>
-    suspend fun getCountryProvinces(countryId: String?): DataWrapper<CountryProvincesModel>
+    suspend fun getCountryProvinces(countryId: Int?): DataWrapper<CountryProvincesModel>
 
     suspend fun updateAddress(
-        id: String, alias: String?, address1: String?, address2: String?,
-                 countryId: String?, provinceId: String?, phone: String?)
+        id: Int, alias: String?, address1: String?, address2: String?,
+                 countryId: Int?, provinceId: Int?, phone: String?)
             : DataWrapper<String>
 
-    suspend fun deleteAddress(id: String)
+    suspend fun deleteAddress(id: Int)
             : DataWrapper<String>
 
 }

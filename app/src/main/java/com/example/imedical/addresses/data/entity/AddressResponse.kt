@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class AddressResponse (
 
     @SerializedName("id")
-    val id: String?,
+    val id: Int?,
     @SerializedName("alias")
     val alias: String?,
 

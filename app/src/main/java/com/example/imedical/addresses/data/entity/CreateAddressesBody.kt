@@ -10,9 +10,9 @@ data class CreateAddressBody (
     @SerializedName("address_2")
     val address_2: String? = "",
     @SerializedName("country_id")
-    val country_id: String? = "",
+    val country_id: Int? = 1,
     @SerializedName("province_id")
-    val province_id: String? = "",
+    val province_id: Int? = 1,
     @SerializedName("phone")
     val phone: String? = ""
 )

@@ -56,7 +56,7 @@ class APICalls @Inject constructor(private val retrofit: Retrofit) {
 
     }
 
-    suspend fun getCountryProvinces(countryId: String?): ApiResponse<CountryProvincesResponse> {
+    suspend fun getCountryProvinces(countryId: Int?): ApiResponse<CountryProvincesResponse> {
         try {
             val response = api.getCountryProvinces(countryId)
 
@@ -78,7 +78,7 @@ class APICalls @Inject constructor(private val retrofit: Retrofit) {
 
     }
 
-    suspend fun updateAddress(id: String, createAddressBody: CreateAddressBody): ApiResponse<UpdateAddressResponse> {
+    suspend fun updateAddress(id: Int, createAddressBody: CreateAddressBody): ApiResponse<UpdateAddressResponse> {
         try {
             val response = api.updateAddress(id, createAddressBody)
 
@@ -100,7 +100,7 @@ class APICalls @Inject constructor(private val retrofit: Retrofit) {
 
     }
 
-    suspend fun deleteAddress(id: String): ApiResponse<DeleteAddressResponse> {
+    suspend fun deleteAddress(id: Int): ApiResponse<DeleteAddressResponse> {
         try {
             val response = api.deleteAddress(id)
 

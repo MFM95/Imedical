@@ -12,7 +12,7 @@ import javax.inject.Inject
 class AddressesRepositoryImpl @Inject constructor(private val apiCalls: APICalls)
     : IAddressesRepository {
 
-    override suspend fun getCountryProvinces(countryId: String?): DataWrapper<CountryProvincesModel> {
+    override suspend fun getCountryProvinces(countryId: Int?): DataWrapper<CountryProvincesModel> {
        return DataMapper.mapCountryProvincesResponse(
            apiCalls.getCountryProvinces(countryId))
     }
@@ -21,8 +21,8 @@ class AddressesRepositoryImpl @Inject constructor(private val apiCalls: APICalls
         alias: String?,
         address1: String?,
         address2: String?,
-        countryId: String?,
-        provinceId: String?,
+        countryId: Int?,
+        provinceId: Int?,
         phone: String?
     ): DataWrapper<AddressModel> {
         return DataMapper.mapAddressResponse(
@@ -37,12 +37,12 @@ class AddressesRepositoryImpl @Inject constructor(private val apiCalls: APICalls
     }
 
     override suspend fun updateAddress(
-        id: String,
+        id: Int,
         alias: String?,
         address1: String?,
         address2: String?,
-        countryId: String?,
-        provinceId: String?,
+        countryId: Int?,
+        provinceId: Int?,
         phone: String?
     ): DataWrapper<String> {
         return DataMapper.mapUpdateAddressResponse(
@@ -52,7 +52,7 @@ class AddressesRepositoryImpl @Inject constructor(private val apiCalls: APICalls
             ))
     }
 
-    override suspend fun deleteAddress(id: String): DataWrapper<String> {
+    override suspend fun deleteAddress(id: Int): DataWrapper<String> {
         return DataMapper.mapDeleteAddressResponse(apiCalls.deleteAddress(id))
 
     }

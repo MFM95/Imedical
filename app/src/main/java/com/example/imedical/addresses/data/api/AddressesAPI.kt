@@ -15,17 +15,17 @@ interface AddressesAPI {
             : Response<ApiResponse<CreateAddressResponse>>
 
 
-    @GET("countries-with-provinces/{id}")
-    suspend fun getCountryProvinces(@Path("id") id: String?)
+    @GET("addresses/countries-with-provinces/{id}")
+    suspend fun getCountryProvinces(@Path("id") id: Int?)
             : Response<ApiResponse<CountryProvincesResponse>>
 
 
     @POST("addresses/delete/{id}")
-    suspend fun deleteAddress(@Path("id") id: String)
+    suspend fun deleteAddress(@Path("id") id: Int)
             : Response<ApiResponse<DeleteAddressResponse>>
 
     @POST("addresses/update/{id}")
-    suspend fun updateAddress(@Path("id") id: String?,
+    suspend fun updateAddress(@Path("id") id: Int?,
                               @Body createAddressBody: CreateAddressBody)
             : Response<ApiResponse<UpdateAddressResponse>>
 

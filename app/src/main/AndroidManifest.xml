@@ -15,9 +15,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".addresses.presentation.view.activity.ProfileActivity"></activity>
+        <activity android:name=".addresses.presentation.view.activity.ProfileActivity"
+                android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity android:name=".categories.presentation.view.activity.CategoriesActivity" />
-        <activity android:name=".addresses.presentation.view.activity.AddressesActivity" />
         <activity
                 android:name=".home.presentation.view.activity.HomeActivity"
                 android:label="@string/title_activity_home"

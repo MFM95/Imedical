@@ -7,98 +7,189 @@
         tools:ignore="RtlCompat"
         android:layout_marginTop="@dimen/dimen_20">
 
-    <LinearLayout
-            android:id="@+id/lyAddressCity"
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/lyAddressLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="@dimen/dimen_25"
-            >
+            app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+                android:id="@+id/lyAddressCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_25"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/tvAddressCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_6"
+                    android:layout_marginLeft="@dimen/dimen_6"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="39sp"
+                    android:text="Asyut"
+                    android:textColor="#707070"
+                    android:textSize="17sp" />
+
+        </LinearLayout>
 
         <ImageView
+                android:id="@+id/viewAddressLine"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lyAddressCity"
+
+                />
 
         <TextView
-                android:id="@+id/tvAddressCity"
+                android:id="@+id/tvAddressStreet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_6"
                 android:layout_marginLeft="@dimen/dimen_6"
-                android:letterSpacing="0.02"
-                android:lineSpacingExtra="39sp"
-                android:text="Asyut"
-                android:textColor="#707070"
-                android:textSize="17sp" />
+                android:layout_marginTop="@dimen/dimen_6"
+                android:ellipsize="end"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="43sp"
+                android:text="Gmal Abd El naser El-Zahraa s.t"
+                android:textColor="@color/warm_grey"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/viewAddressLine"
+                app:layout_constraintTop_toBottomOf="@id/lyAddressCity" />
 
-    </LinearLayout>
+        <TextView
+                android:id="@+id/tvAddressPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_6"
+                android:layout_marginLeft="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="66sp"
+                android:text="01024578417"
+                android:textColor="@color/warm_grey"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/viewAddressLine"
+                app:layout_constraintTop_toBottomOf="@id/tvAddressStreet" />
 
-    <ImageView
-            android:id="@+id/viewAddressLine"
-            android:layout_width="wrap_content"
+
+        <ImageView
+                android:id="@+id/btnAddressEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_30"
+                android:src="@drawable/ic_edit_address"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnAddressDelete"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+
+        <ImageView
+                android:id="@+id/btnAddressDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_30"
+                android:src="@drawable/ic_edit_address"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+        <View
+                android:id="@+id/viewAddressItemDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_marginEnd="@dimen/dimen_25"
+                android:background="@color/warm_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddressPhone" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/lyEditAddressLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lyAddressCity"
-            android:layout_marginStart="@dimen/dimen_25"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/dimen_10"
+            android:visibility="gone"
+            >
 
-            />
-
-    <TextView
-            android:id="@+id/tvAddressStreet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_6"
-            android:layout_marginLeft="@dimen/dimen_6"
-            android:layout_marginTop="@dimen/dimen_6"
-            android:letterSpacing="0.03"
-            android:lineSpacingExtra="43sp"
-            android:text="Gmal Abd El naser El-Zahraa s.t"
-            android:textColor="@color/warm_grey"
-            android:ellipsize="end"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@id/viewAddressLine"
-            app:layout_constraintTop_toBottomOf="@id/lyAddressCity" />
-    <TextView
-            android:id="@+id/tvAddressPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_6"
-            android:layout_marginLeft="@dimen/dimen_6"
-            android:layout_marginTop="@dimen/dimen_6"
-            android:letterSpacing="0.03"
-            android:lineSpacingExtra="66sp"
-            android:text="01024578417"
-            android:textColor="@color/warm_grey"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@id/viewAddressLine"
-            app:layout_constraintTop_toBottomOf="@id/tvAddressStreet" />
-
-
-    <ImageView
-            android:id="@+id/btnAddressEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_30"
-            android:src="@drawable/ic_edit_address"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/btnEditAddressSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlCompat" />
-
-    <View
-        android:id="@+id/viewAddressItemDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-        android:background="@color/warm_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddressPhone"
-        android:layout_marginTop="@dimen/dimen_20"
-        android:layout_marginEnd="@dimen/dimen_25"
-            android:layout_marginStart="@dimen/dimen_20"
+                android:src="@drawable/ic_edit_submit"
             />
+
+        <Spinner
+            android:id="@+id/spinnerEditAddressCity"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+            app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEditAddressSubmit"
+               android:layout_marginTop="@dimen/dimen_20"
+                android:background="@drawable/bg_spinner_rounded"
+                android:paddingStart="@dimen/dimen_20"
+                android:paddingEnd="@dimen/dimen_20"
+                />
+
+        <EditText
+                android:id="@+id/edtEditAddressStreet"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerEditAddressCity"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:background="@drawable/bg_edit_text_rounded"
+                android:hint="Address"
+                android:paddingStart="@dimen/dimen_20"
+                android:paddingEnd="@dimen/dimen_20"
+                android:maxLines="1"
+                android:textColorHint="@color/faded_blue"
+                tools:ignore="RtlCompat"
+                android:textSize="14sp"
+                android:textColor="@color/faded_blue"/>
+
+        <EditText
+                android:id="@+id/edtEditAddressPhone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtEditAddressStreet"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:background="@drawable/bg_edit_text_rounded"
+                android:hint="Phone"
+                android:paddingStart="@dimen/dimen_20"
+                android:paddingEnd="@dimen/dimen_20"
+                android:maxLines="1"
+                android:textColorHint="@color/faded_blue"
+                tools:ignore="RtlCompat"
+                android:textSize="14sp"
+                android:textColor="@color/faded_blue"/>
+
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

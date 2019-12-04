@@ -7,8 +7,8 @@ import com.example.imedical.core.usecase.BaseUseCase
 import javax.inject.Inject
 
 class GetCountryProvincesUseCase @Inject constructor(private val repository: IAddressesRepository)
-    : BaseUseCase<DataWrapper<CountryProvincesModel>, String>() {
-    override suspend fun run(params: String): DataWrapper<CountryProvincesModel> {
+    : BaseUseCase<DataWrapper<CountryProvincesModel>, Int>() {
+    override suspend fun run(params: Int): DataWrapper<CountryProvincesModel> {
         return repository.getCountryProvinces(params)
     }
 }

@@ -1,9 +1,7 @@
 package com.example.imedical.core.di.component
 
 import com.example.imedical.AndroidApplication
-import com.example.imedical.addresses.presentation.view.fragment.AddAddressFragment
 import com.example.imedical.addresses.presentation.view.fragment.AddressesFragment
-import com.example.imedical.addresses.presentation.view.fragment.EditAddressFragment
 import com.example.imedical.categories.presentation.view.activity.CategoriesActivity
 import com.example.imedical.compare.presentation.view.fragment.CompareListFragment
 import com.example.imedical.core.di.module.*
@@ -45,8 +43,6 @@ import javax.inject.Singleton
     fun inject(resetPasswordActivity: ResetPasswordActivity)
     fun inject(offersFragment: OffersFragment)
     fun inject(compareListFragment: CompareListFragment)
-    fun inject(addAddressFragment: AddAddressFragment)
     fun inject(addressesFragment: AddressesFragment)
-    fun inject(updateAddAddressFragment: EditAddressFragment)
     fun inject(categoriesActivity: CategoriesActivity)
 }

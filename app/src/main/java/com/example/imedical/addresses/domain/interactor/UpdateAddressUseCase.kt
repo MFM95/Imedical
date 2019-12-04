@@ -16,12 +16,12 @@ class UpdateAddressUseCase @Inject constructor(
     }
 
     data class UpdateAddressParams(
-        val id: String = "",
+        val id: Int = 0,
         val alias: String? = "",
         val address_1: String? = "",
         val address_2: String? = "",
-        val country_id: String? = "",
-        val province_id: String? = "",
+        val country_id: Int? = 1,
+        val province_id: Int? = 1,
         val phone: String? = ""
     )
 }

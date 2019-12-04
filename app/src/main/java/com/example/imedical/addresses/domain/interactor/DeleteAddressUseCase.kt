@@ -15,6 +15,6 @@ class DeleteAddressUseCase @Inject constructor(
     }
 
     data class DeleteAddressParams(
-        val id: String = ""
+        val id: Int = 0
     )
 }

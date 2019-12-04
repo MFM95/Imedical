@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 data class AddressModel (
-    val id: String? = "",
+    val id: Int? = 0,
     val alias: String?,
     val address_1: String?,
     val address_2: String?,

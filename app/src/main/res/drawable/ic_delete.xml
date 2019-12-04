@@ -1,8 +1,6 @@
-<vector android:height="50dp" android:viewportHeight="512"
-    android:viewportWidth="512" android:width="50dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#FF000000" android:pathData="M353.574,176.526l-40.078,-1.47l-8.689,237.284l40.078,1.464z"/>
-    <path android:fillColor="#FF000000" android:pathData="M235.948,175.791h40.104v237.285h-40.104z"/>
-    <path android:fillColor="#FF000000" android:pathData="M207.186,412.334l-8.689,-237.285l-40.078,1.471l8.69,237.284z"/>
-    <path android:fillColor="#FF000000" android:pathData="M17.379,76.867v40.104h41.789L92.32,493.706C93.229,504.059 101.899,512 112.292,512h286.74c10.394,0 19.07,-7.947 19.972,-18.301l33.153,-376.728h42.464V76.867H17.379zM380.665,471.896H130.654L99.426,116.971h312.474L380.665,471.896z"/>
-    <path android:fillColor="#FF000000" android:pathData="M321.504,0H190.496c-18.428,0 -33.42,14.992 -33.42,33.42v63.499h40.104V40.104h117.64v56.815h40.104V33.42C354.924,14.992 339.932,0 321.504,0z"/>
+<vector android:height="80dp" android:viewportHeight="407"
+    android:viewportWidth="407" android:width="80dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#FF000000" android:pathData="m137.199,37c0,-12.133 9.469,-21 21.602,-21h88.801c12.129,0 21.598,8.867 21.598,21v23h16v-23c0,-20.953 -16.645,-37 -37.598,-37h-88.801c-20.953,0 -37.602,16.047 -37.602,37v23h16zM137.199,37"/>
+    <path android:fillColor="#FF000000" android:pathData="m108.602,407h189.199c18.242,0 32.398,-16.047 32.398,-36v-247h-254v247c0,19.953 14.156,36 32.402,36zM254.199,162.199c0,-4.418 3.582,-8 8,-8s8,3.582 8,8v189c0,4.418 -3.582,8 -8,8s-8,-3.582 -8,-8zM195.199,162.199c0,-4.418 3.582,-8 8,-8s8,3.582 8,8v189c0,4.418 -3.582,8 -8,8s-8,-3.582 -8,-8zM136.199,162.199c0,-4.418 3.582,-8 8,-8s8,3.582 8,8v189c0,4.418 -3.582,8 -8,8s-8,-3.582 -8,-8zM136.199,162.199"/>
+    <path android:fillColor="#FF000000" android:pathData="m68,108h270.398c11.047,0 20,-8.953 20,-20s-8.953,-20 -20,-20h-270.398c-11.047,0 -20,8.953 -20,20s8.953,20 20,20zM68,108"/>
 </vector>

@@ -12,4 +12,8 @@
     <color name="colorError">#ff0000</color>
     <color name="linkColor">#0000EE</color>
     <color name="warm_grey">#9f9f9f</color>
+    <color name="cool_blue">#4c7eb4</color>
+    <color name="faded_blue">#6799cf</color>
+    <color name="faded_blue_1">#1c6799cf</color>
+
 </resources>
