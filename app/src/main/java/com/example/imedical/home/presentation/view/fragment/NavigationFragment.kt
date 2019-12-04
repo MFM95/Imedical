@@ -62,9 +62,6 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
-        //subscribeViewModel()
-
         subscribeViewModel()
     }
 
@@ -84,6 +81,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 if(dataWrapper!= null && dataWrapper.status) {
                     navTitle.text = dataWrapper.data?.name
                     this.userModel = dataWrapper.data
+                    userPreferences.saveUserObject(this.userModel)
                     showLogout()
                 } else {
                     userPreferences.clearUser()
@@ -101,9 +99,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         navTitle.setOnClickListener {
             if (userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
-
             else {
-
+                startActivity(Intent(activity, ProfileActivity::class.java))
             }
         }
     }
@@ -126,10 +123,9 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_wish_list -> {
-                if(fragmentManager != null)
-                activity?.supportFragmentManager?.beginTransaction()!!
-                    .replace(R.id.homeFragment, WishListFragment())
-                    .commitNow()
+                if(fragmentManager != null && userPreferences.isUserLogged())
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.homeFragment, WishListFragment())?.commitNow()
+                else showMessage("Login to be able to use this feature")
 
             }
             R.id.nav_compare_list -> {
