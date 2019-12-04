@@ -11,6 +11,7 @@ import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.home.presentation.view.adapter.IProductCallback
 import com.example.imedical.home.presentation.view.adapter.ProductsAdapter
 import com.example.imedical.home.presentation.viewmodel.BestSellersViewModel
@@ -83,7 +84,11 @@ class BestSellersFragment : BaseFragment() {
             if(it != null ){
                 if(!it.status)
                     showMessage(it.error)
-                else showMessage("Item added to cart")
+                else {
+                    if(activity is HomeActivity)
+                        (activity as HomeActivity).updateCartLabel()
+                    showMessage("Item added to cart")
+                }
             }
         })
     }

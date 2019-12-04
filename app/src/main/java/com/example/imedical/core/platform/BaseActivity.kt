@@ -1,6 +1,8 @@
 package com.example.imedical.core.platform
 
 import android.app.Dialog
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.Toast
@@ -20,11 +22,15 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private var progressDialog: Dialog? = null
 
+    @Inject lateinit var userPreferences: UserPreferences
+
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         (application as AndroidApplication).appComponent
     }
-
-    @Inject lateinit var userPreferences: UserPreferences
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appComponent.inject(this)
+    }
 
     protected fun showMessage(message: String?){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()

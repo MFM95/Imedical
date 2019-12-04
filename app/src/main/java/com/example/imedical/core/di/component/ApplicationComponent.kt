@@ -9,9 +9,11 @@ import com.example.imedical.core.di.module.RegistrationModule
 import com.example.imedical.home.presentation.view.fragment.BestSellersFragment
 import com.example.imedical.home.presentation.view.fragment.NavigationFragment
 import com.example.imedical.core.di.module.*
+import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity
 import com.example.imedical.forgetpassword.verify.presentation.activity.VerifyPasswordActivity
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.home.presentation.view.fragment.OffersFragment
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
@@ -34,6 +36,8 @@ import javax.inject.Singleton
     WishListModule::class,
     CartModule::class]) interface ApplicationComponent {
 
+    fun inject(baseActivity: BaseActivity)
+    fun inject(homeActivity: HomeActivity)
     fun inject(application: AndroidApplication)
     fun inject(loginActivity: LoginActivity)
     fun inject(registrationFragment: RegistrationFragment)

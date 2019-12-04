@@ -8,12 +8,14 @@ import com.example.imedical.cart.domain.usecase.GetCartUseCase
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.cart.domain.usecase.RemoveFromCartUseCase
 import com.example.imedical.cart.domain.usecase.UpdateCartUseCase
+import com.example.imedical.core.UserPreferences
 import javax.inject.Inject
 
 class CartViewModel @Inject constructor(
     private val removeFromCartUseCase: RemoveFromCartUseCase,
     private val updateCartUseCase: UpdateCartUseCase,
-    private val getCartUseCase: GetCartUseCase
+    private val getCartUseCase: GetCartUseCase,
+    private val userPreferences: UserPreferences
 ) : ViewModel(){
 
     private val removeCartLiveData by lazy { MutableLiveData<DataWrapper<Unit>>() }
@@ -44,6 +46,7 @@ class CartViewModel @Inject constructor(
         getCartUseCase.execute(Unit, this::onCartResult)
     }
     private fun onRemoveResult(dataWrapper: DataWrapper<Unit>){
+        userPreferences.decreaseCartSize()
         removeCartLiveData.value = dataWrapper
     }
 
