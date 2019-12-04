@@ -6,11 +6,7 @@ import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.core.api.ProductEntity
 import com.example.imedical.home.data.entity.CartEntity
 import com.example.imedical.home.data.entity.UserEntity
-<<<<<<<
-
-=======
 import com.example.imedical.home.data.entity.UserWrapperEntity
->>>>>>>
 import retrofit2.Response
 import retrofit2.http.*
 import retrofit2.http.Field

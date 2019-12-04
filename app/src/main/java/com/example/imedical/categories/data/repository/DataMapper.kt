@@ -9,8 +9,8 @@ import com.example.imedical.core.model.DataWrapper
 object DataMapper {
     fun mapCategoriesResponse(apiResponse: ApiResponse<GetCategoriesResponse>)
             : DataWrapper<ArrayList<CategoryModel>> {
-        if (!apiResponse.status || apiResponse.data == null)
-            return DataWrapper(apiResponse.status, null, apiResponse.error)
+        if (apiResponse.status == false || apiResponse.data == null)
+            return DataWrapper(apiResponse.status!!, null, apiResponse.error)
 
         val result = ArrayList<CategoryModel>()
 
@@ -18,7 +18,7 @@ object DataMapper {
             result.add(mapCategory(category))
         }
 
-        return DataWrapper(apiResponse.status, result, apiResponse.error)
+        return DataWrapper(apiResponse.status!!, result, apiResponse.error)
     }
 
     private fun mapCategory(category: Category): CategoryModel {

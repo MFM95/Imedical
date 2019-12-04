@@ -6,8 +6,6 @@ import com.example.imedical.core.di.module.ApplicationModule
 import com.example.imedical.core.di.module.LoginModule
 import com.example.imedical.core.di.module.ProductModule
 import com.example.imedical.core.di.module.RegistrationModule
-import com.example.imedical.home.presentation.view.fragment.BestSellersFragment
-import com.example.imedical.home.presentation.view.fragment.NavigationFragment
 import com.example.imedical.addresses.presentation.view.fragment.AddressesFragment
 import com.example.imedical.categories.presentation.view.activity.CategoriesActivity
 import com.example.imedical.compare.presentation.view.fragment.CompareListFragment
@@ -39,7 +37,7 @@ import javax.inject.Singleton
     ForgetPasswordModule::class,
     ResetPasswordModule::class,
     WishListModule::class,
-    CartModule::class]) interface ApplicationComponent {
+    CartModule::class,
     ResetPasswordModule::class,
     CompareListModule::class,
     AddressesModule::class,

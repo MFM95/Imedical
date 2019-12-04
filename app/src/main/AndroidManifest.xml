@@ -19,7 +19,6 @@
                 android:windowSoftInputMode="adjustResize">
         </activity>
         <activity android:name=".categories.presentation.view.activity.CategoriesActivity" />
-            android:theme="@style/AppTheme">
         <activity android:name=".cart.presentation.view.activity.CartActivity"></activity>
         <activity
                 android:name=".home.presentation.view.activity.HomeActivity"

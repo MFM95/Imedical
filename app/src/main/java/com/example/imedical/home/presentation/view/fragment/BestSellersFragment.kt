@@ -105,14 +105,16 @@ class BestSellersFragment : BaseFragment() {
     }
 
     private val productCallback = object : IProductCallback{
+        override fun onCompareClick(id: Int) {
+
+        }
+
         override fun onWishClick(id: Int, index: Int) {
             if(!this@BestSellersFragment.adapter.products[index].inWishList)
                 this@BestSellersFragment.viewModel.addWish(id, index)
             else this@BestSellersFragment.viewModel.removeWish(id, index)
         }
 
-        override fun onCompareClick(productModel: ProductModel) {
-        }
 
         override fun addToCart(id: Int) {
             showProgress()

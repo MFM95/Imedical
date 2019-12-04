@@ -12,8 +12,8 @@ object DataMapper {
     fun mapAddressesResponse(apiResponse: ApiResponse<GetAddressesResponse>)
             : DataWrapper<List<AddressModel>> {
 
-        if (!apiResponse.status || apiResponse.data == null)
-            return DataWrapper(apiResponse.status, null, apiResponse.error)
+        if (!apiResponse.status!! || apiResponse.data == null)
+            return DataWrapper(apiResponse.status!!, null, apiResponse.error)
 
 
         val result = ArrayList<AddressModel>()
@@ -22,7 +22,7 @@ object DataMapper {
             result.add(mapAddress(address))
         }
 
-        return DataWrapper(apiResponse.status, result, apiResponse.error)
+        return DataWrapper(apiResponse.status!!, result, apiResponse.error)
     }
 
     private fun mapAddress(addressResponse: AddressResponse): AddressModel {
@@ -42,19 +42,19 @@ object DataMapper {
     fun mapAddressResponse(apiResponse: ApiResponse<CreateAddressResponse>)
             : DataWrapper<AddressModel> {
 
-        if (!apiResponse.status || apiResponse.data == null)
-            return DataWrapper(apiResponse.status, null, apiResponse.error)
+        if (!apiResponse.status!! || apiResponse.data == null)
+            return DataWrapper(apiResponse.status!!, null, apiResponse.error)
 
         val result = mapAddress(apiResponse.data.address)
 
-        return DataWrapper(apiResponse.status, result, apiResponse.error)
+        return DataWrapper(apiResponse.status!!, result, apiResponse.error)
     }
 
     fun mapCountryProvincesResponse(apiResponse: ApiResponse<CountryProvincesResponse>)
             : DataWrapper<CountryProvincesModel> {
 
-        if (!apiResponse.status || apiResponse.data == null)
-            return DataWrapper(apiResponse.status, null, apiResponse.error)
+        if (!apiResponse.status!! || apiResponse.data == null)
+            return DataWrapper(apiResponse.status!!, null, apiResponse.error)
 
         val response = apiResponse.data
         val provinces = ArrayList<Province>()
@@ -63,29 +63,29 @@ object DataMapper {
         }
         val result  = CountryProvincesModel(response.id, response.name, provinces)
 
-        return DataWrapper(apiResponse.status, result, apiResponse.error)
+        return DataWrapper(apiResponse.status!!, result, apiResponse.error)
     }
 
     fun mapUpdateAddressResponse(apiResponse: ApiResponse<UpdateAddressResponse>)
             : DataWrapper<String> {
 
-        if (!apiResponse.status || apiResponse.data == null)
-            return DataWrapper(apiResponse.status, null, apiResponse.error)
+        if (!apiResponse.status!! || apiResponse.data == null)
+            return DataWrapper(apiResponse.status!!, null, apiResponse.error)
 
         val result = apiResponse.data.message
 
-        return DataWrapper(apiResponse.status, result, apiResponse.error)
+        return DataWrapper(apiResponse.status!!, result, apiResponse.error)
     }
 
     fun mapDeleteAddressResponse(apiResponse: ApiResponse<DeleteAddressResponse>)
             : DataWrapper<String> {
 
-        if (!apiResponse.status || apiResponse.data == null)
-            return DataWrapper(apiResponse.status, null, apiResponse.error)
+        if (!apiResponse.status!! || apiResponse.data == null)
+            return DataWrapper(apiResponse.status!!, null, apiResponse.error)
 
         val result = apiResponse.data.message
 
-        return DataWrapper(apiResponse.status, result, apiResponse.error)
+        return DataWrapper(apiResponse.status!!, result, apiResponse.error)
     }
 
 }

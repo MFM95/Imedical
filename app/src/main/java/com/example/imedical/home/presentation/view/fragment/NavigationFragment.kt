@@ -62,11 +62,9 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-<<<<<<< HEAD
         //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
         //subscribeViewModel()
-        replaceFragment(HomeFragment())
-=======
+
         subscribeViewModel()
     }
 
@@ -76,20 +74,14 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
             activity?.supportFragmentManager?.beginTransaction()!!
                 .replace(R.id.homeFragment, HomeFragment())
                 .commitNow()
->>>>>>> develop
     }
 
     private fun subscribeViewModel() {
         val token = userPreferences.getAccessToken()
-<<<<<<< HEAD
-        if (token != null)
-            viewModel.getUser(token).observe(this, Observer { dataWrapper ->
-                if (dataWrapper!!.status) {
-=======
+
         if(token != null && token.isNotEmpty())
             viewModel.getUser("Bearer $token").observe(this, Observer { dataWrapper ->
                 if(dataWrapper!= null && dataWrapper.status) {
->>>>>>> develop
                     navTitle.text = dataWrapper.data?.name
                     this.userModel = dataWrapper.data
                     showLogout()
@@ -109,11 +101,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         navTitle.setOnClickListener {
             if (userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
-<<<<<<< HEAD
-            //TODO put else to open profile of the user
-            // temporarily open addresses screen
-=======
->>>>>>> develop
+
             else {
 
             }
@@ -125,20 +113,10 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-<<<<<<< HEAD
-                // Handle the camera action
-                if(selectedFragment != SelectedFragment.HOME) {
-                    replaceFragment(HomeFragment())
-                    selectedFragment = SelectedFragment.HOME
-//                    fab.visibility = View.VISIBLE
-//                    toolbar.title = getString(R.string.title_activity_home)
-                }
-=======
                 if(fragmentManager != null)
                     activity?.supportFragmentManager?.beginTransaction()!!
                         .replace(R.id.homeFragment, HomeFragment())
                         .commitNow()
->>>>>>> develop
             }
             R.id.nav_categories -> {
                 val intent = Intent(activity, CategoriesActivity::class.java)
@@ -178,10 +156,9 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         return true
     }
 
-<<<<<<< HEAD
     private fun replaceFragment(fragment: Fragment) {
         val transaction = activity!!.supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.lyHomeFragmentContainer, fragment)
+     //   transaction.replace(R.id.lyHomeFragmentContainer, fragment)
         transaction.commit()
     }
 
@@ -192,13 +169,12 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         WISHLIST,
         COMPARELIST,
         SETTINGS
-=======
+    }
     private fun hideLogout(){
         navView.menu.findItem(R.id.nav_logout).isVisible = false
     }
 
     private fun showLogout(){
         navView.menu.findItem(R.id.nav_logout).isVisible = true
->>>>>>> develop
     }
 }
