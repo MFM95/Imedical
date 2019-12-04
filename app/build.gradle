@@ -29,7 +29,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "SERVER_URL", "\"https://imedical.com/api/v1/\"")
+            buildConfigField("String", "SERVER_URL", "\"https://staging.imedical-eg.com/api/v1/\"")
             buildConfigField("String", "PREF_USER", "\"com.imedical.user\"")
 
         }
@@ -89,6 +89,17 @@ dependencies {
      * Picasso
      * */
     api "com.squareup.picasso:picasso:2.5.2"
+
+    /**
+     * Room
+     *
+     */
+    api "android.arch.persistence.room:rxjava2:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+    api "android.arch.lifecycle:extensions:1.1.1"
+    api "android.arch.persistence.room:runtime:1.1.1"
+
+
 
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"
 

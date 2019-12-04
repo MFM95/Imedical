@@ -22,85 +22,85 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:textSize="@dimen/title_size"
                 android:textColor="@color/colorBlack"
-        />
+                />
 
         <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/registerErrorLayout"
-                        app:layout_constraintTop_toBottomOf="@id/registerTextView"
-                        android:background="@drawable/error_layout_bg"
-                        android:layout_marginTop="@dimen/registration_margin"
-                        android:layout_marginBottom="@dimen/registration_margin"
-                        android:visibility="gone"
-                        android:padding="@dimen/registration_margin">
+                android:layout_height="wrap_content"
+                android:id="@+id/registerErrorLayout"
+                app:layout_constraintTop_toBottomOf="@id/registerTextView"
+                android:background="@drawable/error_layout_bg"
+                android:layout_marginTop="@dimen/registration_margin"
+                android:layout_marginBottom="@dimen/registration_margin"
+                android:visibility="gone"
+                android:padding="@dimen/registration_margin">
             <TextView
                     android:id="@+id/registerErrorTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:textColor="@color/colorError"
-            />
+                    />
         </RelativeLayout>
 
         <EditText android:id="@+id/nameEditText"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/rect_edittext_drawable"
-                  app:layout_constraintTop_toBottomOf="@id/registerErrorLayout"
-                  android:hint="@string/name_hint"
-                  android:nextFocusForward="@id/emailEditText"
-                  android:singleLine="true"
-                  android:layout_marginTop="@dimen/registration_padding"
-                  android:textSize="@dimen/edittext_text_size"
-        />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_edittext_drawable"
+                app:layout_constraintTop_toBottomOf="@id/registerErrorLayout"
+                android:hint="@string/name_hint"
+                android:nextFocusForward="@id/emailEditText"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/registration_padding"
+                android:textSize="@dimen/edittext_text_size"
+                />
 
         <EditText android:id="@+id/emailEditText"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/rect_edittext_drawable"
-                  app:layout_constraintTop_toBottomOf="@id/nameEditText"
-                  android:hint="@string/email_hint"
-                  android:layout_marginTop="@dimen/registration_margin"
-                  android:textSize="@dimen/edittext_text_size"
-                  android:nextFocusForward="@id/mobileEditText"
-                  android:singleLine="true"
-        />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_edittext_drawable"
+                app:layout_constraintTop_toBottomOf="@id/nameEditText"
+                android:hint="@string/email_hint"
+                android:layout_marginTop="@dimen/registration_margin"
+                android:textSize="@dimen/edittext_text_size"
+                android:nextFocusForward="@id/mobileEditText"
+                android:singleLine="true"
+                />
 
         <EditText android:id="@+id/mobileEditText"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/rect_edittext_drawable"
-                  app:layout_constraintTop_toBottomOf="@id/emailEditText"
-                  android:hint="@string/mobile_hint"
-                  android:layout_marginTop="@dimen/registration_margin"
-                  android:textSize="@dimen/edittext_text_size"
-                  android:nextFocusForward="@id/passwordEditText"
-                  android:singleLine="true"
-        />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_edittext_drawable"
+                app:layout_constraintTop_toBottomOf="@id/emailEditText"
+                android:hint="@string/mobile_hint"
+                android:layout_marginTop="@dimen/registration_margin"
+                android:textSize="@dimen/edittext_text_size"
+                android:nextFocusForward="@id/passwordEditText"
+                android:singleLine="true"
+                />
 
         <EditText android:id="@+id/passwordEditText"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/rect_edittext_drawable"
-                  app:layout_constraintTop_toBottomOf="@id/mobileEditText"
-                  android:hint="@string/password_hint"
-                  android:textSize="@dimen/edittext_text_size"
-                  android:inputType="textPassword"
-                  android:nextFocusForward="@id/confirmPasswordEditText"
-                  android:singleLine="true"
-                  android:layout_marginTop="@dimen/registration_margin"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_edittext_drawable"
+                app:layout_constraintTop_toBottomOf="@id/mobileEditText"
+                android:hint="@string/password_hint"
+                android:textSize="@dimen/edittext_text_size"
+                android:inputType="textPassword"
+                android:nextFocusForward="@id/confirmPasswordEditText"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/registration_margin"/>
 
         <EditText android:id="@+id/confirmPasswordEditText"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/rect_edittext_drawable"
-                  app:layout_constraintTop_toBottomOf="@id/passwordEditText"
-                  android:hint="@string/pass_confirm_hint"
-                  android:textSize="@dimen/edittext_text_size"
-                  android:inputType="textPassword"
-                  android:layout_marginTop="@dimen/registration_margin"
-                  android:singleLine="true"
-                  android:imeOptions="actionDone"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_edittext_drawable"
+                app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+                android:hint="@string/pass_confirm_hint"
+                android:textSize="@dimen/edittext_text_size"
+                android:inputType="textPassword"
+                android:layout_marginTop="@dimen/registration_margin"
+                android:singleLine="true"
+                android:imeOptions="actionDone"/>
 
         <Button android:id="@+id/submitButton"
                 android:layout_width="match_parent"
@@ -113,23 +113,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText"/>
 
         <TextView android:id="@+id/haveAccountTextView"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  app:layout_constraintStart_toStartOf="parent"
-                  app:layout_constraintTop_toBottomOf="@id/submitButton"
-                  android:layout_marginTop="@dimen/registration_padding"
-                  android:textColor="@color/linkColor"
-                  android:text="@string/have_account"
-        />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/submitButton"
+                android:layout_marginTop="@dimen/registration_padding"
+                android:textColor="@color/linkColor"
+                android:text="@string/have_account"
+                />
 
         <TextView android:id="@+id/newAccountTextView"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  app:layout_constraintStart_toStartOf="parent"
-                  app:layout_constraintTop_toBottomOf="@id/haveAccountTextView"
-                  android:layout_marginTop="@dimen/registration_padding"
-                  android:textColor="@color/colorBlack"
-                  android:text="@string/registration_agreement"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/haveAccountTextView"
+                android:layout_marginTop="@dimen/registration_padding"
+                android:textColor="@color/colorBlack"
+                android:text="@string/registration_agreement"/>
 
         <View
                 android:id="@+id/linksSeparator"
@@ -150,18 +150,31 @@
                 app:layout_constraintTop_toBottomOf="@id/linksSeparator">
 
             <TextView android:id="@+id/privacyPolicyTextView"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textColor="@color/linkColor"
-                      android:text="@string/privacy_policy"
-                      android:layout_marginEnd="@dimen/registration_padding"
-                      android:layout_marginRight="@dimen/registration_padding"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/linkColor"
+                    android:text="@string/privacy_policy"
+                    android:layout_marginEnd="@dimen/registration_padding"
+                    android:layout_marginRight="@dimen/registration_padding"/>
 
             <TextView android:id="@+id/termsConditionsTextView"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textColor="@color/linkColor"
-                      android:text="@string/terms_conditions"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/linkColor"
+                    android:text="@string/terms_conditions"/>
         </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressRegisterLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="?android:attr/progressBarStyle"
+                android:visibility="gone"
+                android:elevation="5dp"
+                />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -3,7 +3,6 @@ package com.example.imedical.forgetpassword.resetpassword.data.repository
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.forgetpassword.resetpassword.data.api.ApiCalls
 import com.example.imedical.forgetpassword.resetpassword.data.entity.ResetBody
-import com.example.imedical.forgetpassword.resetpassword.data.entity.ResetResponse
 import com.example.imedical.forgetpassword.resetpassword.domain.repository.IResetRepository
 import javax.inject.Inject
 

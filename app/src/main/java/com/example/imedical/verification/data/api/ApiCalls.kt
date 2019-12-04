@@ -8,7 +8,6 @@ import com.example.imedical.verification.data.entity.VerificationResponse
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
-import java.lang.Exception
 import javax.inject.Inject
 
 class ApiCalls @Inject constructor(private val retrofit: Retrofit){

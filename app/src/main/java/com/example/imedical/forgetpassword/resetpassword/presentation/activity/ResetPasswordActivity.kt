@@ -5,19 +5,14 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.view.View
 import com.example.imedical.R
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.core.ui.CustomAlertDialog
-import com.example.imedical.forgetpassword.forget.presentation.viewmodel.ForgetPasswordViewModel
 import com.example.imedical.forgetpassword.resetpassword.presentation.viewmodel.ResetViewModel
-import com.example.imedical.forgetpassword.verify.presentation.activity.VerifyPasswordActivity
 import com.example.imedical.login.presentation.view.activity.LoginActivity
-import kotlinx.android.synthetic.main.activity_forget_password.*
 import kotlinx.android.synthetic.main.activity_reset_password.*
 import javax.inject.Inject
 
@@ -33,6 +28,7 @@ class ResetPasswordActivity : BaseActivity() {
         appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         resetViewModel = ViewModelProviders.of(this, resetViewModelFactory).get(ResetViewModel::class.java)
         init()
     }

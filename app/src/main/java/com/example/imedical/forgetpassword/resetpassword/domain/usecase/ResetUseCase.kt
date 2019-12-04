@@ -2,7 +2,6 @@ package com.example.imedical.forgetpassword.resetpassword.domain.usecase
 
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.core.usecase.BaseUseCase
-import com.example.imedical.forgetpassword.resetpassword.data.entity.ResetBody
 import com.example.imedical.forgetpassword.resetpassword.data.repository.ResetRepositoryImpl
 import javax.inject.Inject
 

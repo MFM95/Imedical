@@ -34,4 +34,9 @@ abstract class BaseFragment : Fragment(){
     protected fun showConnectionError(){
         Snackbar.make(view!!, R.string.check_connection, Snackbar.LENGTH_LONG)
     }
+
+    protected fun showSnack(message: String?) {
+        Snackbar.make(view!!, message!!, Snackbar.LENGTH_LONG).show()
+    }
+
 }
