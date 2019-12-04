@@ -12,4 +12,5 @@ interface IProductRepository {
     suspend fun getOffers(): DataWrapper<ArrayList<ProductModel>>
     suspend fun getAuthUser(token: String): DataWrapper<UserModel>
     suspend fun addToCart(productId: Int, quantity: Int): DataWrapper<Unit>
+    suspend fun storeWish(id: Int, index: Int): DataWrapper<Int>
 }

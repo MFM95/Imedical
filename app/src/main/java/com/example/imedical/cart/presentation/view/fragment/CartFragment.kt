@@ -62,6 +62,7 @@ class CartFragment : BaseFragment() {
 
     private fun observeCart() {
         viewModel.getCartLiveData().observe(this, Observer {
+            hideProgress()
             it?.let {
                 if (it.status) {
                     if(it.data != null)
@@ -71,6 +72,7 @@ class CartFragment : BaseFragment() {
         })
 
         viewModel.getRemoveFromCartLiveData().observe(this, Observer {
+            hideProgress()
             it?.let {
                 if(it.status && itemPositionToRemove != -1){
                     adapter.items.removeAt(itemPositionToRemove)
@@ -106,6 +108,7 @@ class CartFragment : BaseFragment() {
         }
 
         override fun deleteItem(item: CartItemModel, position: Int) {
+            showProgress()
             viewModel.removeFromCart(item.rowId)
             itemPositionToRemove = position
         }

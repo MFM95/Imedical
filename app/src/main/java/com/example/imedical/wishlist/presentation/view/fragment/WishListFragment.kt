@@ -53,16 +53,20 @@ class WishListFragment : BaseFragment() {
 
     private fun subscribeViewModel(){
         if(!viewModel.getWithListLiveData().hasObservers()){
-            viewModel.getWithListLiveData().observe(this, Observer { models ->
-                adapter.wishes.addAll(models!!)
+            viewModel.getWithListLiveData().observe(this, Observer { dataWrapper ->
                 wishListProgressBar.visibility = View.GONE
-                adapter.notifyDataSetChanged()
+                if(dataWrapper!= null && dataWrapper.status) {
+                    adapter.wishes.addAll(dataWrapper.data!!)
+                    adapter.notifyDataSetChanged()
+                } else showMessage(dataWrapper?.error)
             })
+
             viewModel.updateWishList()
 
         } else viewModel.updateWishList()
 
         productViewModel.getAddToCartLiveData().observe(this, Observer {
+            hideProgress()
             if(it != null ){
                 if(!it.status)
                     showMessage(it.error)
@@ -70,6 +74,14 @@ class WishListFragment : BaseFragment() {
             }
         })
 
+        if(!this.viewModel.getRemoveWishLiveData().hasObservers())
+            this.viewModel.getRemoveWishLiveData().observe(this, Observer {
+                    dataWrapper ->
+                if(dataWrapper != null && dataWrapper.status && dataWrapper.data != null) {
+                    this.adapter.wishes.removeAt(dataWrapper.data)
+                    this.adapter.notifyItemRemoved(dataWrapper.data)
+                } else showMessage(dataWrapper?.error)
+            })
     }
 
     private fun setupRecyclerView(){
@@ -82,16 +94,17 @@ class WishListFragment : BaseFragment() {
 
     private val wishCallback = object : IWishCallback{
         override fun onProductClick(productModel: ProductModel) {
-
         }
 
         override fun onRemoveClick(id: Int, index: Int) {
+            this@WishListFragment.viewModel.removeWish(id, index)
         }
 
         override fun onCompareClick(id: Int) {
         }
 
         override fun addToCart(id: Int) {
+            showProgress()
             productViewModel.addToCart(id, 1)
         }
 

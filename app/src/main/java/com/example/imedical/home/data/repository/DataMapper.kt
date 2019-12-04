@@ -1,6 +1,7 @@
 package com.example.imedical.home.data.repository
 
 import com.example.imedical.core.api.ApiResponse
+import com.example.imedical.core.api.EmptyResponse
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.core.api.ProductEntity
@@ -72,10 +73,16 @@ object DataMapper {
         )
     }
 
-    fun mapEmpty(apiResponse: ApiResponse<Unit>?): DataWrapper<Unit>{
+    fun mapEmpty(apiResponse: ApiResponse<Unit>?): DataWrapper<Unit> {
         apiResponse?.let {
-            return DataWrapper(it.status?:false, it.data, it.error)
+            return DataWrapper(it.status ?: false, it.data, it.error)
         }
         return DataWrapper(false, Unit, "Login to be able to use that feature")
+    }
+
+    fun mapAddWish(entityWrapper: ApiResponse<EmptyResponse>?, index: Int): DataWrapper<Int>{
+        if(entityWrapper == null)
+            return DataWrapper(false, index, "server_error")
+        return DataWrapper(entityWrapper.status?:false, index, entityWrapper.error)
     }
 }

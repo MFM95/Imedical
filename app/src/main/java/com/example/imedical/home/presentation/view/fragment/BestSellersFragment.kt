@@ -69,7 +69,17 @@ class BestSellersFragment : BaseFragment() {
 
         } else viewModel.updateBestSellers()
 
+        if(!this.viewModel.getWishLiveData().hasObservers())
+            this.viewModel.getWishLiveData().observe(this, Observer {
+                    dataWrapper ->
+                if(dataWrapper != null && dataWrapper.status && dataWrapper.data != null) {
+                    this.adapter.products[dataWrapper.data].inWishList =
+                        !this.adapter.products[dataWrapper.data].inWishList
+                    this.adapter.notifyItemChanged(dataWrapper.data)
+                } else showMessage(dataWrapper?.error)
+            })
         productViewModel.getAddToCartLiveData().observe(this, Observer {
+            hideProgress()
             if(it != null ){
                 if(!it.status)
                     showMessage(it.error)
@@ -79,13 +89,17 @@ class BestSellersFragment : BaseFragment() {
     }
 
     private val productCallback = object : IProductCallback{
-        override fun onWishClick(id: Int) {
+        override fun onWishClick(id: Int, index: Int) {
+            if(!this@BestSellersFragment.adapter.products[index].inWishList)
+                this@BestSellersFragment.viewModel.addWish(id, index)
+            else this@BestSellersFragment.viewModel.removeWish(id, index)
         }
 
         override fun onCompareClick(id: Int) {
         }
 
         override fun addToCart(id: Int) {
+            showProgress()
             productViewModel.addToCart(id, 1)
         }
 

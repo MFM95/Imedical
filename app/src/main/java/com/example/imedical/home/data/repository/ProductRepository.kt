@@ -27,4 +27,9 @@ class ProductRepository @Inject constructor(private val apiCalls: ApiCalls) : IP
     override suspend fun addToCart(productId: Int, quantity: Int): DataWrapper<Unit> {
         return DataMapper.mapEmpty(apiCalls.addToCart(productId, quantity))
     }
+
+    override suspend fun storeWish(id: Int, index: Int): DataWrapper<Int>{
+        return DataMapper.mapAddWish(apiCalls.storeWish(id), index)
+    }
+
 }

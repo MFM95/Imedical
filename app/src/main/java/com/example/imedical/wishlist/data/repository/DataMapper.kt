@@ -1,6 +1,7 @@
 package com.example.imedical.wishlist.data.repository
 
 import com.example.imedical.core.api.ApiResponse
+import com.example.imedical.core.api.EmptyResponse
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.core.api.ProductEntity
@@ -27,6 +28,17 @@ object DataMapper {
         return DataWrapper(entitiesWrapper.status?:false, results, entitiesWrapper.error)
     }
 
+    fun mapEmpty(entityWrapper: ApiResponse<Unit>?): DataWrapper<Unit>{
+        if(entityWrapper == null)
+            return DataWrapper(false, Unit, "server_error")
+
+        return DataWrapper(entityWrapper.status?:false, Unit, entityWrapper.error)
+    }
+    fun mapRemoveWish(entityWrapper: ApiResponse<EmptyResponse>?, index: Int): DataWrapper<Int>{
+        if(entityWrapper == null)
+            return DataWrapper(false, index, "server_error")
+        return DataWrapper(entityWrapper.status?:false, index, entityWrapper.error)
+    }
     private fun mapSingleProduct(entity: ProductEntity): ProductModel {
         return ProductModel(
             entity.id,
