@@ -24,7 +24,7 @@ object DataMapper {
                 mapSingleProduct(entity)
             )
 
-        return DataWrapper(entitiesWrapper.status, results, entitiesWrapper.error)
+        return DataWrapper(entitiesWrapper.status?:false, results, entitiesWrapper.error)
     }
 
     private fun mapSingleProduct(entity: ProductEntity): ProductModel {

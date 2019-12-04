@@ -8,13 +8,13 @@ import com.example.imedical.registration.data.entity.TokenWrapper
  */
 object DataMapper {
     fun mapRegistrationResponse(apiResponse: ApiResponse<TokenWrapper>) : DataWrapper<String> {
-        if(apiResponse.status && apiResponse.data != null)
+        if(apiResponse.status != null && apiResponse.status && apiResponse.data != null)
             return DataWrapper(
                 apiResponse.status,
                 apiResponse.data.token,
                 apiResponse.error
             )
 
-        return DataWrapper(apiResponse.status, null, apiResponse.error)
+        return DataWrapper(apiResponse.status?:false, null, apiResponse.error)
     }
 }

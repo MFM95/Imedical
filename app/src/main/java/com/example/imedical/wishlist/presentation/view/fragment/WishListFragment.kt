@@ -13,6 +13,7 @@ import com.example.imedical.R
 import com.example.imedical.core.model.ProductModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.home.presentation.viewmodel.ProductViewModel
 import com.example.imedical.wishlist.presentation.view.adapter.WishesAdapter
 import com.example.imedical.wishlist.presentation.view.adapter.callback.IWishCallback
 import com.example.imedical.wishlist.presentation.viewmodel.WishListViewModel
@@ -25,6 +26,11 @@ class WishListFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory<WishListViewModel>
     private lateinit var viewModel: WishListViewModel
     private lateinit var adapter: WishesAdapter
+
+    @Inject
+    lateinit var productViewModelFactory: ViewModelFactory<ProductViewModel>
+    private val productViewModel by lazy { ViewModelProviders.of(this, productViewModelFactory).get(
+        ProductViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,17 +61,26 @@ class WishListFragment : BaseFragment() {
             viewModel.updateWishList()
 
         } else viewModel.updateWishList()
+
+        productViewModel.getAddToCartLiveData().observe(this, Observer {
+            if(it != null ){
+                if(!it.status)
+                    showMessage(it.error)
+                else showMessage("Item added to cart")
+            }
+        })
+
     }
 
     private fun setupRecyclerView(){
         wishListRecyclerView.layoutManager =
             GridLayoutManager(activity, 2)
 
-        adapter = WishesAdapter(ArrayList(), WishCallback(), activity!!)
+        adapter = WishesAdapter(ArrayList(), wishCallback , activity!!)
         wishListRecyclerView.adapter = adapter
     }
 
-    class WishCallback : IWishCallback{
+    private val wishCallback = object : IWishCallback{
         override fun onProductClick(productModel: ProductModel) {
 
         }
@@ -77,6 +92,7 @@ class WishListFragment : BaseFragment() {
         }
 
         override fun addToCart(id: Int) {
+            productViewModel.addToCart(id, 1)
         }
 
     }

@@ -12,7 +12,7 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.example.imedical"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -89,4 +89,7 @@ dependencies {
      * Picasso
      * */
     api "com.squareup.picasso:picasso:2.5.2"
+
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+
 }

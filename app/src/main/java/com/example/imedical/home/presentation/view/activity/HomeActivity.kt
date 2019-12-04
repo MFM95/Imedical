@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import com.example.imedical.R
+import com.example.imedical.cart.presentation.view.fragment.CartFragment
 import com.example.imedical.core.platform.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -21,12 +22,6 @@ class HomeActivity : BaseActivity() {
         setContentView(R.layout.activity_home)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Action will be created soon", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
@@ -53,9 +48,12 @@ class HomeActivity : BaseActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_cart -> true
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.action_cart ->
+                    this.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.homeFragment, CartFragment())
+                        ?.commitNow()
         }
+        return true
     }
 }

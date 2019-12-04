@@ -6,13 +6,13 @@ import com.example.imedical.forgetpassword.resetpassword.data.entity.ResetRespon
 
 object DataMapper {
     fun mapResetResponse(apiResponse: ApiResponse<ResetResponse>): DataWrapper<String> {
-        if(apiResponse.status && apiResponse.data != null)
+        if(apiResponse.status != null && apiResponse.status && apiResponse.data != null)
             return DataWrapper(
                 apiResponse.status,
                 apiResponse.data.token,
                 apiResponse.error
             )
 
-        return DataWrapper(apiResponse.status, null, apiResponse.error)
+        return DataWrapper(apiResponse.status?:false, null, apiResponse.error)
     }
 }

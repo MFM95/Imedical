@@ -15,6 +15,7 @@ import com.example.imedical.core.model.ProductModel
 import com.example.imedical.home.presentation.view.adapter.IProductCallback
 import com.example.imedical.home.presentation.view.adapter.ProductsAdapter
 import com.example.imedical.home.presentation.viewmodel.OffersViewModel
+import com.example.imedical.home.presentation.viewmodel.ProductViewModel
 import kotlinx.android.synthetic.main.offers_fragment.*
 import javax.inject.Inject
 
@@ -23,6 +24,10 @@ class OffersFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory<OffersViewModel>
     private lateinit var viewModel: OffersViewModel
+
+    @Inject
+    lateinit var productViewModelFactory: ViewModelFactory<ProductViewModel>
+    private val productViewModel by lazy { ViewModelProviders.of(this, productViewModelFactory).get(ProductViewModel::class.java) }
 
     private lateinit var adapter: ProductsAdapter
 
@@ -48,7 +53,7 @@ class OffersFragment : BaseFragment() {
         offersRecyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        adapter = ProductsAdapter(ArrayList(), ProductCallback(), activity!!)
+        adapter = ProductsAdapter(ArrayList(), productCallback, activity!!)
         offersRecyclerView.adapter = adapter
     }
 
@@ -62,9 +67,17 @@ class OffersFragment : BaseFragment() {
             viewModel.updateOffers()
 
         } else viewModel.updateOffers()
+
+        productViewModel.getAddToCartLiveData().observe(this, Observer {
+            if(it != null ){
+                if(!it.status)
+                    showMessage(it.error)
+                else showMessage("Item added to cart")
+            }
+        })
     }
 
-    class ProductCallback : IProductCallback{
+    private val productCallback = object : IProductCallback{
         override fun onWishClick(id: Int) {
         }
 
@@ -72,6 +85,7 @@ class OffersFragment : BaseFragment() {
         }
 
         override fun addToCart(id: Int) {
+            productViewModel.addToCart(id, 1)
         }
 
         override fun onProductClick(productModel: ProductModel) {

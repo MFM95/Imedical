@@ -54,8 +54,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
-        //subscribeViewModel()
+        subscribeViewModel()
     }
 
     private fun setHomeChecked(){
@@ -68,11 +67,16 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
     private fun subscribeViewModel(){
         val token = userPreferences.getAccessToken()
-        if(token != null)
-            viewModel.getUser(token).observe(this, Observer { dataWrapper ->
+        if(token != null && token.isNotEmpty())
+            viewModel.getUser("Bearer $token").observe(this, Observer { dataWrapper ->
                 if(dataWrapper!!.status) {
                     navTitle.text = dataWrapper.data?.name
                     this.userModel = dataWrapper.data
+                } else {
+                    userPreferences.clearUser()
+                    userModel = null
+                    setTitleAction()
+                    navTitle.text = getString(R.string.nav_header_title)
                 }
             })
     }
@@ -82,7 +86,9 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         navTitle.setOnClickListener {
             if(userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
-            //TODO put else to open profile of the user
+            else {
+
+            }
         }
     }
 
