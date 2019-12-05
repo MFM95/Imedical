@@ -110,19 +110,21 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
+            R.id.nav_login ->{
+                activity!!.startActivity(Intent(activity, LoginActivity::class.java))
+            }
             R.id.nav_home -> {
                 if(fragmentManager != null)
                     activity?.supportFragmentManager?.beginTransaction()!!
                         .replace(R.id.homeFragment, HomeFragment())
                         .commitNow()
             }
-            R.id.nav_categories -> {
+            //R.id.nav_categories -> {
             //    val intent = Intent(activity, CategoriesActivity::class.java)
-          //      startActivity(intent)
-            }
-            R.id.nav_shop -> {
-
-            }
+            //      startActivity(intent)
+            //}
+            //R.id.nav_shop ->
+            //}
             R.id.nav_wish_list -> {
                 if(fragmentManager != null && userPreferences.isUserLogged())
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.homeFragment, WishListFragment())?.commitNow()
@@ -165,10 +167,14 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         SETTINGS
     }
     private fun hideLogout(){
+        navView.menu.findItem(R.id.nav_settings).isVisible = false
         navView.menu.findItem(R.id.nav_logout).isVisible = false
+        navView.menu.findItem(R.id.nav_login).isVisible = true
     }
 
     private fun showLogout(){
+        navView.menu.findItem(R.id.nav_settings).isVisible = true
         navView.menu.findItem(R.id.nav_logout).isVisible = true
+        navView.menu.findItem(R.id.nav_login).isVisible = false
     }
 }

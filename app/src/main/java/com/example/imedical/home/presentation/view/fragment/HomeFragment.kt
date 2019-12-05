@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.imedical.R
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 
 /**
  * A simple [Fragment] subclass.
@@ -26,5 +27,4 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         activity?.setTitle(R.string.title_activity_home)
     }
-
 }
