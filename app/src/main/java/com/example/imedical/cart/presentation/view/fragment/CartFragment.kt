@@ -32,8 +32,8 @@ class CartFragment : BaseFragment() {
 
     private lateinit var adapter: CartItemsAdapter
     private var itemPositionToRemove = -1
-    private var subtotal: Int? = 0
-    private var total: Int? = 0
+    private var subtotal: Float? = 0.0f
+    private var total: Float? = 0.0f
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
@@ -97,8 +97,8 @@ class CartFragment : BaseFragment() {
         cartTaxTextView.text = String.format("%s LE", cartModel.tax)
         cartSubtotalTextView.text = String.format("%s LE", cartModel.subtotal)
         cartTotalTextView.text = String.format("%s LE", cartModel.total)
-        subtotal =  cartModel.subtotal.toIntOrNull()
-        total = cartModel.total.toIntOrNull()
+        subtotal =  cartModel.subtotal.toFloatOrNull()
+        total = cartModel.total.toFloatOrNull()
 
     }
 
@@ -109,9 +109,9 @@ class CartFragment : BaseFragment() {
     private val cartActions = object : CartItemsAdapter.CartActions{
         override fun removeFromTotal(num: Int) {
             if(total == null)
-                total = 0
+                total = 0.0f
             if(subtotal == null)
-                subtotal = 0
+                subtotal = 0.0f
                 if(subtotal!! - num > 0)
                     cartSubtotalTextView.text = String.format("%s LE", (subtotal!! - num).toString())
 
@@ -121,9 +121,9 @@ class CartFragment : BaseFragment() {
 
         override fun addToTotal(num: Int) {
             if(total == null)
-                total = 0
+                total = 0.0f
             if(subtotal == null)
-                subtotal = 0
+                subtotal = 0.0f
 
                 cartSubtotalTextView.text = String.format("%s LE", (subtotal!! + num).toString())
 

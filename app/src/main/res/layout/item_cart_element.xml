@@ -75,8 +75,9 @@
 
                 <ImageView
                         android:id="@+id/itemCartDecrease"
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_item_reduce" />
 
                 <TextView
@@ -92,8 +93,9 @@
 
                 <ImageView
                         android:id="@+id/itemCartIncrease"
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_item_increase" />
             </LinearLayout>
 
