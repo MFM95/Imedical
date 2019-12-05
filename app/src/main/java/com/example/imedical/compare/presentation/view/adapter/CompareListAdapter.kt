@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.imedical.R
-import com.example.imedical.compare.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cell_compare_product.view.*
 

@@ -1,7 +1,7 @@
 package com.example.imedical.compare.data.repository
 
 import com.example.imedical.compare.data.entity.ProductEntity
-import com.example.imedical.compare.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 
 
 object DataMapper {

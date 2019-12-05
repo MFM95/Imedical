@@ -106,7 +106,8 @@ class OffersFragment : BaseFragment() {
     }
 
     private val productCallback = object : IProductCallback{
-        override fun onCompareClick(id: Int) {
+        override fun onCompareClick(productModel: ProductModel) {
+            compareViewModel.addToCompareList(productModel)
         }
 
         override fun onWishClick(id: Int, index: Int) {
@@ -130,7 +131,7 @@ class OffersFragment : BaseFragment() {
         adapter?.let {
             it.onCompareClick.observe(this, Observer { model ->
                 model?.let { productModel ->
-                    compareViewModel.addToCompareList(mapProductModel(productModel))
+                    compareViewModel.addToCompareList(productModel)
                     compareViewModel.getAddLiveData().observe(this, Observer {
                         showSnack(getString(R.string.added_to_compare_message))
                     })

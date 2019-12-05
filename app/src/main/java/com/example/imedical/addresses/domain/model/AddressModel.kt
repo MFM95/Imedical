@@ -5,12 +5,12 @@ import kotlinx.android.parcel.Parcelize
 
 data class AddressModel (
     val id: Int? = 0,
-    val alias: String?,
-    val address_1: String?,
-    val address_2: String?,
-    val phone: String?,
-    val country: Country?,
-    val province: Province?
+    var alias: String?,
+    var address_1: String?,
+    var address_2: String?,
+    var phone: String?,
+    var country: Country?,
+    var province: Province?
 )
 
 data class Country(
@@ -19,6 +19,6 @@ data class Country(
 )
 
 data class Province(
-    val id: Int?,
-    val name: String?
+    var id: Int?,
+    var name: String?
 )

@@ -25,6 +25,7 @@ import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
 import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
+import kotlinx.android.synthetic.main.app_bar_home.*
 import javax.inject.Inject
 
 
@@ -116,8 +117,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                         .commitNow()
             }
             R.id.nav_categories -> {
-                val intent = Intent(activity, CategoriesActivity::class.java)
-                startActivity(intent)
+            //    val intent = Intent(activity, CategoriesActivity::class.java)
+          //      startActivity(intent)
             }
             R.id.nav_shop -> {
 
@@ -129,12 +130,9 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
             }
             R.id.nav_compare_list -> {
-                if(selectedFragment != SelectedFragment.COMPARELIST) {
                     replaceFragment(CompareListFragment.newInstance())
-                    selectedFragment = SelectedFragment.COMPARELIST
 //                    fab.visibility = View.GONE
 //                    toolbar.title = getString(R.string.compare_list_title)
-                }
             }
             R.id.nav_settings -> {
                 val intent = Intent(activity, ProfileActivity::class.java)
@@ -154,7 +152,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
     private fun replaceFragment(fragment: Fragment) {
         val transaction = activity!!.supportFragmentManager.beginTransaction()
-     //   transaction.replace(R.id.lyHomeFragmentContainer, fragment)
+        transaction.replace(R.id.homeFragment, fragment)
         transaction.commit()
     }
 

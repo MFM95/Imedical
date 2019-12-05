@@ -8,6 +8,6 @@ import com.example.imedical.core.model.ProductModel
 interface IProductCallback {
     fun onProductClick(productModel: ProductModel)
     fun onWishClick(id: Int, index: Int)
-    fun onCompareClick(id: Int)
+    fun onCompareClick(productModel: ProductModel)
     fun addToCart(id: Int)
 }
