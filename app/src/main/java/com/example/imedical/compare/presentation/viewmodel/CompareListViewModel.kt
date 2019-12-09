@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel
 import com.example.imedical.compare.domain.interactor.AddToCompareListUseCase
 import com.example.imedical.compare.domain.interactor.GetCompareListUseCase
 import com.example.imedical.compare.domain.interactor.RemoveFromCompareListUseCase
-import com.example.imedical.compare.domain.model.ProductModel
+import com.example.imedical.core.model.ProductModel
 import javax.inject.Inject
 
 class CompareListViewModel @Inject constructor(private val getCompareListUseCase: GetCompareListUseCase,

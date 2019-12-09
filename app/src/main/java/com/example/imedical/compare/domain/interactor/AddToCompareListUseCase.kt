@@ -1,7 +1,7 @@
 package com.example.imedical.compare.domain.interactor
 
-import com.example.imedical.compare.domain.model.ProductModel
 import com.example.imedical.compare.domain.repository.ICompareListRepository
+import com.example.imedical.core.model.ProductModel
 import com.example.imedical.core.usecase.BaseUseCase
 import javax.inject.Inject
 

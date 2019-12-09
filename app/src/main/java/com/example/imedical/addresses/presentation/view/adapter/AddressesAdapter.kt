@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import com.example.imedical.R
 import com.example.imedical.addresses.domain.model.AddressModel
 import com.example.imedical.addresses.domain.model.Province
+import kotlinx.android.synthetic.main.fragment_addresses.view.*
 import kotlinx.android.synthetic.main.item_address.view.*
 
 class AddressesAdapter(
@@ -69,7 +70,13 @@ class AddressesAdapter(
             }
 
             view.btnEditAddressSubmit.setOnClickListener {
-                onEditClickLiveData.value = addressModel
+                if (selectedProvince == 0)
+                    selectedProvince = addressModel.province?.id!!
+                var updatedAddress = addressModel
+                updatedAddress.phone = view.edtEditAddressPhone.text.toString()
+                updatedAddress.address_1 = view.edtEditAddressStreet.text.toString()
+                updatedAddress.province = Province(selectedProvince, "")
+                onEditClickLiveData.value = updatedAddress
                 view.lyAddressLayout.visibility = View.VISIBLE
                 view.lyEditAddressLayout.visibility = View.GONE
             }

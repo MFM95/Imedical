@@ -25,6 +25,7 @@ import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
 import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
+import kotlinx.android.synthetic.main.app_bar_home.*
 import javax.inject.Inject
 
 
@@ -62,9 +63,6 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //TODO uncomment subscribeViewModel call when GetUser endpoint is ready
-        //subscribeViewModel()
-
         subscribeViewModel()
     }
 
@@ -84,6 +82,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                 if(dataWrapper!= null && dataWrapper.status) {
                     navTitle.text = dataWrapper.data?.name
                     this.userModel = dataWrapper.data
+                    userPreferences.saveUserObject(this.userModel)
                     showLogout()
                 } else {
                     userPreferences.clearUser()
@@ -101,9 +100,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         navTitle.setOnClickListener {
             if (userModel == null)
                 activity!!.startActivity(Intent(activity, LoginActivity::class.java))
-
             else {
-
+                startActivity(Intent(activity, ProfileActivity::class.java))
             }
         }
     }
@@ -119,26 +117,22 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                         .commitNow()
             }
             R.id.nav_categories -> {
-                val intent = Intent(activity, CategoriesActivity::class.java)
-                startActivity(intent)
+            //    val intent = Intent(activity, CategoriesActivity::class.java)
+          //      startActivity(intent)
             }
             R.id.nav_shop -> {
 
             }
             R.id.nav_wish_list -> {
-                if(fragmentManager != null)
-                activity?.supportFragmentManager?.beginTransaction()!!
-                    .replace(R.id.homeFragment, WishListFragment())
-                    .commitNow()
+                if(fragmentManager != null && userPreferences.isUserLogged())
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.homeFragment, WishListFragment())?.commitNow()
+                else showMessage("Login to be able to use this feature")
 
             }
             R.id.nav_compare_list -> {
-                if(selectedFragment != SelectedFragment.COMPARELIST) {
                     replaceFragment(CompareListFragment.newInstance())
-                    selectedFragment = SelectedFragment.COMPARELIST
 //                    fab.visibility = View.GONE
 //                    toolbar.title = getString(R.string.compare_list_title)
-                }
             }
             R.id.nav_settings -> {
                 val intent = Intent(activity, ProfileActivity::class.java)
@@ -158,7 +152,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
 
     private fun replaceFragment(fragment: Fragment) {
         val transaction = activity!!.supportFragmentManager.beginTransaction()
-     //   transaction.replace(R.id.lyHomeFragmentContainer, fragment)
+        transaction.replace(R.id.homeFragment, fragment)
         transaction.commit()
     }
 

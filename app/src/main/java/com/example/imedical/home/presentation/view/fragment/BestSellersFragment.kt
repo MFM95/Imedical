@@ -73,9 +73,11 @@ class BestSellersFragment : BaseFragment() {
     private fun subscribeViewModel(){
         if(!viewModel.getBestSellers().hasObservers()){
             viewModel.getBestSellers().observe(this, Observer { models ->
-                adapter.products.addAll(models!!)
-                bestSellersProgressBar.visibility = View.GONE
-                adapter.notifyDataSetChanged()
+                if(models?.status == true) {
+                    adapter.products.addAll(models.data!!)
+                    bestSellersProgressBar.visibility = View.GONE
+                    adapter.notifyDataSetChanged()
+                } else showMessage(models?.error)
             })
             viewModel.updateBestSellers()
 
@@ -105,8 +107,8 @@ class BestSellersFragment : BaseFragment() {
     }
 
     private val productCallback = object : IProductCallback{
-        override fun onCompareClick(id: Int) {
-
+        override fun onCompareClick(productModel: ProductModel) {
+            compareViewModel.addToCompareList(productModel)
         }
 
         override fun onWishClick(id: Int, index: Int) {
@@ -131,7 +133,7 @@ class BestSellersFragment : BaseFragment() {
         adapter?.let {
             it.onCompareClick.observe(this, Observer { model ->
                 model?.let { productModel ->
-                    compareViewModel.addToCompareList(mapProductModel(productModel))
+                    compareViewModel.addToCompareList(productModel)
                     compareViewModel.getAddLiveData().observe(this, Observer {
                         showSnack(getString(R.string.added_to_compare_message))
                     })
@@ -165,19 +167,19 @@ class BestSellersFragment : BaseFragment() {
         }
     }
 
-    private fun mapProductModel(model: ProductModel): com.example.imedical.compare.domain.model.ProductModel {
-        return com.example.imedical.compare.domain.model.ProductModel(
-            model.id,
-            model.name,
-            model.imageUrl,
-            model.price,
-            model.salePrice,
-            model.inWishList,
-            model.inCompareList,
-            model.brand,
-            model.quantity
-        )
-    }
+//    private fun mapProductModel(model: ProductModel): ProductModel {
+//        return ProductModel(
+//            model.id,
+//            model.name,
+//            model.imageUrl,
+//            model.price,
+//            model.salePrice,
+//            model.inWishList,
+//            model.inCompareList,
+//            model.brand,
+//            model.quantity
+//        )
+//    }
 
 
 }
