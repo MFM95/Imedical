@@ -206,15 +206,20 @@ class AddressesFragment : BaseFragment() {
     private fun observeOnEditItem() {
         addressesAdapter.onEditClickLiveData.observe(this, Observer {
             it?.let {
-                editAddress(it!!)
+                editAddress(it.first, it.second)
             }
         })
     }
 
-    private fun editAddress(address: AddressModel) {
+    private fun editAddress(address: AddressModel, position: Int) {
         addressesViewModel.updateAddress(address.id?: 0, address.alias, address.address_1, address.address_2, address.country!!.id, address.province?.id, address.phone)
         addressesViewModel.getUpdateAddressLiveData().observe(this, Observer {
             showMessage(it)
+            if(addresses.size > position) {
+                addresses[position] = address
+                setUpRecyclerView()
+            }
+
         })
     }
     companion object {
