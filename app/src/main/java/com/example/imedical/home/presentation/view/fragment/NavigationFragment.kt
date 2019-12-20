@@ -117,8 +117,8 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                         .commitNow()
             }
             R.id.nav_categories -> {
-            //    val intent = Intent(activity, CategoriesActivity::class.java)
-          //      startActivity(intent)
+                val intent = Intent(activity, CategoriesActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_shop -> {
 

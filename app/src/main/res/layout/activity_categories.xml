@@ -4,6 +4,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".categories.presentation.view.activity.CategoriesActivity">
-
+        tools:context=".categories.presentation.view.activity.CategoriesActivity"
+        android:background="@color/pale_grey"
+        >
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCategories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimen_20"
+            />
 </android.support.constraint.ConstraintLayout>
