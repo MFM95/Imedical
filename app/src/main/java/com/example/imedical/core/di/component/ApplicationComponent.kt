@@ -17,9 +17,12 @@ import com.example.imedical.forgetpassword.verify.presentation.activity.VerifyPa
 import com.example.imedical.home.presentation.view.fragment.BestSellersFragment
 import com.example.imedical.home.presentation.view.fragment.NavigationFragment
 import com.example.imedical.home.presentation.view.activity.HomeActivity
+import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
 import com.example.imedical.home.presentation.view.fragment.OffersFragment
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
+import com.example.imedical.shop.presentation.view.activity.FilterShopActivity
+import com.example.imedical.shop.presentation.view.fragment.ShopFragment
 import com.example.imedical.verification.presentation.fragment.VerificationFragment
 import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
 import dagger.Component
@@ -41,7 +44,8 @@ import javax.inject.Singleton
     ResetPasswordModule::class,
     CompareListModule::class,
     AddressesModule::class,
-    CategoriesModule::class]) interface ApplicationComponent {
+    CategoriesModule::class,
+    ShopModule::class]) interface ApplicationComponent {
 
     fun inject(baseActivity: BaseActivity)
     fun inject(homeActivity: HomeActivity)
@@ -60,4 +64,7 @@ import javax.inject.Singleton
     fun inject(compareListFragment: CompareListFragment)
     fun inject(addressesFragment: AddressesFragment)
     fun inject(categoriesActivity: CategoriesActivity)
+    fun inject(shopFragment: ShopFragment)
+    fun inject(productDetailsActivity: ProductDetailsActivity)
+    fun inject(filterShopActivity: FilterShopActivity)
 }

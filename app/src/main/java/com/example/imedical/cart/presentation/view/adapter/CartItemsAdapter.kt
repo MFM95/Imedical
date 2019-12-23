@@ -11,6 +11,7 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.example.imedical.R
 import com.example.imedical.cart.domain.model.CartItemModel
 import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
 class CartItemsAdapter(
     private val context: Context,
@@ -41,7 +42,9 @@ class CartItemsAdapter(
             val quantity = view.findViewById<TextView>(R.id.itemCartQuantity)
             Picasso.with(context)
                 .load(item.cover)
+                .transform(RoundedCornersTransformation(30, 2))
                 .into(view.findViewById<ImageView>(R.id.itemCartImageView))
+
             view.findViewById<TextView>(R.id.itemCartLabelTextView).text = item.name
             view.findViewById<TextView>(R.id.itemCartPriceTextView).text = item.price.toString() + " LE"
             quantity.text = item.quantity.toString()
@@ -51,6 +54,7 @@ class CartItemsAdapter(
                     quantity.text = (it + 1).toString()
                     cartActions.updateItem(item, it + 1)
                     item.quantity = it + 1
+                    cartActions.addToTotal(item.price)
                 }
             }
             //Decrease quantity
@@ -60,6 +64,7 @@ class CartItemsAdapter(
                         quantity.text = (it - 1).toString()
                         item.quantity = (it - 1)
                         cartActions.updateItem(item, it - 1)
+                        cartActions.removeFromTotal(item.price)
                     }
                 }
             }
@@ -70,6 +75,8 @@ class CartItemsAdapter(
         }
     }
     interface CartActions{
+        fun addToTotal(num: Int)
+        fun removeFromTotal(num: Int)
         fun updateItem(item: CartItemModel, quantity: Int)
         fun deleteItem(item: CartItemModel, position: Int)
     }

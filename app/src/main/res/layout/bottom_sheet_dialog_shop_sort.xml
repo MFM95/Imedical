@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_30"
+        android:background="@color/colorWhite"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+            android:id="@+id/tvSortTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_95"
+            android:text="Sort by"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:id="@+id/rgSort"
+            app:layout_constraintTop_toBottomOf="@id/tvSortTitle">
+        <RadioButton
+                android:id="@+id/newestSort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Newest"
+                android:checked="true"
+                android:buttonTint="@color/faded_blue"
+                android:textColor="@color/grey_95"/>
+
+        <RadioButton
+                android:id="@+id/oldestSort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Oldest"
+                android:buttonTint="@color/faded_blue"
+                android:textColor="@color/grey_95"/>
+
+        <RadioButton
+                android:id="@+id/cheapestSort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price high to low"
+                android:buttonTint="@color/faded_blue"
+                android:textColor="@color/grey_95"/>
+        <RadioButton
+                android:id="@+id/expensiveSort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price low to high"
+                android:buttonTint="@color/faded_blue"
+                android:textColor="@color/grey_95"/>
+
+    </RadioGroup>
+
+    <Button
+            android:id="@+id/btnSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Sort"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="@dimen/dimen_10"
+            android:paddingBottom="@dimen/dimen_10"
+            app:layout_constraintTop_toBottomOf="@+id/rgSort"
+            android:background="@drawable/blue_btn_bg"/>
+</android.support.constraint.ConstraintLayout>

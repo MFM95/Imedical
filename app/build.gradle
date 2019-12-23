@@ -89,6 +89,7 @@ dependencies {
      * Picasso
      * */
     api "com.squareup.picasso:picasso:2.5.2"
+    api 'jp.wasabeef:picasso-transformations:2.2.1'
 
     /**
      * Room
@@ -98,7 +99,6 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:1.1.1"
     api "android.arch.lifecycle:extensions:1.1.1"
     api "android.arch.persistence.room:runtime:1.1.1"
-
 
 
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"

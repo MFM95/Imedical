@@ -73,11 +73,14 @@ class BestSellersFragment : BaseFragment() {
     private fun subscribeViewModel(){
         if(!viewModel.getBestSellers().hasObservers()){
             viewModel.getBestSellers().observe(this, Observer { models ->
+                bestSellersProgressBar.visibility = View.GONE
                 if(models?.status == true) {
                     adapter.products.addAll(models.data!!)
-                    bestSellersProgressBar.visibility = View.GONE
                     adapter.notifyDataSetChanged()
-                } else showMessage(models?.error)
+                } else{
+                    bestSellersLabel.visibility = View.GONE
+                    showMessage(models?.error)
+                }
             })
             viewModel.updateBestSellers()
 

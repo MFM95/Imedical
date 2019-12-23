@@ -26,6 +26,7 @@ class CompareListRepository @Inject constructor(private val database: ImedicalDa
         return ProductEntity(
             model.id,
             model.name,
+            model.description,
             model.imageUrl,
             model.price,
             model.salePrice,
