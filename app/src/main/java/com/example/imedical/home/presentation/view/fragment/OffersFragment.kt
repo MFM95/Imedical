@@ -58,6 +58,7 @@ class OffersFragment : BaseFragment() {
         observeOnAddToCartClick()
         observeOnProductClick()
         observeOnWishClick()
+        observeOnRetry()
     }
 
     private fun setupRecyclerView(){
@@ -71,11 +72,16 @@ class OffersFragment : BaseFragment() {
     private fun subscribeViewModel(){
         if(!viewModel.getOffers().hasObservers()){
             viewModel.getOffers().observe(this, Observer { models ->
+                offersProgressBar.visibility = View.GONE
+
                 if(models?.status == true) {
                     adapter.products.addAll(models.data!!)
-                    offersProgressBar.visibility = View.GONE
                     adapter.notifyDataSetChanged()
-                } else showMessage(models?.error)
+                } else {
+                    llError.visibility = View.VISIBLE
+                    offersLabel.visibility = View.GONE
+                    showMessage(models?.error)
+                }
             })
             viewModel.updateOffers()
 
@@ -104,7 +110,12 @@ class OffersFragment : BaseFragment() {
             }
         })
     }
-
+    private fun observeOnRetry(){
+        btnErrorRetry.setOnClickListener {
+            activity?.finish()
+            activity?.startActivity(activity?.intent)
+        }
+    }
     private val productCallback = object : IProductCallback{
         override fun onCompareClick(productModel: ProductModel) {
             compareViewModel.addToCompareList(productModel)

@@ -63,6 +63,7 @@ object DataMapper {
         return ProductModel(
             entity.id,
             entity.name,
+            entity.description,
             entity.cover,
             entity.price,
             entity.salePrice,
@@ -82,7 +83,7 @@ object DataMapper {
 
     fun mapAddWish(entityWrapper: ApiResponse<EmptyResponse>?, index: Int): DataWrapper<Int>{
         if(entityWrapper == null)
-            return DataWrapper(false, index, "server_error")
+            return DataWrapper(false, index, "Server error")
         return DataWrapper(entityWrapper.status?:false, index, entityWrapper.error)
     }
 }

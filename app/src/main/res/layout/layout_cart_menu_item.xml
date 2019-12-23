@@ -15,6 +15,7 @@
             android:contentDescription="Cart"
             android:gravity="center"
             android:layout_marginTop="10dp"
+            android:tint="@color/faded_blue"
             android:src="@drawable/ic_shopping_cart_white_sm" />
 
     <TextView

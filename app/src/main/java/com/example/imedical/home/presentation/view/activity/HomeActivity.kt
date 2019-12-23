@@ -65,7 +65,8 @@ class HomeActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        cartViewModel.updateCart()
+        if(userPreferences.isUserLogged())
+            cartViewModel.updateCart()
         updateCartLabel()
     }
 
@@ -104,13 +105,23 @@ class HomeActivity : BaseActivity() {
             R.id.action_cart -> {
                 openCart()
             }
+            R.id.action_search -> {
+                openSearch()
+            }
         }
         return true
     }
 
+    private fun openSearch(){
+        supportFragmentManager.fragments
+    }
     private fun openCart(){
         if (userPreferences.isUserLogged())
             startActivity(Intent(this, CartActivity::class.java))
         else showMessage("Login to be able to use this feature")
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

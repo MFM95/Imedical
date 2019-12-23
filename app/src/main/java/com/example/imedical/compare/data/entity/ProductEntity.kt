@@ -9,6 +9,7 @@ data class ProductEntity(
 
     @PrimaryKey @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "cover") val cover: String,
     @ColumnInfo(name = "price") val price: Double,
     @ColumnInfo(name = "sale_price") val salePrice: Double?,

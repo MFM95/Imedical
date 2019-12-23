@@ -23,6 +23,7 @@ object DataMapper {
         return ProductModel(
             entity.id,
             entity.name,
+            entity.description,
             entity.cover,
             entity.price,
             entity.salePrice,
