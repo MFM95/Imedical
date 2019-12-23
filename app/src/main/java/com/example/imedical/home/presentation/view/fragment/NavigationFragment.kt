@@ -24,6 +24,7 @@ import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
 import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
+import com.example.imedical.shop.presentation.view.fragment.ShopFragment
 import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
 import kotlinx.android.synthetic.main.app_bar_home.*
 import javax.inject.Inject
@@ -110,6 +111,9 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
+            R.id.nav_login ->{
+                activity!!.startActivity(Intent(activity, LoginActivity::class.java))
+            }
             R.id.nav_home -> {
                 if(fragmentManager != null)
                     activity?.supportFragmentManager?.beginTransaction()!!
@@ -119,14 +123,20 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
             R.id.nav_categories -> {
                 val intent = Intent(activity, CategoriesActivity::class.java)
                 startActivity(intent)
-            }
-            R.id.nav_shop -> {
-
+            //R.id.nav_categories -> {
+            //    val intent = Intent(activity, CategoriesActivity::class.java)
+            //      startActivity(intent)
+            //}
+            R.id.nav_shop ->{
+                replaceFragment(ShopFragment.newInstance())
             }
             R.id.nav_wish_list -> {
                 if(fragmentManager != null && userPreferences.isUserLogged())
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.homeFragment, WishListFragment())?.commitNow()
-                else showMessage("Login to be able to use this feature")
+                else {
+                    navView.setCheckedItem(R.id.nav_home)
+                    showMessage("Login to be able to use this feature")
+                }
 
             }
             R.id.nav_compare_list -> {
@@ -165,10 +175,14 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
         SETTINGS
     }
     private fun hideLogout(){
+        navView.menu.findItem(R.id.nav_settings).isVisible = false
         navView.menu.findItem(R.id.nav_logout).isVisible = false
+        navView.menu.findItem(R.id.nav_login).isVisible = true
     }
 
     private fun showLogout(){
+        navView.menu.findItem(R.id.nav_settings).isVisible = true
         navView.menu.findItem(R.id.nav_logout).isVisible = true
+        navView.menu.findItem(R.id.nav_login).isVisible = false
     }
 }

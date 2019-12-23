@@ -1,120 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".cart.presentation.view.fragment.CartFragment">
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/cartItemsRecyclerView"
+        android:layout_height="match_parent">
+
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:layout_marginTop="21dp">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Subtotal"
-                android:layout_alignParentStart="true"
-                android:textColor="#959595"/>
-
-        <TextView
-                android:id="@+id/cartSubtotalTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:layout_alignParentEnd="true"
-                android:textColor="#959595"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:layout_marginTop="21dp">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Shipping"
-                android:layout_alignParentStart="true"
-                android:textColor="#959595"/>
-
-        <TextView
-                android:id="@+id/cartShippingTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:layout_alignParentEnd="true"
-                android:textColor="#959595"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:layout_marginTop="21dp">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Tax"
-                android:layout_alignParentStart="true"
-                android:textColor="#959595"/>
-
-        <TextView
-                android:id="@+id/cartTaxTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:layout_alignParentEnd="true"
-                android:textColor="#959595"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:layout_marginTop="21dp">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Total"
-                android:layout_alignParentStart="true"
-                android:textColor="#959595"/>
-
-        <TextView
-                android:id="@+id/cartTotalTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:layout_alignParentEnd="true"
-                android:textColor="#959595"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="21dp">
-        <Button
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".cart.presentation.view.fragment.CartFragment">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/cartItemsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/blue_btn_bg"
-                android:text="Checkout"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textColor="@color/colorWhite"/>
-    </RelativeLayout>
-</LinearLayout>
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="10dp"/>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="21dp">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Subtotal"
+                    android:layout_alignParentStart="true"
+                    android:textColor="#959595"/>
+
+            <TextView
+                    android:id="@+id/cartSubtotalTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="#959595"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="21dp">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Shipping"
+                    android:layout_alignParentStart="true"
+                    android:textColor="#959595"/>
+
+            <TextView
+                    android:id="@+id/cartShippingTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="#959595"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="21dp">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Tax"
+                    android:layout_alignParentStart="true"
+                    android:textColor="#959595"/>
+
+            <TextView
+                    android:id="@+id/cartTaxTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="#959595"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="21dp">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Total"
+                    android:layout_alignParentStart="true"
+                    android:textColor="#959595"/>
+
+            <TextView
+                    android:id="@+id/cartTotalTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="#959595"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="21dp">
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_btn_bg"
+                    android:text="Checkout"
+                    android:textAllCaps="false"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorWhite"/>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

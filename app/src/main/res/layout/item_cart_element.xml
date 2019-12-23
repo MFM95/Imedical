@@ -5,12 +5,12 @@
         android:layout_height="98dp"
         android:orientation="horizontal">
 
-    <com.daimajia.swipe.SwipeLayout xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    <com.daimajia.swipe.SwipeLayout
             android:id="@+id/swipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            swipe:leftEdgeSwipeOffset="0dp"
-            swipe:rightEdgeSwipeOffset="0dp">
+            app:leftEdgeSwipeOffset="0dp"
+            app:rightEdgeSwipeOffset="0dp">
 
         <ImageView
                 android:id="@+id/trash"
@@ -37,7 +37,7 @@
                     android:foreground="@drawable/transparent_rounded_corners_bg"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    swipe:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
                     android:id="@+id/itemCartLabelTextView"
@@ -75,14 +75,15 @@
 
                 <ImageView
                         android:id="@+id/itemCartDecrease"
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_item_reduce" />
 
                 <TextView
                         android:id="@+id/itemCartQuantity"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="23dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="15dp"
@@ -92,8 +93,9 @@
 
                 <ImageView
                         android:id="@+id/itemCartIncrease"
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_item_increase" />
             </LinearLayout>
 

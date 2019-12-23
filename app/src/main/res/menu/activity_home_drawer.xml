@@ -8,25 +8,27 @@
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_home_sm"
                 android:title="@string/menu_home"/>
-        <item
-                android:id="@+id/nav_categories"
-                android:icon="@drawable/ic_menu_sm"
-                android:title="@string/menu_categories"/>
+
+        <item android:id="@+id/nav_login"
+            android:icon="@drawable/ic_input_24px"
+                android:title="Login"/>
+
         <item
                 android:id="@+id/nav_shop"
-                android:icon="@drawable/ic_shopping_cart_white_sm"
-                android:title="@string/menu_shop"/>
+                android:icon="@drawable/ic_shop_done"
+                android:title="Shop"/>
         <item
                 android:id="@+id/nav_wish_list"
                 android:icon="@drawable/ic_wish_border_sm"
+                android:iconTint="@color/faded_blue"
                 android:title="@string/menu_wish_list"/>
         <item
                 android:id="@+id/nav_compare_list"
-                android:icon="@drawable/ic_compare_sm"
+                android:icon="@drawable/ic_compare_action"
                 android:title="@string/menu_compare_list"/>
     </group>
 
-    <item android:title="Account">
+    <item android:title="">
         <menu>
             <item
                     android:id="@+id/nav_settings"

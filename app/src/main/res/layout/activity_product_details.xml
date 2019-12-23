@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.presentation.view.activity.ProductDetailsActivity">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_50">
+
+            <ImageView
+                    android:id="@+id/ivProductCover"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:scaleType="fitXY"
+                    android:background="@color/faded_blue"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                    android:id="@+id/ivProductWishList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_wishlist_white_bg"
+                    app:layout_constraintBottom_toBottomOf="@id/ivProductCover"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/dimen_10"
+                    app:layout_constraintTop_toBottomOf="@id/ivProductCover" />
+
+            <ImageView
+                    android:id="@+id/ivProductCompare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_compare_white_bg"
+                    app:layout_constraintBottom_toBottomOf="@id/ivProductCover"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/dimen_10"
+                    app:layout_constraintTop_toBottomOf="@id/ivProductCover" />
+
+            <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/grey_95"
+                    android:textSize="17sp"
+                    android:layout_marginStart="@dimen/dimen_20"
+                    android:layout_marginTop="@dimen/dimen_30"
+                    app:layout_constraintTop_toBottomOf="@id/ivProductCompare"/>
+
+            <TextView
+                    android:id="@+id/tvProductBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_95"
+                    android:text="Brand"
+                    app:layout_constraintTop_toTopOf="@id/tvProductBrandName"
+                    app:layout_constraintBottom_toBottomOf="@id/tvProductBrandName"
+                    app:layout_constraintStart_toStartOf="@id/tvProductName"/>
+
+            <TextView
+                    android:id="@+id/tvProductBrandName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:textColor="@color/colorWhite"
+                    android:text="Brand"
+                    android:background="@drawable/bg_rounded_edges_faded_blue"
+                    android:layout_marginStart="@dimen/dimen_10"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="7dp"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductName"
+                    app:layout_constraintStart_toEndOf="@id/tvProductBrand"/>
+            <TextView
+                    android:id="@+id/tvProductDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginEnd="@dimen/dimen_20"
+                    android:textColor="@color/grey_95"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductBrand"
+                    app:layout_constraintStart_toStartOf="@id/tvProductBrand"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/dimen_20"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProductName"
+                    app:layout_constraintEnd_toEndOf="parent">
+                <TextView
+                        android:id="@+id/tvProductQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/grey_95"
+                        android:text="Quantity"
+                        android:layout_marginEnd="@dimen/dimen_10"/>
+
+                <ImageView
+                        android:id="@+id/itemCartDecrease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_item_reduce" />
+
+                <TextView
+                        android:id="@+id/itemProductQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="1"
+                        android:textColor="#6799cf"
+                        android:textSize="14sp" />
+
+                <ImageView
+                        android:id="@+id/itemCartIncrease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_item_increase" />
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_btn_bg"
+            android:layout_margin="@dimen/dimen_20"
+            android:text="Add to cart"
+            android:paddingEnd="@dimen/dimen_30"
+            android:textSize="17sp"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentBottom="true"/>
+
+    <TextView
+            android:id="@+id/tvProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 LE"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:layout_marginEnd="@dimen/dimen_10"
+            android:textColor="@color/colorWhite"
+            android:layout_alignTop="@+id/btnAddToCart"
+            android:layout_alignEnd="@id/btnAddToCart"
+            android:layout_alignBottom="@id/btnAddToCart"/>
+</RelativeLayout>

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#0092eb</color>
     <color name="colorPrimaryDark">#006c9c</color>
-    <color name="colorAccent">#fe4c50</color>
+    <color name="colorAccent">#6799cf</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="lightGray">#dee3e0</color>
@@ -15,6 +15,7 @@
     <color name="cool_blue">#4c7eb4</color>
     <color name="faded_blue">#6799cf</color>
     <color name="faded_blue_1">#1c6799cf</color>
-    <color name="pale_grey">#fbfbfc</color>
+    <color name="grey_95">#959595</color>
+    <color name="colorRose">#fe4c50</color>
 
 </resources>
