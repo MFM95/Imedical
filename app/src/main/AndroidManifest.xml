@@ -20,7 +20,9 @@
         <activity
                 android:name=".addresses.presentation.view.activity.ProfileActivity"
                 android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".categories.presentation.view.activity.CategoriesActivity" />
+        <activity android:name=".categories.presentation.view.activity.CategoriesActivity"
+                android:theme="@style/AppTheme.NoActionBar"
+                />
         <activity android:name=".cart.presentation.view.activity.CartActivity" />
         <activity
                 android:name=".home.presentation.view.activity.HomeActivity"
