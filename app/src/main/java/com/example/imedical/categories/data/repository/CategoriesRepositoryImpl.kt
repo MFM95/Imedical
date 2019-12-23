@@ -13,7 +13,4 @@ class CategoriesRepositoryImpl @Inject constructor(private val apiCalls: APICall
        return DataMapper.mapCategoriesResponse(apiCalls.getAllCategories())
     }
 
-    override suspend fun getCategoryChildren(id: Int): DataWrapper<ArrayList<CategoryModel>> {
-        return DataMapper.mapCategoriesResponse(apiCalls.getCategoryChildren(id))
-    }
 }

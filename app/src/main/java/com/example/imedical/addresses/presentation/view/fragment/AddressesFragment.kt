@@ -2,10 +2,7 @@ package com.example.imedical.addresses.presentation.view.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +13,7 @@ import android.widget.ScrollView
 
 import com.example.imedical.R
 import com.example.imedical.addresses.domain.model.AddressModel
+import com.example.imedical.addresses.domain.model.Country
 import com.example.imedical.addresses.domain.model.Province
 import com.example.imedical.addresses.presentation.view.adapter.AddressesAdapter
 import com.example.imedical.addresses.presentation.viewmodel.AddressesViewModel
@@ -34,10 +32,12 @@ class AddressesFragment : BaseFragment() {
 
     private lateinit var addressesAdapter: AddressesAdapter
 
-    private var provinces = ArrayList<Int>()
+    private var provincesIds = ArrayList<Int>()
+    private var provincesNames = ArrayList<String>()
     private var provincesList: List<Province> = ArrayList<Province>()
     private var addresses = ArrayList<AddressModel>()
-    private var selectedProvince = 0
+    private var selectedProvinceId = 0
+    private var selectedProvinceName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
@@ -67,19 +67,22 @@ class AddressesFragment : BaseFragment() {
             Observer {
                 it?.let {
                     addresses = ArrayList(it)
-                    setUpRecyclerView(addresses)
+                    if(!provincesList.isNullOrEmpty())
+                        setUpRecyclerView()
                 }
             })
     }
 
     private fun initUI () {
         tvAddAddress.setOnClickListener {
-            if(provinces.isNullOrEmpty()) {
+            if(provincesIds.isNullOrEmpty()) {
                 getProvinces(true)
             } else {
                 tvAddAddress.visibility = View.GONE
                 lyAddAddressLayout.visibility = View.VISIBLE
                 scrollAddresses.fullScroll(ScrollView.FOCUS_DOWN)
+                edtAddressStreet.setText("")
+                edtAddressPhone.setText("")
             }
         }
 
@@ -92,17 +95,25 @@ class AddressesFragment : BaseFragment() {
         val alias = "Home"
         val street = edtAddressStreet.text.toString()
         val phone = edtAddressPhone.text.toString()
+        val provinceId = selectedProvinceId
+        val provinceName = selectedProvinceName
         addressesViewModel.createAddress(alias = alias, address1 = street, address2 = "",
-            phone = phone, countryId = 1, provinceId = selectedProvince)
+            phone = phone, countryId = 1, provinceId = provinceId)
         addressesViewModel.getCreatedAddressLiveData().observe(this, Observer {
             if(it != null) {
                 showMessage(getString(R.string.add_addresses_success_msg))
                 tvAddAddress.visibility = View.VISIBLE
                 lyAddAddressLayout.visibility = View.GONE
-                // todo add address to the list
-                addressesAdapter.apply {
-                    notifyDataSetChanged()
-                }
+                val address = AddressModel(
+                    alias = alias, address_1 = street, address_2 = "",
+                    phone = phone,
+                    country = Country(id = 1, name = ""),
+                    province = Province(id = provinceId, name = provinceName))
+                addresses.add(address)
+                setUpRecyclerView()
+//                addressesAdapter.apply {
+//                    notifyItemChanged(itemCount-1)
+//                  }
             } else {
                 showMessage(getString(R.string.add_addresses_failure_msg))
             }
@@ -114,15 +125,20 @@ class AddressesFragment : BaseFragment() {
         addressesViewModel.getCountryProvincesLiveData().observe(this, Observer {
             it?.let {
                 provincesList = it.provinces
-                val provincesData = ArrayList<String>()
                 for (province in provincesList)  {
-                    provincesData.add(province.name!!)
-                    provinces.add(province.id!!)
+                    provincesNames.add(province.name!!)
+                    provincesIds.add(province.id!!)
                 }
-                setUpSpinner(provincesData)
-                selectedProvince = provinces[0]
+                setUpSpinner(provincesNames)
+                selectedProvinceId = provincesIds[0]
+                selectedProvinceName = provincesNames[0]
                 if(showAddAddress)
                     showAddAddressLayout()
+                else {
+                    if(!addresses.isNullOrEmpty())
+                        setUpRecyclerView()
+
+                }
             }
         })
     }
@@ -131,6 +147,8 @@ class AddressesFragment : BaseFragment() {
         tvAddAddress.visibility = View.GONE
         lyAddAddressLayout.visibility = View.VISIBLE
         scrollAddresses.fullScroll(ScrollView.FOCUS_DOWN)
+        edtAddressStreet.setText("")
+        edtAddressPhone.setText("")
     }
 
     private fun setUpSpinner(items: ArrayList<String>) {
@@ -149,13 +167,13 @@ class AddressesFragment : BaseFragment() {
                 position: Int,
                 id: Long
             ) {
-                selectedProvince = provinces[position]
+                selectedProvinceId = provincesIds[position]
             }
 
         }
     }
-    private fun setUpRecyclerView(addressesList: ArrayList<AddressModel>) {
-        addressesAdapter = AddressesAdapter(addressesList, activity!!, provincesList)
+    private fun setUpRecyclerView() {
+        addressesAdapter = AddressesAdapter(addresses, activity!!, provincesList)
         rvAddresses.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rvAddresses.adapter = addressesAdapter
@@ -188,15 +206,20 @@ class AddressesFragment : BaseFragment() {
     private fun observeOnEditItem() {
         addressesAdapter.onEditClickLiveData.observe(this, Observer {
             it?.let {
-                editAddress(it!!)
+                editAddress(it.first, it.second)
             }
         })
     }
 
-    private fun editAddress(address: AddressModel) {
+    private fun editAddress(address: AddressModel, position: Int) {
         addressesViewModel.updateAddress(address.id?: 0, address.alias, address.address_1, address.address_2, address.country!!.id, address.province?.id, address.phone)
         addressesViewModel.getUpdateAddressLiveData().observe(this, Observer {
             showMessage(it)
+            if(addresses.size > position) {
+                addresses[position] = address
+                setUpRecyclerView()
+            }
+
         })
     }
     companion object {
