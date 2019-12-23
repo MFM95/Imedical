@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.imedical">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.example.imedical">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+            android:name=".AndroidApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".login.presentation.activity.LoginActivity">
-        </activity>
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".home.presentation.view.activity.ProductDetailsActivity"></activity>
+        <activity android:name=".shop.presentation.view.activity.FilterShopActivity" />
+        <activity
+                android:name=".addresses.presentation.view.activity.ProfileActivity"
+                android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".categories.presentation.view.activity.CategoriesActivity" />
+        <activity android:name=".cart.presentation.view.activity.CartActivity" />
+        <activity
+                android:name=".home.presentation.view.activity.HomeActivity"
+                android:label="@string/title_activity_home"
+                android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity" />
+        <activity android:name=".forgetpassword.verify.presentation.activity.VerifyPasswordActivity" />
+        <activity android:name=".forgetpassword.forget.presentation.activity.ForgetPasswordActivity" />
+        <activity android:name=".verification.presentation.activity.VerificationActivity" />
+        <activity android:name=".registration.presentation.activity.RegistrationActivity" />
+        <activity
+                android:name=".splash.SplashActivity"
+                android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".login.presentation.view.activity.LoginActivity" />
     </application>
 
 </manifest>

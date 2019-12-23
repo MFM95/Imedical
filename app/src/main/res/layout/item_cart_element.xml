@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
+        android:orientation="horizontal">
+
+    <com.daimajia.swipe.SwipeLayout
+            android:id="@+id/swipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:leftEdgeSwipeOffset="0dp"
+            app:rightEdgeSwipeOffset="0dp">
+
+        <ImageView
+                android:id="@+id/trash"
+                android:layout_width="98dp"
+                android:layout_height="98dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_swipe_delete_bg"
+                android:tag="Bottom3" />
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="5dp">
+
+            <ImageView
+                    android:id="@+id/itemCartImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="17dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/transparent_rounded_corners_bg"
+                    android:foreground="@drawable/transparent_rounded_corners_bg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                    android:id="@+id/itemCartLabelTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10"
+                    android:layout_weight="1"
+                    android:ellipsize="none"
+                    android:maxWidth="140dp"
+                    android:maxLines="100"
+                    android:scrollHorizontally="false"
+                    android:textColor="#959595"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/itemCartPriceTextView"
+                    app:layout_constraintStart_toEndOf="@id/itemCartImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/itemCartPriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10"
+                    android:textColor="#6799cf"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/itemCartImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/itemCartLabelTextView" />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_30"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/itemCartLabelTextView">
+
+                <ImageView
+                        android:id="@+id/itemCartDecrease"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_item_reduce" />
+
+                <TextView
+                        android:id="@+id/itemCartQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="5"
+                        android:textColor="#6799cf"
+                        android:textSize="14sp" />
+
+                <ImageView
+                        android:id="@+id/itemCartIncrease"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_item_increase" />
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </com.daimajia.swipe.SwipeLayout>
+
+</LinearLayout>

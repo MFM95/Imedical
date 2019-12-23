@@ -1,8 +1,9 @@
 package com.example.imedical.core
 
-import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.imedical.login.domain.model.UserModel
+import com.google.gson.Gson
 import javax.inject.Inject
 
 class UserPreferences @Inject constructor(private val sharedPreferences: SharedPreferences) {
@@ -14,7 +15,7 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
         editor.apply()
     }
 
-    fun getAccessToken(): String {
+    fun getAccessToken(): String? {
         return sharedPreferences.getString(ACCESS_TOKEN, "")
     }
 
@@ -25,7 +26,7 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
         Log.i(USER_ID, userId)
     }
 
-    fun getUserId(): String {
+    fun getUserId(): String? {
         return sharedPreferences.getString(USER_ID, "")
     }
 
@@ -41,6 +42,25 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
         clearSharedPrefs()
     }
 
+    fun increaseCartSize(){
+        var size = sharedPreferences.getInt(CART_SIZE, 0)
+        size++
+        sharedPreferences.edit().putInt(CART_SIZE, size).apply()
+    }
+
+    fun decreaseCartSize(){
+        var size = sharedPreferences.getInt(CART_SIZE, 0)
+        if(size > 0)
+            size--
+        sharedPreferences.edit().putInt(CART_SIZE, size).apply()
+    }
+
+    fun resetCartSize(){
+        sharedPreferences.edit().putInt(CART_SIZE, 0).apply()
+    }
+
+    fun getCartSize() = sharedPreferences.getInt(CART_SIZE, 0)
+
     private fun clearSharedPrefs() {
         val prefs = sharedPreferences.all
         for (prefToReset in prefs.entries) {
@@ -48,8 +68,25 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
         }
     }
 
+    fun updateCartSize(size: Int) {
+        sharedPreferences.edit().putInt(CART_SIZE, size).apply()
+    }
+
+    fun saveUserObject(userModel: UserModel?){
+        if(userModel != null)
+            sharedPreferences.edit().putString(USER_OBJECT, Gson().toJson(userModel)).apply()
+    }
+
+    fun getUserObject(): UserModel?{
+        val userString = sharedPreferences.getString(USER_OBJECT, "")
+        return if(userString != null && userString.isNotEmpty())
+            Gson().fromJson(sharedPreferences.getString(USER_OBJECT, ""), UserModel::class.java)
+        else return null
+    }
     companion object {
         const val ACCESS_TOKEN = "PREF_ACCESS_TOKEN"
         const val USER_ID = "PREF_USER_ID"
+        const val CART_SIZE = "CART_SIZE"
+        const val USER_OBJECT = "USER_OBJECT"
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_size">24sp</dimen>
+    <dimen name="details_size">18sp</dimen>
+    <dimen name="small_details_size">14sp</dimen>
+    <dimen name="login_padding">20dp</dimen>
+    <dimen name="login_margin">10dp</dimen>
+    <dimen name="registration_padding">20dp</dimen>
+    <dimen name="registration_margin">10dp</dimen>
+    <dimen name="edittext_text_size">15sp</dimen>
+    <dimen name="product_margin">10dp</dimen>
+    <dimen name="product_btn_padding">12dp</dimen>
+
+    <dimen name="dimen_4">4dp</dimen>
+    <dimen name="dimen_6">6dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_10">10dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_25">25dp</dimen>
+    <dimen name="dimen_30">30dp</dimen>
+    <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_50">50dp</dimen>
+    <dimen name="dimen_60">60dp</dimen>
+    <dimen name="dimen_70">70dp</dimen>
+    <dimen name="dimen_80">80dp</dimen>
+    <dimen name="dimen_90">90dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
+    <dimen name="dimen_150">150dp</dimen>
+    <dimen name="dimen_180">180dp</dimen>
+    <dimen name="dimen_200">200dp</dimen>
+    <dimen name="dimen_300">300dp</dimen>
+    <dimen name="dimen_400">400dp</dimen>
+
+
+</resources>

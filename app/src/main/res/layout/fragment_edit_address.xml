@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/tvUpdateAddressTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_marginEnd="@dimen/dimen_20"
+                android:text="@string/update_addresses_title"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/details_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputUpdateAddressAlias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_30"
+                android:layout_marginEnd="@dimen/dimen_20"
+                app:boxBackgroundMode="outline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUpdateAddressTitle"
+                tools:ignore="RtlCompat"
+                app:errorEnabled="true"
+                >
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtUpdateAddressAlias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_10"
+                    android:paddingEnd="@dimen/dimen_10"
+                    android:hint="@string/add_addresses_alias"
+                    android:maxLines="1"
+                    android:textSize="@dimen/small_details_size"
+                    android:imeOptions="actionDone"
+                    />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputUpdateAddressAddress1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_20"
+                app:boxBackgroundMode="outline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputUpdateAddressAlias"
+                tools:ignore="RtlCompat"
+                app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtUpdateAddressAddress1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_10"
+                    android:paddingEnd="@dimen/dimen_10"
+                    android:hint="@string/add_addresses_address1"
+                    android:maxLines="1"
+                    android:textSize="@dimen/small_details_size"
+                    android:imeOptions="actionDone"
+
+                    />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputUpdateAddressAddress2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_20"
+                app:boxBackgroundMode="outline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputUpdateAddressAddress1"
+                tools:ignore="RtlCompat"
+                app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtUpdateAddressAddress2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_10"
+                    android:paddingEnd="@dimen/dimen_10"
+                    android:hint="@string/add_addresses_address2"
+                    android:maxLines="1"
+                    android:textSize="@dimen/small_details_size"
+                    android:imeOptions="actionDone"
+
+                    />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputUpdateAddressCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_20"
+                app:boxBackgroundMode="outline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputUpdateAddressAddress2"
+                tools:ignore="RtlCompat"
+                app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtUpdateAddressCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_10"
+                    android:paddingEnd="@dimen/dimen_10"
+                    android:hint="@string/add_addresses_country"
+                    android:maxLines="1"
+                    android:textSize="@dimen/small_details_size"
+                    android:imeOptions="actionDone"
+
+                    />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputUpdateAddressZip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_20"
+                app:boxBackgroundMode="outline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputUpdateAddressCountry"
+                tools:ignore="RtlCompat"
+                app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtUpdateAddressZip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_10"
+                    android:paddingEnd="@dimen/dimen_10"
+                    android:hint="@string/add_addresses_zip"
+                    android:maxLines="1"
+                    android:textSize="@dimen/small_details_size"
+                    android:imeOptions="actionDone"
+
+                    />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputUpdateAddressPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_20"
+                app:boxBackgroundMode="outline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputUpdateAddressZip"
+                tools:ignore="RtlCompat"
+                app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtUpdateAddressPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_10"
+                    android:paddingEnd="@dimen/dimen_10"
+                    android:hint="@string/add_addresses_phone"
+                    android:maxLines="1"
+                    android:textSize="@dimen/small_details_size"
+                    android:imeOptions="actionDone"
+
+                    />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+                android:id="@+id/btnUpdateAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:text="@string/update_addresses_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputUpdateAddressPhone"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginEnd="@dimen/dimen_20"
+                android:background="@drawable/blue_btn_bg"
+                android:textColor="@color/colorWhite"
+                android:textAllCaps="false"
+                />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

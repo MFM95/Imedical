@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".shop.presentation.view.activity.FilterShopActivity">
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btnFilter">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+            <TextView
+                    android:id="@+id/tvFilterPriceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="40dp"
+                    android:textSize="14sp"
+                    android:text="Filter by price"
+                    android:textColor="@color/grey_95"
+                    android:layout_marginStart="@dimen/dimen_20"/>
+
+            <LinearLayout
+                    android:id="@+id/llPriceRange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/tvFilterPriceTitle">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Min:"
+                        android:layout_marginEnd="@dimen/dimen_10"/>
+                <EditText
+                        android:id="@+id/etMinPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="@dimen/dimen_40"
+                        android:layout_marginEnd="@dimen/dimen_40"
+                        android:textSize="10sp"
+                        android:textColor="@color/faded_blue"
+                        android:padding="@dimen/dimen_10"
+                        android:inputType="number"
+                        android:background="@drawable/rect_blue_stroke"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max:"
+                        android:layout_marginEnd="@dimen/dimen_10"/>
+                <EditText
+                        android:id="@+id/etMaxPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="@dimen/dimen_40"
+                        android:inputType="number"
+                        android:textSize="10sp"
+                        android:textColor="@color/faded_blue"
+                        android:padding="@dimen/dimen_10"
+                        android:layout_marginEnd="@dimen/dimen_40"
+                        android:background="@drawable/rect_blue_stroke"/>
+            </LinearLayout>
+
+
+            <TextView
+                    android:id="@+id/tvFilterBrandTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llPriceRange"
+                    android:layout_marginTop="70dp"
+                    android:textSize="14sp"
+                    android:text="Filter by Brand"
+                    android:textColor="@color/grey_95"
+                    android:layout_marginStart="@dimen/dimen_20"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvBrandsFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10"
+                    android:layout_marginEnd="@dimen/dimen_10"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/tvFilterBrandTitle"/>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+            android:id="@+id/btnFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/blue_btn_bg"
+            android:layout_alignParentBottom="true"/>
+</RelativeLayout>
