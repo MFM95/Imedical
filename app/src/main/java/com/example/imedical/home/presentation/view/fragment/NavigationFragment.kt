@@ -123,10 +123,7 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
             R.id.nav_categories -> {
                 val intent = Intent(activity, CategoriesActivity::class.java)
                 startActivity(intent)
-            //R.id.nav_categories -> {
-            //    val intent = Intent(activity, CategoriesActivity::class.java)
-            //      startActivity(intent)
-            //}
+            }
             R.id.nav_shop ->{
                 replaceFragment(ShopFragment.newInstance())
             }

@@ -18,6 +18,12 @@
                 android:icon="@drawable/ic_shop_done"
                 android:title="Shop"/>
         <item
+                android:id="@+id/nav_categories"
+                android:icon="@drawable/ic_menu_sm"
+                android:title="@string/menu_categories"/>
+
+        <item
+
                 android:id="@+id/nav_wish_list"
                 android:icon="@drawable/ic_wish_border_sm"
                 android:iconTint="@color/faded_blue"

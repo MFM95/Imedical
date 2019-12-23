@@ -16,6 +16,7 @@ import com.example.imedical.categories.presentation.viewmodel.CategoriesViewMode
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_categories.*
+import kotlinx.android.synthetic.main.app_bar_home.*
 import javax.inject.Inject
 
 class CategoriesActivity : BaseActivity() {
@@ -32,14 +33,18 @@ class CategoriesActivity : BaseActivity() {
         appComponent.inject(this)
         setContentView(R.layout.activity_categories)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesViewModel::class.java)
-
+        setSupportActionBar(findViewById(R.id.my_toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         getCategories()
     }
 
+
     private fun getCategories() {
         viewModel.getAllCategories()
+        showProgress()
         viewModel.getCategoriesLiveData().observe(this, Observer {
             it?.let {
+                hideProgress()
                 categoriesList = it
                 setUpCategoriesRecyclerView()
              }
