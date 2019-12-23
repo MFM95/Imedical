@@ -34,27 +34,4 @@ class APICalls @Inject constructor(private val retrofit: Retrofit) {
 
     }
 
-
-    suspend fun getCategoryChildren(id: Int): ApiResponse<GetCategoriesResponse> {
-        try {
-            val response = api.getCategoryChildren(id)
-
-            //If successful return body
-            if (response.isSuccessful)
-                return response.body()!!
-
-            //convert error body if not successful
-            val errorConverter: Converter<ResponseBody, ErrorResponse> =
-                retrofit.responseBodyConverter(ErrorResponse::class.java, arrayOf())
-            val errorBody = errorConverter.convert(response.errorBody()!!)
-
-            return ApiResponse(false, null, errorBody!!.error.joinToString(". \n"))
-
-        } catch (ex: Exception){
-            return ApiResponse(false, null, ex.message.toString())
-        }
-
-
-    }
-
 }

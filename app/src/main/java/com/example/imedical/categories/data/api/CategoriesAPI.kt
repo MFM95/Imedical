@@ -13,8 +13,4 @@ interface CategoriesAPI {
     suspend fun getAllCategories()
             : Response<ApiResponse<GetCategoriesResponse>>
 
-    @GET("category/get-childs/{id}")
-    suspend fun getCategoryChildren(@Path("id") id: Int)
-            : Response<ApiResponse<GetCategoriesResponse>>
-
 }

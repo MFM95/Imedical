@@ -1,9 +1,7 @@
 package com.example.imedical.addresses.presentation.view.adapter
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
-import android.location.Address
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,6 @@ import android.widget.ArrayAdapter
 import com.example.imedical.R
 import com.example.imedical.addresses.domain.model.AddressModel
 import com.example.imedical.addresses.domain.model.Province
-import kotlinx.android.synthetic.main.fragment_addresses.view.*
 import kotlinx.android.synthetic.main.item_address.view.*
 
 class AddressesAdapter(
@@ -22,11 +19,13 @@ class AddressesAdapter(
     private val provinces: List<Province>
 ) : RecyclerView.Adapter<AddressesAdapter.AddressesListHolder>() {
 
-    val onEditClickLiveData by lazy { MutableLiveData<AddressModel>() }
+    val onEditClickLiveData by lazy { MutableLiveData<Pair<AddressModel, Int>>() }
     val onDeleteClickLiveData by lazy { MutableLiveData<AddressModel>() }
 
     private var provincesIds = ArrayList<Int>()
-    private var selectedProvince = 0
+    private var provincesNames = ArrayList<String>()
+    private var selectedProvinceId = 0
+    private var selectedProvinceName = ""
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): AddressesListHolder {
         return AddressesListHolder(
@@ -47,6 +46,8 @@ class AddressesAdapter(
         RecyclerView.ViewHolder(view) {
 
         fun bind(addressModel: AddressModel, position: Int) {
+            selectedProvinceId = addressModel.province?.id?: 0
+            selectedProvinceName = addressModel.province?.name?: ""
             view.tvAddressCity.text = addressModel.province?.name
             view.tvAddressStreet.text = addressModel.address_1
             view.tvAddressPhone.text = addressModel.phone
@@ -70,23 +71,26 @@ class AddressesAdapter(
             }
 
             view.btnEditAddressSubmit.setOnClickListener {
-                if (selectedProvince == 0)
-                    selectedProvince = addressModel.province?.id!!
+                if (selectedProvinceId == 0) {
+                    selectedProvinceId = addressModel.province?.id!!
+                    selectedProvinceName = addressModel.province?.name?: ""
+                }
                 var updatedAddress = addressModel
                 updatedAddress.phone = view.edtEditAddressPhone.text.toString()
                 updatedAddress.address_1 = view.edtEditAddressStreet.text.toString()
-                updatedAddress.province = Province(selectedProvince, "")
-                onEditClickLiveData.value = updatedAddress
+                updatedAddress.province = Province(selectedProvinceId, selectedProvinceName)
+                onEditClickLiveData.value = Pair(updatedAddress, position)
                 view.lyAddressLayout.visibility = View.VISIBLE
                 view.lyEditAddressLayout.visibility = View.GONE
             }
 
-            val provincesNames = ArrayList<String>()
             provinces?.let {
                 for (item in provinces) {
                     provincesNames.add(item.name!!)
                     provincesIds.add(item.id!!)
                     if (item.id == addressModel.province!!.id) {
+                        selectedProvinceId = item.id!!
+                        selectedProvinceName = item.name!!
                     }
                 }
             }
@@ -100,6 +104,7 @@ class AddressesAdapter(
             val arrayAdapter = ArrayAdapter<String>(context, R.layout.support_simple_spinner_dropdown_item, items)
             arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
             view.spinnerEditAddressCity.adapter = arrayAdapter
+            view.spinnerEditAddressCity.prompt = selectedProvinceName
             view.spinnerEditAddressCity.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -112,7 +117,8 @@ class AddressesAdapter(
                     position: Int,
                     id: Long
                 ) {
-                    selectedProvince = provincesIds[position]
+                    selectedProvinceId = provincesIds[position]
+                    selectedProvinceName = provincesNames[position]
                 }
 
             }

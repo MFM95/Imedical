@@ -3,6 +3,8 @@ package com.example.imedical.categories.data.repository
 import com.example.imedical.categories.data.entity.Category
 import com.example.imedical.categories.data.entity.GetCategoriesResponse
 import com.example.imedical.categories.domain.model.CategoryModel
+import com.example.imedical.categories.domain.model.FirstChildren
+import com.example.imedical.categories.domain.model.SecondChildren
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.model.DataWrapper
 
@@ -22,9 +24,28 @@ object DataMapper {
     }
 
     private fun mapCategory(category: Category): CategoryModel {
+        val firstChildrenModel = ArrayList<FirstChildren>()
+        category.children?.let { firstChildren ->
+            for (firstChild in firstChildren) {
+                firstChild.children?.let { secondChildren ->
+                    val secondChildrenModel = ArrayList<SecondChildren>()
+                    for (secondChild in secondChildren) {
+                        val secondChildModel = SecondChildren(secondChild.id, secondChild.name,
+                            secondChild.childrenCount)
+                        secondChildrenModel.add(secondChildModel)
+                    }
+                    val firstChildModel = FirstChildren(firstChild.id, firstChild.name, firstChild.childrenCount,
+                        secondChildrenModel, false)
+                    firstChildrenModel.add(firstChildModel)
+                }
+            }
+        }
         return CategoryModel(
             category.id,
             category.name,
-            category.childrenCount)
+            category.childrenCount,
+            firstChildrenModel,
+            false
+            )
     }
 }
