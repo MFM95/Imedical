@@ -163,15 +163,19 @@ class ShopFragment : BaseFragment() {
 
         shopAdapter.cartClicked.observe(this, Observer {
             if(it != null) {
-                showProgress()
-                productViewModel.addToCart(it.id, it.index)
+                if(userPreferences.isUserLogged()) {
+                    showProgress()
+                    productViewModel.addToCart(it.id, it.index)
+                } else showMessage("Login to be able to use this feature")
             }
         })
 
         shopAdapter.wishListClicked.observe(this, Observer {
             if(it != null) {
-                showProgress()
-                productViewModel.addWish(it.id, it.index)
+                if(userPreferences.isUserLogged()) {
+                    showProgress()
+                    productViewModel.addWish(it.id, it.index)
+                } else showMessage("Login to be able to use this feature")
             }
         })
 

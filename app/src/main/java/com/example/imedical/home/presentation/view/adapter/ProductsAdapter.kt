@@ -3,6 +3,7 @@ package com.example.imedical.home.presentation.view.adapter
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.graphics.PorterDuff
+import android.os.Build
 import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
@@ -86,11 +87,15 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
                 .into(productImage)
 
             if(productModel.inWishList) {
-                wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_full))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_full))
+                } else ContextCompat.getDrawable(context, R.drawable.ic_wish_full)
                 wishButton.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent))
             }
             else {
-                wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_border_sm))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_border_sm))
+                } else ContextCompat.getDrawable(context, R.drawable.ic_wish_border_sm)
                 wishButton.setColorFilter(ContextCompat.getColor(context, R.color.colorBlack))
 
             }

@@ -93,11 +93,13 @@ class ProductDetailsActivity : BaseActivity() {
         }
         ivProductWishList.setOnClickListener {
             if(productModel != null) {
+                if(userPreferences.isUserLogged()) {
                 showProgress()
                 if (productModel?.inWishList == true)
                     productViewModel.removeWish(productModel!!.id, 0)
                 else productViewModel.addWish(productModel!!.id, 0)
                 productModel?.inWishList = !(productModel?.inWishList?:true)
+                } else showMessage("Login to be able to use this feature")
             }
         }
 
@@ -109,8 +111,10 @@ class ProductDetailsActivity : BaseActivity() {
         }
         btnAddToCart.setOnClickListener {
             if(productModel != null) {
-                showProgress()
-                productViewModel.addToCart(productModel!!.id, quantity)
+                if(userPreferences.isUserLogged()) {
+                    showProgress()
+                    productViewModel.addToCart(productModel!!.id, quantity)
+                }else showMessage("Login to be able to use this feature")
             }
         }
     }

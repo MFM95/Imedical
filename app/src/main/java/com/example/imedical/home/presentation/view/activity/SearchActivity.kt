@@ -158,15 +158,19 @@ class SearchActivity : BaseActivity() {
 
         shopAdapter.cartClicked.observe(this, Observer {
             if(it != null) {
+                if(userPreferences.isUserLogged()) {
                 showProgress()
                 productViewModel.addToCart(it.id, it.index)
+                }else showMessage("Login to be able to use this feature")
             }
         })
 
         shopAdapter.wishListClicked.observe(this, Observer {
             if(it != null) {
-                showProgress()
+                if(userPreferences.isUserLogged()) {
+                    showProgress()
                 productViewModel.addWish(it.id, it.index)
+                }else showMessage("Login to be able to use this feature")
             }
         })
 
