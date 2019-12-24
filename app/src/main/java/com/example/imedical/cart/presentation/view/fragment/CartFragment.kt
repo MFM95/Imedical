@@ -3,6 +3,7 @@ package com.example.imedical.cart.presentation.view.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.imedical.cart.presentation.view.adapter.CartItemsAdapter
 import com.example.imedical.cart.presentation.viewmodel.CartViewModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.home.presentation.view.activity.CheckoutActivity
 import kotlinx.android.synthetic.main.fragment_cart.*
 import javax.inject.Inject
 
@@ -32,8 +34,12 @@ class CartFragment : BaseFragment() {
 
     private lateinit var adapter: CartItemsAdapter
     private var itemPositionToRemove = -1
+    private var itemPositionToUpdate = -1
     private var subtotal: Float? = 0.0f
     private var total: Float? = 0.0f
+
+    private val CHECKOUT_REQ = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
@@ -52,6 +58,9 @@ class CartFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupRecycler()
+        checkoutBtn.setOnClickListener {
+            startActivityForResult(Intent(activity, CheckoutActivity::class.java), CHECKOUT_REQ)
+        }
     }
 
     private fun setupRecycler() {
@@ -74,14 +83,36 @@ class CartFragment : BaseFragment() {
 
         viewModel.getRemoveFromCartLiveData().observe(this, Observer {
             hideProgress()
+            if(it?.status != true)
+                showMessage(it?.error)
             it?.let {
                 if(it.status && itemPositionToRemove != -1){
+                    it.data?.let { data -> bindCartData(data) }
                     adapter.items.removeAt(itemPositionToRemove)
                     adapter.notifyItemRemoved(itemPositionToRemove)
                     itemPositionToRemove = -1
                 } else showMessage(it.error)
             }
         })
+
+        viewModel.getUpdateCartLiveData().observe(this, Observer {
+            hideProgress()
+            if(it?.status != true)
+                showMessage(it?.error)
+            it?.data?.let { data ->
+                bindCartData(it.data)
+                if(itemPositionToUpdate != -1) {
+                    for (p in data.cartItems) {
+                        if(p.id == adapter.items[itemPositionToUpdate].id){
+                            adapter.items[itemPositionToUpdate].quantity = p.quantity
+                            adapter.notifyItemChanged(itemPositionToUpdate)
+                            break
+                        }
+                    }
+                }
+            }
+        })
+
     }
 
     private fun bindCartData(cartModel: CartModel) {
@@ -130,8 +161,10 @@ class CartFragment : BaseFragment() {
                 cartTotalTextView.text = String.format("%s LE", (total!! + num).toString())
         }
 
-        override fun updateItem(item: CartItemModel, quantity: Int) {
+        override fun updateItem(item: CartItemModel, quantity: Int, position: Int) {
+            showProgress()
             viewModel.updateCartItem(item.rowId, quantity)
+            itemPositionToUpdate = position
         }
 
         override fun deleteItem(item: CartItemModel, position: Int) {
@@ -140,5 +173,14 @@ class CartFragment : BaseFragment() {
             itemPositionToRemove = position
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == CHECKOUT_REQ && data != null) {
+            if(data.getBooleanExtra("success", false)){
+                activity?.finish()
+            }
+        }
     }
 }

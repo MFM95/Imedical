@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.presentation.view.activity.CheckoutActivity">
+
+    <RelativeLayout
+            android:id="@+id/addressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_60"
+            android:background="@drawable/bg_rounded_end"
+            android:padding="@dimen/dimen_20"
+            android:layout_marginEnd="@dimen/dimen_40"
+            app:layout_constraintTop_toTopOf="parent">
+        <TextView
+                android:id="@+id/addresslbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginEnd="@dimen/dimen_10"
+                android:textColor="@color/colorWhite"
+                android:text="Address"/>
+
+        <ImageView
+                android:id="@+id/addressArrow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:tint="@color/colorWhite"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentEnd="true"/>
+        <TextView
+                android:id="@+id/addressDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textAlignment="viewEnd"
+                android:layout_marginEnd="@dimen/dimen_10"
+                android:textColor="@color/colorWhite"
+                android:layout_toStartOf="@+id/addressArrow"
+                android:layout_toEndOf="@+id/addresslbl"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/paymentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_40"
+            android:background="@drawable/bg_rounded_end"
+            android:padding="@dimen/dimen_20"
+            android:layout_marginEnd="@dimen/dimen_40"
+            app:layout_constraintTop_toBottomOf="@id/addressLayout">
+        <TextView
+                android:id="@+id/paymentlbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginEnd="@dimen/dimen_10"
+                android:textColor="@color/colorWhite"
+                android:text="Payment"/>
+
+        <ImageView
+                android:id="@+id/paymentArrow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:tint="@color/colorWhite"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentEnd="true"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textAlignment="viewEnd"
+                android:text="Cash on delivery"
+                android:layout_marginEnd="@dimen/dimen_10"
+                android:textColor="@color/colorWhite"
+                android:layout_toStartOf="@+id/paymentArrow"
+                android:layout_toEndOf="@+id/paymentlbl"/>
+
+    </RelativeLayout>
+
+    <Button
+            android:id="@+id/checkoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_30"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:text="Confirm"
+            android:background="@drawable/blue_btn_bg"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+</android.support.constraint.ConstraintLayout>

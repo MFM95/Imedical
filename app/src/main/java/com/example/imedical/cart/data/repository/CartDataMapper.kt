@@ -7,9 +7,9 @@ import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.model.DataWrapper
 
 object CartDataMapper {
-    fun mapCartResponse(apiResponse: ApiResponse<CartResponse>): DataWrapper<CartModel>{
-        if(apiResponse.data == null){
-            return DataWrapper(false, null, apiResponse.error)
+    fun mapCartResponse(apiResponse: ApiResponse<CartResponse>?): DataWrapper<CartModel>{
+        if(apiResponse?.data == null){
+            return DataWrapper(false, null, apiResponse?.error?:"Server Error")
         }
         val items = ArrayList<CartItemModel>()
         for(entity in apiResponse.data.cartItems)

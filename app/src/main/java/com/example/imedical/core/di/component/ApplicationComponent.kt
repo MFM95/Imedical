@@ -14,10 +14,12 @@ import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.forgetpassword.forget.presentation.activity.ForgetPasswordActivity
 import com.example.imedical.forgetpassword.resetpassword.presentation.activity.ResetPasswordActivity
 import com.example.imedical.forgetpassword.verify.presentation.activity.VerifyPasswordActivity
+import com.example.imedical.home.presentation.view.activity.CheckoutActivity
 import com.example.imedical.home.presentation.view.fragment.BestSellersFragment
 import com.example.imedical.home.presentation.view.fragment.NavigationFragment
 import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
+import com.example.imedical.home.presentation.view.activity.SearchActivity
 import com.example.imedical.home.presentation.view.fragment.OffersFragment
 import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
@@ -67,4 +69,6 @@ import javax.inject.Singleton
     fun inject(shopFragment: ShopFragment)
     fun inject(productDetailsActivity: ProductDetailsActivity)
     fun inject(filterShopActivity: FilterShopActivity)
+    fun inject(searchActivity: SearchActivity)
+    fun inject(checkoutActivity: CheckoutActivity)
 }

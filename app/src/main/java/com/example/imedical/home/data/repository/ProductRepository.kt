@@ -1,5 +1,7 @@
 package com.example.imedical.home.data.repository
 
+import com.example.imedical.cart.data.repository.CartDataMapper
+import com.example.imedical.cart.domain.model.CartModel
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.core.model.ProductModel
 import com.example.imedical.home.data.api.ApiCalls
@@ -24,12 +26,15 @@ class ProductRepository @Inject constructor(private val apiCalls: ApiCalls) : IP
         return DataMapper.mapUser(apiCalls.getAuthUser())
     }
 
-    override suspend fun addToCart(productId: Int, quantity: Int): DataWrapper<Unit> {
-        return DataMapper.mapEmpty(apiCalls.addToCart(productId, quantity))
+    override suspend fun addToCart(productId: Int, quantity: Int): DataWrapper<CartModel> {
+        return CartDataMapper.mapCartResponse(apiCalls.addToCart(productId, quantity))
     }
 
     override suspend fun storeWish(id: Int, index: Int): DataWrapper<Int>{
         return DataMapper.mapAddWish(apiCalls.storeWish(id), index)
     }
 
+    override suspend fun checkout(addressId: Int): DataWrapper<Unit>{
+        return DataMapper.mapEmpty(apiCalls.checkout(addressId))
+    }
 }

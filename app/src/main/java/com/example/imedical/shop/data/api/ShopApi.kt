@@ -16,7 +16,7 @@ interface ShopApi {
         @Query("min") minPrice: Double?,
         @Query("max") maxPrice: Double?,
         @Query("q") query: String?,
-        @Query("brands") brands: String?,
+        @Query("brands[]") brands: List<Int>?,
         @Query("order_by") orderBy: String?,
         @Query("asc") asc: Boolean?,
         @Query("category") category: Int?,
