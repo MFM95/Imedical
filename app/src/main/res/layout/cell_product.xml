@@ -11,7 +11,7 @@
     <ImageView
             android:id="@+id/productImageView"
             android:layout_width="198dp"
-            android:layout_height="@dimen/dimen_100"
+            android:layout_height="130dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,10 +119,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:padding="@dimen/product_btn_padding"
-                android:layout_marginBottom="@dimen/dimen_10"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_compare_action"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
         <ImageView
@@ -134,8 +133,8 @@
                 android:background="@drawable/blue_btn_bg"
                 android:src="@drawable/ic_cart_blue_bg"
                 android:textAllCaps="false"
-                android:layout_marginBottom="@dimen/dimen_10"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="@dimen/dimen_8"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="@color/colorWhite" />
