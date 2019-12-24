@@ -71,8 +71,8 @@ class ProductDetailsActivity : BaseActivity() {
         })
 
         productViewModel.getAddToCartLiveData().observe(this, Observer {
+            hideProgress()
             if(it?.status == true) {
-                hideProgress()
                 showMessage("Added to cart successfully")
             } else showMessage(it?.error)
         })

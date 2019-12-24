@@ -51,20 +51,16 @@ class CartItemsAdapter(
             //Increase quantity
             view.findViewById<ImageView>(R.id.itemCartIncrease).setOnClickListener {
                 quantity.text.toString().toIntOrNull()?.let {
-                    quantity.text = (it + 1).toString()
-                    cartActions.updateItem(item, it + 1)
-                    item.quantity = it + 1
-                    cartActions.addToTotal(item.price)
+                    cartActions.updateItem(item, it + 1, position)
+                    //cartActions.addToTotal(item.price)
                 }
             }
             //Decrease quantity
             view.findViewById<ImageView>(R.id.itemCartDecrease).setOnClickListener {
                 quantity.text.toString().toIntOrNull()?.let {
                     if(it > 1) {
-                        quantity.text = (it - 1).toString()
-                        item.quantity = (it - 1)
-                        cartActions.updateItem(item, it - 1)
-                        cartActions.removeFromTotal(item.price)
+                        cartActions.updateItem(item, it - 1, position)
+                        //cartActions.removeFromTotal(item.price)
                     }
                 }
             }
@@ -77,7 +73,7 @@ class CartItemsAdapter(
     interface CartActions{
         fun addToTotal(num: Int)
         fun removeFromTotal(num: Int)
-        fun updateItem(item: CartItemModel, quantity: Int)
+        fun updateItem(item: CartItemModel, quantity: Int, position: Int)
         fun deleteItem(item: CartItemModel, position: Int)
     }
 }

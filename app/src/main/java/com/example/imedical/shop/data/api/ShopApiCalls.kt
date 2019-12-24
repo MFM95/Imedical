@@ -29,7 +29,7 @@ class ShopApiCalls @Inject constructor(private val retrofit: Retrofit) {
         var data: ApiResponse<ShopResponse>? = null
         try {
             val brandsSrc = if(brands == null) null else Gson().toJson(brands)
-            val response = api.getProducts(minPrice, maxPrice, query, brandsSrc, orderBy, asc, category, page)
+            val response = api.getProducts(minPrice, maxPrice, query, brands, orderBy, asc, category, page)
             data = if(response.isSuccessful && response.body() != null)
                 response.body()
             else ResponseError.handle(response, retrofit)

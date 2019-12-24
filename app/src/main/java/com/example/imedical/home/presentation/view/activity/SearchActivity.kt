@@ -1,45 +1,33 @@
-package com.example.imedical.shop.presentation.view.fragment
-
+package com.example.imedical.home.presentation.view.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.content.res.ObbInfo
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
-import android.support.design.widget.BottomSheetDialogFragment
-import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RadioButton
-import android.widget.RadioGroup
+import android.text.Editable
+import android.text.TextWatcher
 import com.example.imedical.R
-
 import com.example.imedical.core.model.ProductModel
-import com.example.imedical.core.platform.BaseFragment
+import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
-import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
 import com.example.imedical.home.presentation.viewmodel.ProductViewModel
+import com.example.imedical.shop.presentation.view.activity.FilterShopActivity
 import com.example.imedical.shop.presentation.view.adapter.ShopAdapter
 import com.example.imedical.shop.presentation.viewmodel.ShopViewModel
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.fragment_shop.*
+import kotlinx.android.synthetic.main.fragment_shop.rvShop
 import javax.inject.Inject
-import com.example.imedical.shop.presentation.view.activity.FilterShopActivity
-import kotlin.math.max
 
+class SearchActivity : BaseActivity() {
 
-/**
- * A simple [Fragment] subclass.
- */
-class ShopFragment : BaseFragment() {
-
-    private val FILTER_REQUEST_CODE = 1
-    @Inject lateinit var viewModelFactory: ViewModelFactory<ShopViewModel>
-    private val shopViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(ShopViewModel::class.java) }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory<ShopViewModel>
+    private val shopViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(
+        ShopViewModel::class.java) }
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var shopAdapter: ShopAdapter
     private var endOfData: Boolean = false
@@ -60,24 +48,31 @@ class ShopFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
+        setContentView(R.layout.activity_search)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         subscribeViewModel()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shop, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         initRecycler()
         listenToProductsActions()
-        setClickListeners()
-        addLoading()
-        shopViewModel.getShopProducts(minPrice, maxPrice, query, brands, orderBy, asc, category)
+        listenToTextChanges()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+    private fun listenToTextChanges(){
+        searchEditText.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                query = searchEditText.text.toString()
+                reloadData()
+            }
+        })
     }
 
     private fun subscribeViewModel(){
@@ -136,9 +131,9 @@ class ShopFragment : BaseFragment() {
     }
     private fun initRecycler(){
         val spans = if(shopViewModel.shopGridArrange.value == true) 2 else 1
-        gridLayoutManager = GridLayoutManager(context, spans)
+        gridLayoutManager = GridLayoutManager(this, spans)
         rvShop.layoutManager = gridLayoutManager
-        shopAdapter = ShopAdapter(arrayListOf(), context!!)
+        shopAdapter = ShopAdapter(arrayListOf(), this)
         rvShop.adapter = shopAdapter
     }
 
@@ -156,7 +151,7 @@ class ShopFragment : BaseFragment() {
     }
     private fun listenToProductsActions(){
         shopAdapter.productOpenLiveData.observe(this, Observer {
-            val intent = Intent(activity, ProductDetailsActivity::class.java)
+            val intent = Intent(this, ProductDetailsActivity::class.java)
             intent.putExtra("product", it)
             startActivity(intent)
         })
@@ -182,92 +177,11 @@ class ShopFragment : BaseFragment() {
             }
         })
     }
-    private fun setClickListeners(){
-        llShopSort.setOnClickListener {
-            openSort()
-        }
-
-        llShopFilter.setOnClickListener {
-            val intent = Intent(activity, FilterShopActivity::class.java)
-            intent.putExtra("brands", brands?.toIntArray())
-            startActivityForResult(intent, FILTER_REQUEST_CODE)
-            activity?.overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
-        }
-        ivItemShopArrange.setOnClickListener {
-            //TODO Arrange
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == FILTER_REQUEST_CODE && data != null) {
-            val b = data.getIntegerArrayListExtra("brands")
-            if(b != null) {
-                if(b.size == 0){
-                    brands = null
-                } else {
-                    if (brands == null)
-                        brands = ArrayList()
-                    brands?.clear()
-                    brands?.addAll(b)
-                }
-            } else brands = null
-            minPrice = data.getDoubleExtra("min_price", 0.0)
-            maxPrice = data.getDoubleExtra("max_price", 0.0)
-            if(maxPrice == 0.0)
-                maxPrice = null
-            reloadData()
-        }
-    }
-
     private fun reloadData(){
         shopAdapter.products.clear()
         shopAdapter.notifyDataSetChanged()
         addLoading()
         shopViewModel.getShopProducts(minPrice, maxPrice, query, brands?.toList(), orderBy, asc, category)
+    }
 
-    }
-    private fun openSort(){
-        val dialog = BottomSheetDialog(activity!!, R.style.CustomDialogTheme)
-        dialog.setContentView(R.layout.bottom_sheet_dialog_shop_sort)
-        dialog.show()
-        val rg = dialog.findViewById<RadioGroup>(R.id.rgSort)
-        if(orderBy == "created_at")
-            if(asc == true)
-                dialog.findViewById<RadioButton>(R.id.newestSort)?.isChecked = true
-            else dialog.findViewById<RadioButton>(R.id.oldestSort)?.isChecked = true
-        else if(orderBy == "price")
-            if(asc == true)
-                dialog.findViewById<RadioButton>(R.id.cheapestSort)?.isChecked = true
-            else dialog.findViewById<RadioButton>(R.id.expensiveSort)?.isChecked = true
-
-        dialog.findViewById<Button>(R.id.btnSort)?.setOnClickListener {
-            val selected = rg?.checkedRadioButtonId
-            when(selected){
-                R.id.newestSort ->{
-                    orderBy = "created_at"
-                    asc = true
-                }
-                R.id.oldestSort ->{
-                    orderBy = "created_at"
-                    asc = null
-                }
-                R.id.cheapestSort ->{
-                    orderBy = "price"
-                    asc = true
-                }
-                R.id.expensiveSort -> {
-                    orderBy = "price"
-                    asc = null
-                }
-            }
-            dialog.dismiss()
-            reloadData()
-        }
-    }
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            ShopFragment()
-    }
 }

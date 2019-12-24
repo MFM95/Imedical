@@ -3,6 +3,7 @@ package com.example.imedical.home.presentation.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.example.imedical.cart.domain.model.CartModel
 import com.example.imedical.compare.domain.interactor.AddToCompareListUseCase
 import com.example.imedical.compare.domain.interactor.RemoveFromCompareListUseCase
 import com.example.imedical.core.UserPreferences
@@ -20,11 +21,11 @@ class ProductViewModel @Inject constructor(
     private val removeWishUseCase: RemoveWishUseCase,
     private val addToCompareListUseCase: AddToCompareListUseCase) : ViewModel() {
 
-    private val addToCartLiveData by lazy { MutableLiveData<DataWrapper<Unit>>() }
+    private val addToCartLiveData by lazy { MutableLiveData<DataWrapper<CartModel>>() }
     private val wishLiveData: MutableLiveData<DataWrapper<Int>> = MutableLiveData()
     private val addLiveData: MutableLiveData<Unit> = MutableLiveData()
 
-    fun getAddToCartLiveData(): LiveData<DataWrapper<Unit>>{
+    fun getAddToCartLiveData(): LiveData<DataWrapper<CartModel>>{
         return addToCartLiveData
     }
 
@@ -59,8 +60,9 @@ class ProductViewModel @Inject constructor(
         wishLiveData.value = dataWrapper
     }
 
-    private fun onAddResult(dataWrapper: DataWrapper<Unit>){
-        userPreferences.increaseCartSize()
+    private fun onAddResult(dataWrapper: DataWrapper<CartModel>){
+        if(dataWrapper.status)
+            userPreferences.setCartSize(dataWrapper.data?.cartItems?.size?:0)
         addToCartLiveData.value = dataWrapper
     }
 }

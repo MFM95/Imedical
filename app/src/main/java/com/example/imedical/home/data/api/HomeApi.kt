@@ -1,5 +1,6 @@
 package com.example.imedical.home.data.api
 
+import com.example.imedical.cart.data.entity.CartResponse
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.api.EmptyResponse
 import com.example.imedical.home.data.entity.DealsEntity
@@ -30,11 +31,15 @@ interface HomeApi {
 
     @FormUrlEncoded
     @POST("cart/add")
-    suspend fun addToCart(@Field("product") productId: Int, @Field("quantity") quantity: Int): Response<ApiResponse<Unit>>
+    suspend fun addToCart(@Field("product") productId: Int, @Field("quantity") quantity: Int): Response<ApiResponse<CartResponse>>
 
     @GET
     suspend fun getAuthUser(@Field("token") token: String): Response<ApiResponse<UserEntity>>
 
     @POST("wish-list/add/{id}")
     suspend fun storeWish(@Path("id") id: Int): Response<ApiResponse<EmptyResponse>>
+
+    @FormUrlEncoded
+    @POST("checkout/store")
+    suspend fun checkout(@Field("address_id") addressId: Int): Response<ApiResponse<Unit>>
 }

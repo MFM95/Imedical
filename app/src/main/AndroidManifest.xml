@@ -15,14 +15,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".home.presentation.view.activity.ProductDetailsActivity"></activity>
+        <activity android:name=".home.presentation.view.activity.CheckoutActivity"></activity>
+        <activity android:name=".home.presentation.view.activity.SearchActivity" />
+        <activity android:name=".home.presentation.view.activity.ProductDetailsActivity" />
         <activity android:name=".shop.presentation.view.activity.FilterShopActivity" />
         <activity
                 android:name=".addresses.presentation.view.activity.ProfileActivity"
                 android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".categories.presentation.view.activity.CategoriesActivity"
-                android:theme="@style/AppTheme.NoActionBar"
-                />
+        <activity
+                android:name=".categories.presentation.view.activity.CategoriesActivity"
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".cart.presentation.view.activity.CartActivity" />
         <activity
                 android:name=".home.presentation.view.activity.HomeActivity"

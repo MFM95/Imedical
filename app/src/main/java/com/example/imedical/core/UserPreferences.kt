@@ -59,6 +59,9 @@ class UserPreferences @Inject constructor(private val sharedPreferences: SharedP
         sharedPreferences.edit().putInt(CART_SIZE, 0).apply()
     }
 
+    fun setCartSize(size: Int){
+        sharedPreferences.edit().putInt(CART_SIZE, size).apply()
+    }
     fun getCartSize() = sharedPreferences.getInt(CART_SIZE, 0)
 
     private fun clearSharedPrefs() {

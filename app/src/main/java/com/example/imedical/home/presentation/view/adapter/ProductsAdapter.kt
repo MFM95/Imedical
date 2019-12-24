@@ -16,6 +16,7 @@ import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.model.ProductModel
 import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
 /**
  * Created by Ahmed Hassan on 8/18/2019.
@@ -53,7 +54,7 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
 
         lateinit var wishButton: ImageButton
         lateinit var compareButton: ImageView
-        lateinit var addCartButton: Button
+        lateinit var addCartButton: ImageView
 
         lateinit var oldPriceLayout: ConstraintLayout
 
@@ -81,6 +82,7 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
 
             Picasso.with(context)
                 .load(productModel.imageUrl)
+                .transform(RoundedCornersTransformation(30, 2))
                 .into(productImage)
 
             if(productModel.inWishList) {

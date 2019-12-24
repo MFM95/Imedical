@@ -65,9 +65,16 @@ class HomeActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(userPreferences.isUserLogged())
+        if (userPreferences.isUserLogged())
             cartViewModel.updateCart()
-        updateCartLabel()
+        else {
+            userPreferences.resetCartSize()
+            updateCartLabel()
+        }
+        cartViewModel.getCartLiveData().observe(this, Observer {
+            if (it?.status == true)
+                updateCartLabel()
+        })
     }
 
     override fun onBackPressed() {
@@ -94,7 +101,8 @@ class HomeActivity : BaseActivity() {
         if (size > 0) {
             cartActionView?.findViewById<TextView>(R.id.cartSizeTextView)?.text = size.toString()
             cartActionView?.findViewById<TextView>(R.id.cartSizeTextView)?.visibility = View.VISIBLE
-        } else cartActionView?.findViewById<TextView>(R.id.cartSizeTextView)?.visibility = View.INVISIBLE
+        } else cartActionView?.findViewById<TextView>(R.id.cartSizeTextView)?.visibility =
+            View.INVISIBLE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -112,12 +120,15 @@ class HomeActivity : BaseActivity() {
         return true
     }
 
-    private fun openSearch(){
-        supportFragmentManager.fragments
+    private fun openSearch() {
+        startActivity(Intent(this, SearchActivity::class.java))
     }
-    private fun openCart(){
+
+    private fun openCart() {
         if (userPreferences.isUserLogged())
-            startActivity(Intent(this, CartActivity::class.java))
+            if (userPreferences.getCartSize() > 0)
+                startActivity(Intent(this, CartActivity::class.java))
+            else showMessage("Cart is empty")
         else showMessage("Login to be able to use this feature")
     }
 

@@ -18,15 +18,15 @@ class CartViewModel @Inject constructor(
     private val userPreferences: UserPreferences
 ) : ViewModel(){
 
-    private val removeCartLiveData by lazy { MutableLiveData<DataWrapper<Unit>>() }
-    private val updateCartLiveData by lazy { MutableLiveData<DataWrapper<Unit>>() }
+    private val removeCartLiveData by lazy { MutableLiveData<DataWrapper<CartModel>>() }
+    private val updateCartLiveData by lazy { MutableLiveData<DataWrapper<CartModel>>() }
     private val getCartLiveData by lazy { MutableLiveData<DataWrapper<CartModel>>() }
 
-    fun getRemoveFromCartLiveData(): LiveData<DataWrapper<Unit>>{
+    fun getRemoveFromCartLiveData(): LiveData<DataWrapper<CartModel>>{
         return removeCartLiveData
     }
 
-    fun getUpdateCartLiveData(): LiveData<DataWrapper<Unit>>{
+    fun getUpdateCartLiveData(): LiveData<DataWrapper<CartModel>>{
         return updateCartLiveData
     }
 
@@ -45,16 +45,21 @@ class CartViewModel @Inject constructor(
     fun updateCart(){
         getCartUseCase.execute(Unit, this::onCartResult)
     }
-    private fun onRemoveResult(dataWrapper: DataWrapper<Unit>){
-        userPreferences.decreaseCartSize()
+    private fun onRemoveResult(dataWrapper: DataWrapper<CartModel>){
+        if(dataWrapper.status)
+            userPreferences.setCartSize(dataWrapper.data?.cartItems?.size?:0)
         removeCartLiveData.value = dataWrapper
     }
 
-    private fun onUpdateResult(dataWrapper: DataWrapper<Unit>){
+    private fun onUpdateResult(dataWrapper: DataWrapper<CartModel>){
+        if(dataWrapper.status)
+            userPreferences.setCartSize(dataWrapper.data?.cartItems?.size?:0)
         updateCartLiveData.value = dataWrapper
     }
 
     private fun onCartResult(dataWrapper: DataWrapper<CartModel>){
+        if(dataWrapper.status)
+            userPreferences.setCartSize(dataWrapper.data?.cartItems?.size?:0)
         getCartLiveData.value = dataWrapper
     }
 }

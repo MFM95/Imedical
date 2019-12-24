@@ -11,15 +11,15 @@ import javax.inject.Inject
 class CartApiCalls@Inject constructor(private val retrofit: Retrofit) {
     private val cartApi = retrofit.create(CartApi::class.java)
 
-    suspend fun removeFromCart(productId: String): ApiResponse<Unit>? {
-        var data: ApiResponse<Unit>? = null
+    suspend fun removeFromCart(productId: String): ApiResponse<CartResponse>? {
+        var data: ApiResponse<CartResponse>? = null
         try {
             val response = cartApi.removeFromCart(productId)
             data = if (response.isSuccessful)
                 response.body()
             else ResponseError.handle(response, retrofit)
         } catch (ex: UnknownHostException) {
-            data = ApiResponse(false, Unit, "Check your internet connection")
+            data = ApiResponse(false, null, "Check your internet connection")
         } catch (ex: Exception){
             ex.printStackTrace()
         }
@@ -28,8 +28,8 @@ class CartApiCalls@Inject constructor(private val retrofit: Retrofit) {
     }
 
 
-    suspend fun updateCartItem(productId: String, quantity: Int): ApiResponse<Unit>? {
-        var data: ApiResponse<Unit>? = null
+    suspend fun updateCartItem(productId: String, quantity: Int): ApiResponse<CartResponse>? {
+        var data: ApiResponse<CartResponse>? = null
         try {
             val response = cartApi.updateCartItem(productId, quantity)
             data = if (response.isSuccessful)
@@ -37,7 +37,7 @@ class CartApiCalls@Inject constructor(private val retrofit: Retrofit) {
             else ResponseError.handle(response, retrofit)
 
         } catch (ex: UnknownHostException) {
-            data = ApiResponse(false, Unit, "Check your internet connection")
+            data = ApiResponse(false, null, "Check your internet connection")
         }
 
         return data

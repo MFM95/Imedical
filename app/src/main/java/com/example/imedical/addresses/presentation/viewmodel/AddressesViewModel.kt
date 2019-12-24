@@ -6,13 +6,15 @@ import com.example.imedical.addresses.domain.interactor.*
 import com.example.imedical.addresses.domain.model.AddressModel
 import com.example.imedical.addresses.domain.model.CountryProvincesModel
 import com.example.imedical.core.model.DataWrapper
+import com.example.imedical.home.domain.usecase.CheckoutUseCase
 import javax.inject.Inject
 
 class AddressesViewModel @Inject constructor(private val getAddressesUseCase: GetAddressesUseCase,
                                              private val createAddressUseCase: CreateAddressUseCase,
                                              private val getCountryProvincesUseCase: GetCountryProvincesUseCase,
                                              private val updateAddressUseCase: UpdateAddressUseCase,
-                                             private val deleteAddressUseCase: DeleteAddressUseCase)
+                                             private val deleteAddressUseCase: DeleteAddressUseCase,
+                                             private val checkoutUseCase: CheckoutUseCase)
     : ViewModel(){
 
     private val addressesLiveData: MutableLiveData<List<AddressModel>> = MutableLiveData()
@@ -20,7 +22,15 @@ class AddressesViewModel @Inject constructor(private val getAddressesUseCase: Ge
     private val countryProvincesLiveData: MutableLiveData<CountryProvincesModel> = MutableLiveData()
     private val updateAddressLiveData: MutableLiveData<String> = MutableLiveData()
     private val deleteAddressLiveData: MutableLiveData<String> = MutableLiveData()
+    val checkoutLiveData by lazy { MutableLiveData<DataWrapper<Unit>>() }
 
+    fun checkout(id: Int){
+        checkoutUseCase.execute(id, this::checkoutResult)
+    }
+
+    private fun checkoutResult(r: DataWrapper<Unit>){
+        checkoutLiveData.value = r
+    }
     fun getAddressesLiveData(): MutableLiveData<List<AddressModel>> {
         return addressesLiveData
     }
