@@ -8,12 +8,18 @@
         tools:context=".compare.presentation.view.fragment.CompareListFragment">
 
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_20"
+            android:text="Empty List"
+            android:layout_gravity="center_horizontal"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCompareList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen_30"
-        />
+            android:layout_gravity="center_horizontal" />
 
     <ProgressBar
             android:id="@+id/progressCompareListLoading"

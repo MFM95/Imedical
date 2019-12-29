@@ -12,6 +12,7 @@ class CartActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
         title = "Cart"
+        supportActionBar?.title = "Cart"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         this.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.cartFrameLayout, CartFragment())

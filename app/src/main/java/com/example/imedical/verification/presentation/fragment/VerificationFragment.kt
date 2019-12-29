@@ -11,6 +11,7 @@ import com.example.imedical.R
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.view.activity.HomeActivity
+import com.example.imedical.login.presentation.view.activity.LoginActivity
 import com.example.imedical.verification.presentation.viewmodel.VerificationViewModel
 import kotlinx.android.synthetic.main.fragment_verification.*
 import javax.inject.Inject
@@ -58,7 +59,6 @@ class VerificationFragment : BaseFragment() {
                     //TODO remove showing token
                     showLoading(false)
                     if(dataWrapper?.status == true) {
-                        showMessage(dataWrapper.data)
                         dataWrapper.data
                         //     userPreferences.saveAccessToken(token!!)
                         val homeIntent = Intent(activity!!, HomeActivity::class.java)
@@ -97,6 +97,14 @@ class VerificationFragment : BaseFragment() {
         }
         tvResendCode.setOnClickListener {
             onResendClickListener()
+        }
+        btnLater.setOnClickListener {
+            val homeIntent = Intent(activity!!, HomeActivity::class.java)
+            homeIntent.flags = homeIntent.flags or
+                    Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP
+            activity!!.startActivity(homeIntent)
         }
     }
 

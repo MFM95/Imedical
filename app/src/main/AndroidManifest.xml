@@ -15,7 +15,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".home.presentation.view.activity.CheckoutActivity"></activity>
+        <activity android:name=".orders.presentation.activity.OrdersActivity"></activity>
+        <activity android:name=".home.presentation.view.activity.CheckoutActivity" />
         <activity android:name=".home.presentation.view.activity.SearchActivity" />
         <activity android:name=".home.presentation.view.activity.ProductDetailsActivity" />
         <activity android:name=".shop.presentation.view.activity.FilterShopActivity" />

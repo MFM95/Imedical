@@ -24,6 +24,7 @@ import com.example.imedical.core.platform.ViewModelFactory
 import com.example.imedical.home.presentation.viewmodel.NavigationViewModel
 import com.example.imedical.login.domain.model.UserModel
 import com.example.imedical.login.presentation.view.activity.LoginActivity
+import com.example.imedical.orders.presentation.activity.OrdersActivity
 import com.example.imedical.shop.presentation.view.fragment.ShopFragment
 import com.example.imedical.wishlist.presentation.view.fragment.WishListFragment
 import kotlinx.android.synthetic.main.app_bar_home.*
@@ -119,13 +120,15 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                     activity?.supportFragmentManager?.beginTransaction()!!
                         .replace(R.id.homeFragment, HomeFragment())
                         .commitNow()
+                activity?.toolbar?.title = "Home"
             }
             R.id.nav_categories -> {
                 val intent = Intent(activity, CategoriesActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, 500)
             }
             R.id.nav_shop ->{
-                replaceFragment(ShopFragment.newInstance())
+                replaceFragment(ShopFragment.newInstance(null))
+                activity?.toolbar?.title = "Shop"
             }
             R.id.nav_wish_list -> {
                 if(fragmentManager != null && userPreferences.isUserLogged())
@@ -134,20 +137,28 @@ class NavigationFragment : BaseFragment(), NavigationView.OnNavigationItemSelect
                     navView.setCheckedItem(R.id.nav_home)
                     showMessage("Login to be able to use this feature")
                 }
-
+                activity?.toolbar?.title = "Wishlist"
             }
             R.id.nav_compare_list -> {
                     replaceFragment(CompareListFragment.newInstance())
 //                    fab.visibility = View.GONE
 //                    toolbar.title = getString(R.string.compare_list_title)
+                activity?.toolbar?.title = "Compare List"
+            }
+            R.id.nav_vendors ->{
+                replaceFragment(VendorsFragment())
+                activity?.toolbar?.title = "Vendors"
             }
             R.id.nav_settings -> {
                 val intent = Intent(activity, ProfileActivity::class.java)
                 startActivity(intent)
             }
+            R.id.nav_orders ->{
+                startActivity(Intent(activity, OrdersActivity::class.java))
+            }
             R.id.nav_logout -> {
                 userPreferences.clearUser()
-                val intent = activity?.intent
+                val intent = Intent(activity, LoginActivity::class.java)
                 activity?.finish()
                 startActivity(intent)
             }

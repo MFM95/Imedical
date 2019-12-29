@@ -6,6 +6,7 @@ import com.example.imedical.core.api.EmptyResponse
 import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.core.api.ProductEntity
 import com.example.imedical.home.data.entity.UserWrapperEntity
+import com.example.imedical.home.data.entity.VendorsWrapper
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Field
@@ -78,6 +79,16 @@ class ApiCalls @Inject constructor(private val retrofit: Retrofit) {
         } catch (ex: UnknownHostException) {
             ApiResponse(false, null, "Check Internet Connection")
         } catch (ex: Exception) {
+            ApiResponse(false, null, "Server Error")
+        }
+    }
+
+    suspend fun getVendors(): ApiResponse<VendorsWrapper>{
+        return try {
+            homeApi.getVendors().body()!!
+        } catch (ex: UnknownHostException){
+            ApiResponse(false, null, "Check Internet Connection")
+        } catch (ex: Exception){
             ApiResponse(false, null, "Server Error")
         }
     }

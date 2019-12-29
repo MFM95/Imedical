@@ -99,6 +99,7 @@ class AddressesFragment : BaseFragment() {
         val provinceName = selectedProvinceName
         addressesViewModel.createAddress(alias = alias, address1 = street, address2 = "",
             phone = phone, countryId = 1, provinceId = provinceId)
+        if(!addressesViewModel.getCreatedAddressLiveData().hasObservers())
         addressesViewModel.getCreatedAddressLiveData().observe(this, Observer {
             if(it != null) {
                 showMessage(getString(R.string.add_addresses_success_msg))
@@ -122,6 +123,7 @@ class AddressesFragment : BaseFragment() {
 
     private fun getProvinces(showAddAddress: Boolean) {
         addressesViewModel.getCountryProvinces(1)
+        if(!addressesViewModel.getCountryProvincesLiveData().hasObservers())
         addressesViewModel.getCountryProvincesLiveData().observe(this, Observer {
             it?.let {
                 provincesList = it.provinces
@@ -191,6 +193,7 @@ class AddressesFragment : BaseFragment() {
 
     private fun deleteAddress(address: AddressModel) {
         addressesViewModel.deleteAddress(address.id!!)
+        if(addressesViewModel.getDeleteAddressLiveData().hasObservers())
         addressesViewModel.getDeleteAddressLiveData().observe(this, Observer {
             it?.let {
                 showMessage(it)

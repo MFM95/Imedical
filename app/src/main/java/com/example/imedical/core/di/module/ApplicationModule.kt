@@ -48,8 +48,9 @@ class ApplicationModule(private val application: AndroidApplication) {
     private fun createClient(userPreferences: UserPreferences): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         val loggingInterceptor =
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            HttpLoggingInterceptor()
 
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val interceptor = Interceptor { chain ->
             val builder = chain.request().newBuilder()
                 .addHeader("Accept", "application/json")

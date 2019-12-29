@@ -19,6 +19,7 @@ import com.example.imedical.cart.presentation.view.fragment.CartFragment
 import com.example.imedical.cart.presentation.viewmodel.CartViewModel
 import com.example.imedical.core.platform.BaseActivity
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.shop.presentation.view.fragment.ShopFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
@@ -134,5 +135,11 @@ class HomeActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        //category result
+        if(resultCode == 500 && data != null && data.getIntExtra("category", -1) != -1){
+            supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.homeFragment, ShopFragment.newInstance(data.getIntExtra("category", -1)))
+                ?.commitNow()
+        }
     }
 }

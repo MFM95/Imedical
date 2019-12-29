@@ -1,6 +1,7 @@
 package com.example.imedical.wishlist.presentation.view.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
 import com.example.imedical.home.presentation.view.adapter.IProductCallback
 import com.example.imedical.wishlist.presentation.view.adapter.callback.IWishCallback
 import com.squareup.picasso.Picasso
@@ -76,7 +78,12 @@ class WishesAdapter(val wishes: ArrayList<ProductModel>,
             Picasso.with(context)
                 .load(productModel.imageUrl)
                 .into(productImage)
+            productImage.setOnClickListener {
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                intent.putExtra("product", productModel)
+                context.startActivity(intent)
 
+            }
             removeButton.setOnClickListener{ wishCallback.onRemoveClick(productModel.id, index) }
             compareButton.setOnClickListener{ wishCallback.onCompareClick(productModel.id) }
             addCartButton.setOnClickListener{ wishCallback.addToCart(productModel.id) }

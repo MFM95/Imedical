@@ -5,6 +5,7 @@ import com.example.imedical.cart.domain.model.CartModel
 import com.example.imedical.core.model.DataWrapper
 import com.example.imedical.core.model.ProductModel
 import com.example.imedical.home.data.api.ApiCalls
+import com.example.imedical.home.data.entity.VendorsWrapper
 import com.example.imedical.home.domain.repository.IProductRepository
 import com.example.imedical.login.domain.model.UserModel
 import javax.inject.Inject
@@ -36,5 +37,9 @@ class ProductRepository @Inject constructor(private val apiCalls: ApiCalls) : IP
 
     override suspend fun checkout(addressId: Int): DataWrapper<Unit>{
         return DataMapper.mapEmpty(apiCalls.checkout(addressId))
+    }
+
+    override suspend fun getVendors(): DataWrapper<VendorsWrapper>{
+        return DataMapper.mapVendors(apiCalls.getVendors())
     }
 }

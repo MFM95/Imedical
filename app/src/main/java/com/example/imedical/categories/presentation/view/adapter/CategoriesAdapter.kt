@@ -1,5 +1,8 @@
 package com.example.imedical.categories.presentation.view.adapter
 
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,6 +17,7 @@ class CategoriesAdapter(
     private val categoriesList: ArrayList<CategoryModel>,
     private val context: Context
 ) : RecyclerView.Adapter<CategoriesAdapter.CategoriesHolder>() {
+    val finalCategoryClickedLiveData by lazy { MutableLiveData<Int>() }
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): CategoriesHolder {
         return CategoriesHolder(
             LayoutInflater.from(context)
@@ -41,6 +45,9 @@ class CategoriesAdapter(
             }
             categoryModel.children?.let { children ->
                 val categoriesAdapter = FirstChildrenAdapter(children, context)
+                categoriesAdapter.finalCategoryClickedLiveData.observe(view.context as LifecycleOwner, Observer {
+                    finalCategoryClickedLiveData.value = it
+                })
                 view.rvCategoryItemChildren.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 view.rvCategoryItemChildren.adapter = categoriesAdapter
@@ -57,6 +64,8 @@ class CategoriesAdapter(
                         view.imgCategoryItemArrow.setImageResource(R.drawable.ic_see_all)
                         categoryModel.isExpanded = true
                     }
+                } else {
+                    finalCategoryClickedLiveData.value = categoryModel.id
                 }
             }
         }

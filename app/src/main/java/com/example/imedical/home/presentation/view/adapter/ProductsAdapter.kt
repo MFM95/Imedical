@@ -2,6 +2,7 @@ package com.example.imedical.home.presentation.view.adapter
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Build
 import android.support.constraint.ConstraintLayout
@@ -16,6 +17,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.imedical.R
 import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
@@ -86,16 +88,22 @@ class ProductsAdapter(val products: ArrayList<ProductModel>,
                 .transform(RoundedCornersTransformation(30, 2))
                 .into(productImage)
 
+            productImage.setOnClickListener {
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                intent.putExtra("product", productModel)
+                context.startActivity(intent)
+
+            }
             if(productModel.inWishList) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_full))
-                } else ContextCompat.getDrawable(context, R.drawable.ic_wish_full)
+                } else wishButton.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_wish_full))
                 wishButton.setColorFilter(ContextCompat.getColor(context, R.color.colorAccent))
             }
             else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     wishButton.setImageDrawable(context.getDrawable(R.drawable.ic_wish_border_sm))
-                } else ContextCompat.getDrawable(context, R.drawable.ic_wish_border_sm)
+                } else wishButton.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_wish_border_sm))
                 wishButton.setColorFilter(ContextCompat.getColor(context, R.color.colorBlack))
 
             }

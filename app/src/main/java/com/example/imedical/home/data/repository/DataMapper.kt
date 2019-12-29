@@ -8,6 +8,7 @@ import com.example.imedical.core.api.ProductEntity
 import com.example.imedical.home.data.entity.UserEntity
 import com.example.imedical.core.model.ProductModel
 import com.example.imedical.home.data.entity.UserWrapperEntity
+import com.example.imedical.home.data.entity.VendorsWrapper
 import com.example.imedical.login.domain.model.UserModel
 
 /**
@@ -85,5 +86,12 @@ object DataMapper {
         if(entityWrapper == null)
             return DataWrapper(false, index, "Server error")
         return DataWrapper(entityWrapper.status?:false, index, entityWrapper.error)
+    }
+
+    fun mapVendors(entityWrapper: ApiResponse<VendorsWrapper>?): DataWrapper<VendorsWrapper>{
+        if(entityWrapper == null)
+            return DataWrapper(false, null, "Server error")
+        return DataWrapper(entityWrapper.status?:false, entityWrapper.data, entityWrapper.error)
+
     }
 }

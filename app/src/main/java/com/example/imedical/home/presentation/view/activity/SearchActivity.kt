@@ -50,6 +50,7 @@ class SearchActivity : BaseActivity() {
         appComponent.inject(this)
         setContentView(R.layout.activity_search)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Search"
         subscribeViewModel()
         initRecycler()
         listenToProductsActions()

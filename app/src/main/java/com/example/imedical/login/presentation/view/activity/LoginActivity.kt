@@ -65,6 +65,7 @@ class LoginActivity : BaseActivity() {
         viewModel.getToken()
             .observe(
                 this, Observer { dataWrapper ->
+                    hideProgress()
                     if(dataWrapper?.status == true) {
                         onLoginSuccess(dataWrapper.data)
                     }
@@ -92,6 +93,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun onLoginClick(){
+        showProgress()
         loginErrorLayout.visibility = View.GONE
         viewModel.login(credentialNameEditText.text.toString(), credentialPasswordEditText.text.toString())
     }

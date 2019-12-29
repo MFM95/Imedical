@@ -3,11 +3,8 @@ package com.example.imedical.home.data.api
 import com.example.imedical.cart.data.entity.CartResponse
 import com.example.imedical.core.api.ApiResponse
 import com.example.imedical.core.api.EmptyResponse
-import com.example.imedical.home.data.entity.DealsEntity
 import com.example.imedical.core.api.ProductEntity
-import com.example.imedical.home.data.entity.CartEntity
-import com.example.imedical.home.data.entity.UserEntity
-import com.example.imedical.home.data.entity.UserWrapperEntity
+import com.example.imedical.home.data.entity.*
 import retrofit2.Response
 import retrofit2.http.*
 import retrofit2.http.Field
@@ -42,4 +39,7 @@ interface HomeApi {
     @FormUrlEncoded
     @POST("checkout/store")
     suspend fun checkout(@Field("address_id") addressId: Int): Response<ApiResponse<Unit>>
+
+    @GET("our-vendors")
+    suspend fun getVendors(): Response<ApiResponse<VendorsWrapper>>
 }

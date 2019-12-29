@@ -21,7 +21,9 @@ import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
 import com.example.imedical.home.presentation.view.activity.SearchActivity
 import com.example.imedical.home.presentation.view.fragment.OffersFragment
+import com.example.imedical.home.presentation.view.fragment.VendorsFragment
 import com.example.imedical.login.presentation.view.activity.LoginActivity
+import com.example.imedical.orders.presentation.activity.OrdersActivity
 import com.example.imedical.registration.presentation.fragment.RegistrationFragment
 import com.example.imedical.shop.presentation.view.activity.FilterShopActivity
 import com.example.imedical.shop.presentation.view.fragment.ShopFragment
@@ -47,7 +49,8 @@ import javax.inject.Singleton
     CompareListModule::class,
     AddressesModule::class,
     CategoriesModule::class,
-    ShopModule::class]) interface ApplicationComponent {
+    ShopModule::class,
+    OrdersModule::class]) interface ApplicationComponent {
 
     fun inject(baseActivity: BaseActivity)
     fun inject(homeActivity: HomeActivity)
@@ -71,4 +74,6 @@ import javax.inject.Singleton
     fun inject(filterShopActivity: FilterShopActivity)
     fun inject(searchActivity: SearchActivity)
     fun inject(checkoutActivity: CheckoutActivity)
+    fun inject(ordersActivity: OrdersActivity)
+    fun inject(vendorsFragment: VendorsFragment)
 }

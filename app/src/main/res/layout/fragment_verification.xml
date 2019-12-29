@@ -74,11 +74,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/submit_hint"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/blue_btn_bg"
             android:textColor="@color/colorWhite"
             android:textAllCaps="false"
             android:layout_marginTop="@dimen/dimen_60"
             app:layout_constraintTop_toBottomOf="@+id/tvResendCode"/>
+
+    <Button android:id="@+id/btnLater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Later"
+            android:background="@color/warm_grey"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/dimen_30"
+            app:layout_constraintTop_toBottomOf="@+id/btnVerify"/>
 
     <ProgressBar
             android:id="@+id/progressVerificationLoading"

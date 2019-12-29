@@ -2,12 +2,14 @@ package com.example.imedical.compare.presentation.view.adapter
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.imedical.R
 import com.example.imedical.core.model.ProductModel
+import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cell_compare_product.view.*
 
@@ -54,7 +56,12 @@ class CompareListAdapter(private val compareList: ArrayList<ProductModel>,
             Picasso.with(context)
                 .load(productModel.imageUrl)
                 .into(view.imgCompareProductsImage)
+            view.imgCompareProductsImage.setOnClickListener {
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                intent.putExtra("product", productModel)
+                context.startActivity(intent)
 
+            }
             view.btnCompareRemove.setOnClickListener{ onRemoveClick.value = productModel }
         }
     }

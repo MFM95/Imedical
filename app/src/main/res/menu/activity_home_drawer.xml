@@ -32,14 +32,23 @@
                 android:id="@+id/nav_compare_list"
                 android:icon="@drawable/ic_compare_sm"
                 android:title="@string/menu_compare_list"/>
+        <item
+                android:id="@+id/nav_orders"
+                android:icon="@drawable/ic_orders"
+                android:title="Orders"/>
+        <item
+                android:id="@+id/nav_vendors"
+                android:icon="@drawable/ic_vendor"
+                android:title="Vendors"/>
+
     </group>
 
     <item android:title="">
         <menu>
             <item
                     android:id="@+id/nav_settings"
-                    android:icon="@drawable/ic_settings_sm"
-                    android:title="@string/menu_settings"/>
+                    android:icon="@drawable/ic_user_profile"
+                    android:title="Profile"/>
             <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/ic_input_24px"

@@ -30,6 +30,7 @@ class CategoriesActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(my_toolbar)
         appComponent.inject(this)
         setContentView(R.layout.activity_categories)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesViewModel::class.java)
@@ -57,8 +58,18 @@ class CategoriesActivity : BaseActivity() {
         rvCategories.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvCategories.adapter = categoriesAdapter
+        categoriesAdapter.finalCategoryClickedLiveData.observe(this, Observer {
+            val intent = Intent()
+            intent.putExtra("category", it)
+            setResult(500, intent)
+            finish()
+        })
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
     companion object {
         @JvmStatic
         fun newInstance(context: Context): Intent

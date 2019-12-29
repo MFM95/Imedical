@@ -59,6 +59,8 @@ class WishListFragment : BaseFragment() {
                 if(dataWrapper!= null && dataWrapper.status) {
                     adapter.wishes.addAll(dataWrapper.data!!)
                     adapter.notifyDataSetChanged()
+                    if(adapter.wishes.isEmpty())
+                        wishListRecyclerView.visibility = View.GONE
                 } else showMessage(dataWrapper?.error)
             })
 

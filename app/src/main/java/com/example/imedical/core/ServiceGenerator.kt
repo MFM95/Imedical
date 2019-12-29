@@ -53,7 +53,7 @@ class ServiceGenerator {
 
             interceptor = Interceptor { chain ->
                 val request = chain?.request()?.newBuilder()
-                    ?.addHeader("Authorization", authToken?.trim())
+                    ?.addHeader("Authorization", "Bearer " + authToken?.trim())
                     ?.addHeader("Content-Type", "application/json")
                     ?.build()
 

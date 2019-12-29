@@ -57,12 +57,13 @@
 
         <TextView
                 android:id="@+id/tvAddressStreet"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_6"
-                android:layout_marginLeft="@dimen/dimen_6"
+                android:layout_marginEnd="@dimen/dimen_10"
                 android:layout_marginTop="@dimen/dimen_6"
                 android:ellipsize="end"
+                app:layout_constraintEnd_toStartOf="@id/btnAddressEdit"
                 android:letterSpacing="0.03"
                 android:lineSpacingExtra="43sp"
                 android:text="Gmal Abd El naser El-Zahraa s.t"

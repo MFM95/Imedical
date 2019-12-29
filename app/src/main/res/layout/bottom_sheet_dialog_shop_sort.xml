@@ -25,7 +25,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Oldest"
-                android:checked="true"
                 android:buttonTint="@color/faded_blue"
                 android:textColor="@color/grey_95"/>
         <RadioButton
@@ -33,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Newest"
+                android:checked="true"
                 android:buttonTint="@color/faded_blue"
                 android:textColor="@color/grey_95"/>
 
@@ -41,14 +41,14 @@
                 android:id="@+id/cheapestSort"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price high to low"
+                android:text="Price low to high"
                 android:buttonTint="@color/faded_blue"
                 android:textColor="@color/grey_95"/>
         <RadioButton
                 android:id="@+id/expensiveSort"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price low to high"
+                android:text="Price high to low"
                 android:buttonTint="@color/faded_blue"
                 android:textColor="@color/grey_95"/>
 

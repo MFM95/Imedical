@@ -22,6 +22,7 @@ import com.example.imedical.R
 import com.example.imedical.core.model.ProductModel
 import com.example.imedical.core.platform.BaseFragment
 import com.example.imedical.core.platform.ViewModelFactory
+import com.example.imedical.home.presentation.view.activity.HomeActivity
 import com.example.imedical.home.presentation.view.activity.ProductDetailsActivity
 import com.example.imedical.home.presentation.viewmodel.ProductViewModel
 import com.example.imedical.shop.presentation.view.adapter.ShopAdapter
@@ -108,6 +109,8 @@ class ShopFragment : BaseFragment() {
         productViewModel.getAddToCartLiveData().observe(this, Observer {
             hideProgress()
             if(it?.status == true) {
+                if(activity is HomeActivity)
+                    (activity as HomeActivity).updateCartLabel()
                 showMessage("Added to cart successfully")
             } else showMessage(it?.error)
         })
@@ -271,7 +274,10 @@ class ShopFragment : BaseFragment() {
     }
     companion object {
         @JvmStatic
-        fun newInstance() =
-            ShopFragment()
+        fun newInstance(category: Int?): ShopFragment {
+            val fragment = ShopFragment()
+            fragment.category = category
+            return fragment
+        }
     }
 }
